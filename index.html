@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Release Test Report - USW-Pro-48-PoE FW Comparison</title>
+<title>Firmware Comparison Report - USW-Pro-48-PoE</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; line-height: 1.6; padding: 2rem; }
@@ -103,7 +103,7 @@
 </head>
 <body>
 <div class="container">
-  <h1>Release Test: Firmware Comparison Report</h1>
+  <h1>Firmware Comparison Report</h1>
   <p class="subtitle">USW-Pro-48-PoE &mdash; 12-Item Pre/Post Upgrade Validation</p>
 
   <div class="info-bar">
@@ -121,7 +121,7 @@
     <div class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></div>
+    <div class="summary-card warn"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">7.2 Testing</div></div>
     <div class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></div>
@@ -138,7 +138,9 @@
       <span class="section-title">Packet Loss Baseline vs Post-Upgrade</span>
       <span class="badge badge-pass">Pass</span>
     </div>
-    <p class="note" style="margin-bottom:0.8rem;">RFC 2544 Frame Loss test (IXIA 4-port 10G full mesh) + 24-hour soak at 100% line rate</p>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 4-port 10G full mesh (12 bidirectional flows), 7 frame sizes (64-1518B), offered rates 10%-100% in 10% steps. Binary search with 0% loss tolerance. Both firmware versions tested on same DUT with same IXIA session. Additionally, 24-hour continuous soak test at 100% line rate.
+    </div>
     <table>
       <thead>
         <tr><th>Frame Size</th><th>Rate</th><th>FW 7.2.123</th><th>FW 7.4.1</th><th>Status</th></tr>
@@ -163,6 +165,9 @@
       <span class="section-title">STP Topology Stability Check</span>
       <span class="badge badge-pass">No Change</span>
     </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show</code> to read STP state column (forwarding / disabled / blocking / listening / learning) for all 52 ports. Execute <code>swctrl port show counters id &lt;port&gt;</code> on each active port to compare RSTP BPDU TX/RX counts. Run on both firmware versions and diff results.
+    </div>
     <table>
       <thead>
         <tr><th>Port</th><th>Link</th><th>FW 7.2.123 STP</th><th>FW 7.4.1 STP</th><th>Status</th></tr>
@@ -186,6 +191,9 @@
       <span class="section-title">PoE Port Health Check</span>
       <span class="badge badge-pass">No Change</span>
     </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl poe show</code> to read all 48 PoE ports' OpMode, HpMode (802.3at/bt), Power Limit, Class, PoE Power state, Power(W), Voltage(V), Current(mA). Compare all fields across both firmware versions.
+    </div>
     <table>
       <thead>
         <tr><th>Port Range</th><th>PoE Type</th><th>FW 7.2.123 Mode</th><th>FW 7.4.1 Mode</th><th>Power</th><th>Status</th></tr>
@@ -205,17 +213,23 @@
       <span class="section-title">Connected Device Count</span>
       <span class="badge badge-pass">Pass</span>
     </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl mac show</code> to dump the hardware FDB (Forwarding Database) table. Count unique MAC addresses per port. Compare totals and per-port counts across both firmware versions.
+    </div>
     <table>
       <thead>
         <tr><th>Port</th><th>FW 7.2.123 MACs</th><th>FW 7.4.1 MACs</th><th>Delta</th><th>Note</th></tr>
       </thead>
       <tbody>
-        <tr><td>Port 48 (uplink)</td><td>21</td><td>32</td><td>+11</td><td>Normal: 7.4.1 uptime longer, more MACs learned</td></tr>
+        <tr><td>Port 48 (uplink)</td><td>21</td><td>32</td><td>+11</td><td>See explanation below</td></tr>
         <tr><td>Port 49-52 (IXIA)</td><td>0</td><td>0</td><td>0</td><td>IXIA raw L2 traffic, no MAC learning</td></tr>
         <tr style="font-weight:600;"><td>Total</td><td>21</td><td>32</td><td>+11</td><td></td></tr>
       </tbody>
     </table>
-    <p class="note">LLDP neighbor on port 48: MUSWProXG48PoE (te1/0/30). MAC count difference is due to uptime delta (7.2.123 freshly booted vs 7.4.1 running 14+ hours).</p>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Why +11 MACs on 7.4.1?</strong> This is NOT a regression. The test sequence was: collect 7.4.1 snapshot (uptime 14h 32m) &rarr; downgrade to 7.2.123 &rarr; collect 7.2.123 snapshot (uptime ~1 min). FW 7.2.123 had just booted and the FDB had not yet learned all upstream MACs. The 11 additional MACs on 7.4.1 are upstream network devices (APs, switches, clients on port 48) that were learned over 14 hours of operation. Both versions see the same physical network; the difference is purely due to FDB aging and collection timing.<br><br>
+      <strong>LLDP neighbor:</strong> Port 48 &rarr; MUSWProXG48PoE (te1/0/30)
+    </div>
   </div>
 
   <!-- ==================== ITEM 5 ==================== -->
@@ -223,17 +237,26 @@
     <div class="section-header">
       <span class="section-num">#5</span>
       <span class="section-title">Uplink Stability</span>
-      <span class="badge badge-pass">Pass</span>
+      <span class="badge badge-pass">7.4.1 Pass</span>
+      <span class="badge badge-na">7.2.123 In Progress</span>
     </div>
-    <div class="note-box">
-      <strong>24-Hour Soak Test Result (FW 7.4.1):</strong><br>
-      Duration: 24h 04m<br>
-      Total TX: 1,544,136,948 frames (1.5 trillion) across 4x 10G ports<br>
-      Packet Loss: 0 frames<br>
-      Rate: 100% line rate (40 Gbps aggregate)<br>
-      Frame Size: 1518 bytes<br>
-      Port 48 (1G uplink) remained UP throughout entire test with zero errors.
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> IXIA sends continuous L2 traffic at 100% line rate (40 Gbps aggregate, 4x 10G ports, 1518B frames) for 24 hours. Script polls IXIA stats every 30 seconds, recording TX/RX frame counts and calculating cumulative packet loss. Port 48 (1G management uplink) is monitored for link status and error counters throughout.
     </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.2.123</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Duration</td><td>24h 04m</td><td class="val-warn">Testing...</td></tr>
+        <tr><td>Total TX Frames</td><td>1,544,136,948</td><td class="val-warn">--</td></tr>
+        <tr><td>Packet Loss</td><td class="val-good">0 frames</td><td class="val-warn">--</td></tr>
+        <tr><td>Rate</td><td>100% line rate (40 Gbps)</td><td>100% line rate (40 Gbps)</td></tr>
+        <tr><td>Frame Size</td><td>1518 B</td><td>1518 B</td></tr>
+        <tr><td>Port 48 Uplink</td><td class="val-good">UP, zero errors</td><td class="val-warn">--</td></tr>
+      </tbody>
+    </table>
+    <p class="note">FW 7.2.123 24-hour soak test started 2026-04-11. Results will be updated upon completion.</p>
   </div>
 
   <!-- ==================== ITEM 6 ==================== -->
@@ -242,6 +265,9 @@
       <span class="section-num">#6</span>
       <span class="section-title">CPU and Memory Usage</span>
       <span class="badge badge-pass">Pass</span>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, read <code>/proc/meminfo</code> (MemTotal, MemFree, MemAvailable), <code>/proc/loadavg</code>, and <code>top -bn1</code> (CPU usr/sys/idle/sirq breakdown). Snapshot taken on each firmware version under same traffic conditions. Memory used % = (Total - Available) / Total.
     </div>
     <div class="metric-grid">
       <div class="metric-card">
@@ -304,7 +330,9 @@
       <span class="section-title">Latency</span>
       <span class="badge badge-same">No Change</span>
     </div>
-    <p class="note" style="margin-bottom:0.8rem;">RFC 2544 Latency test (store-and-forward, measured at ~99% line rate)</p>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Latency test using IXIA IxNetwork. Store-and-forward measurement at ~99% line rate. Traffic tracking enabled per traffic item (<code>trackingenabled0</code>). Avg/Min/Max latency read from "Traffic Item Statistics" view. 7 frame sizes tested on both firmware versions.
+    </div>
     <table>
       <thead>
         <tr><th>Frame Size</th><th>FW 7.2.123 Avg</th><th>FW 7.4.1 Avg</th><th>FW 7.2.123 Max</th><th>FW 7.4.1 Max</th><th>Delta Avg</th></tr>
@@ -328,6 +356,9 @@
       <span class="section-num">#8</span>
       <span class="section-title">Error Counters Per Port</span>
       <span class="badge badge-pass">Clean</span>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show counters id &lt;port&gt;</code> for each active port (48-52). Compare the following counters across firmware versions: TX/RX Total Error, TX/RX FCS Error, TX/RX Pkt Discard, TX Total Collision, RX Overruns, RX Jabbers, RX Fragments, RX Alignment Errors, RX Undersize.
     </div>
     <table>
       <thead>
@@ -355,10 +386,10 @@
       <span class="badge badge-na">Not Tested</span>
     </div>
     <div class="note-box">
-      Requires additional equipment not available in current test setup:<br>
-      &bull; RADIUS server (e.g., FreeRADIUS)<br>
-      &bull; 802.1X supplicant client (e.g., wpa_supplicant)<br>
-      &bull; RADIUS-enabled port configuration on DUT
+      <strong>Not tested in this round.</strong> Requires additional setup:<br>
+      &bull; RADIUS server (e.g., FreeRADIUS) with test user accounts<br>
+      &bull; DUT port(s) configured for 802.1X authentication<br><br>
+      <strong>IXIA can substitute the physical client:</strong> IxNetwork has a built-in 802.1x Supplicant emulation that sends EAPOL frames and completes EAP-MD5/TLS/PEAP authentication. This allows testing at scale (hundreds of simultaneous supplicants) without physical 802.1X clients. A RADIUS server is still required.
     </div>
   </div>
 
@@ -370,10 +401,10 @@
       <span class="badge badge-na">Not Tested</span>
     </div>
     <div class="note-box">
-      Requires additional equipment not available in current test setup:<br>
-      &bull; DHCP server behind DUT<br>
-      &bull; DHCP client on test ports (IXIA or physical host)<br>
-      &bull; DHCP relay configuration if cross-VLAN
+      <strong>Not tested in this round.</strong> Requires additional setup:<br>
+      &bull; DHCP server (on DUT or upstream)<br>
+      &bull; DHCP relay configuration if testing cross-VLAN<br><br>
+      <strong>IXIA can run this test:</strong> IxNetwork has DHCPv4/v6 Client and Server emulation. Can simulate thousands of DHCP clients sending DISCOVER/REQUEST, measure lease time, response latency, and success rate. Can also emulate a DHCP server to test DUT relay functionality.
     </div>
   </div>
 
@@ -383,6 +414,9 @@
       <span class="section-num">#11</span>
       <span class="section-title">LAG Still Exist Post Upgrade</span>
       <span class="badge badge-pass">Preserved</span>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> SSH to DUT, check <code>/proc/net/bonding/bond*</code> (Linux bonding driver) and <code>teamdctl</code> (teamd) for LAG/bonding interfaces. Verify member ports, mode (LACP/static), and operational state. Compare across both firmware versions to detect any configuration drift or LAG loss.
     </div>
     <div class="note-box">
       No LAG (Link Aggregation Group) was configured on this DUT for either firmware version.<br>
@@ -398,6 +432,17 @@
       <span class="section-num">#12</span>
       <span class="section-title">Rollback Recommendation Score</span>
     </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> Automated scoring based on 6 weighted factors from test items #2-#11. Each factor compares the post-upgrade value against the baseline. Score range 0-100: lower = safer to upgrade, higher = more risk.<br><br>
+      <strong>Scoring weights:</strong><br>
+      &bull; Memory usage increase &gt;5%: +10 pts, &gt;10%: +20 pts<br>
+      &bull; CPU usage increase &gt;10%: +10 pts, &gt;20%: +20 pts<br>
+      &bull; STP topology change (any port role change): +15 pts<br>
+      &bull; Error counter regression (any port error increase): +15 pts<br>
+      &bull; LAG configuration lost after upgrade: +25 pts<br>
+      &bull; MAC count drop &gt;20%: +10 pts<br><br>
+      <strong>Thresholds:</strong> 0-20 = Safe to upgrade | 21-50 = Upgrade with monitoring | 51-75 = Review before upgrade | 76-100 = Rollback advised
+    </div>
     <div style="display:flex; align-items:center; gap:2rem; padding:1rem 0; flex-wrap: wrap;">
       <div style="text-align:center;">
         <div class="verdict-score">0 / 100</div>
@@ -405,14 +450,14 @@
       </div>
       <div style="flex:1; min-width: 280px;">
         <table>
-          <thead><tr><th>Factor</th><th>Score</th><th>Detail</th></tr></thead>
+          <thead><tr><th>Factor</th><th>Weight</th><th>Score</th><th>Detail</th></tr></thead>
           <tbody>
-            <tr><td>Memory Usage</td><td>0</td><td>36.5% &rarr; 38.7% (+2.2%, within tolerance)</td></tr>
-            <tr><td>CPU Usage</td><td>0</td><td>99% &rarr; 99% (identical total)</td></tr>
-            <tr><td>STP Topology</td><td>0</td><td>All ports stable, no role changes</td></tr>
-            <tr><td>Error Counters</td><td>0</td><td>Zero errors on both versions</td></tr>
-            <tr><td>LAG Status</td><td>0</td><td>Preserved (no LAG configured)</td></tr>
-            <tr><td>MAC Count</td><td>0</td><td>21 &rarr; 32 (uptime difference, not regression)</td></tr>
+            <tr><td>Memory Usage</td><td>+10/+20</td><td>0</td><td>36.5% &rarr; 38.7% (+2.2%, &lt;5% threshold)</td></tr>
+            <tr><td>CPU Usage</td><td>+10/+20</td><td>0</td><td>99% &rarr; 99% (identical total)</td></tr>
+            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>All ports stable, no role changes</td></tr>
+            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Zero errors on both versions</td></tr>
+            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>Preserved (no LAG configured)</td></tr>
+            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>21 &rarr; 32 (uptime difference, not regression)</td></tr>
           </tbody>
         </table>
       </div>
