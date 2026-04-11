@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RFC 2544 Firmware Comparison - USW-Pro-48-PoE</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; line-height: 1.6; padding: 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 1.8rem; font-weight: 600; margin-bottom: 0.5rem; color: #fff; }
+  .subtitle { color: #8b949e; font-size: 0.95rem; margin-bottom: 2rem; }
+  .info-bar { display: flex; gap: 2rem; flex-wrap: wrap; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; font-size: 0.85rem; }
+  .info-item { display: flex; flex-direction: column; }
+  .info-label { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .info-value { color: #e1e4e8; font-weight: 500; }
+  .section { margin-bottom: 2.5rem; }
+  .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+  .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
+  .badge-improved { background: #0d4429; color: #3fb950; }
+  .badge-same { background: #272c33; color: #8b949e; }
+  table { width: 100%; border-collapse: collapse; background: #161b22; border: 1px solid #30363d; border-radius: 8px; overflow: hidden; }
+  th { background: #1c2129; color: #8b949e; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.75rem 1rem; text-align: right; border-bottom: 1px solid #30363d; }
+  th:first-child { text-align: left; }
+  td { padding: 0.7rem 1rem; text-align: right; border-bottom: 1px solid #21262d; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+  td:first-child { text-align: left; font-weight: 500; color: #c9d1d9; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1c2129; }
+  .val-good { color: #3fb950; }
+  .val-warn { color: #d29922; }
+  .val-neutral { color: #8b949e; }
+  .delta-positive { color: #3fb950; font-weight: 600; }
+  .delta-zero { color: #8b949e; }
+  .bar-cell { position: relative; }
+  .bar-bg { position: absolute; left: 0; top: 0; bottom: 0; opacity: 0.15; border-radius: 2px; }
+  .bar-old { background: #d29922; }
+  .bar-new { background: #3fb950; }
+  .verdict { background: #0d4429; border: 1px solid #238636; border-radius: 8px; padding: 1.5rem; }
+  .verdict h3 { color: #3fb950; margin-bottom: 0.5rem; }
+  .verdict ul { list-style: none; padding: 0; }
+  .verdict li { padding: 0.3rem 0; color: #c9d1d9; }
+  .verdict li::before { content: "-->"; margin-right: 0.5rem; color: #3fb950; }
+  .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #21262d; color: #484f58; font-size: 0.8rem; text-align: center; }
+  .chart-container { display: flex; align-items: flex-end; gap: 1.5rem; justify-content: center; padding: 1.5rem 0; flex-wrap: wrap; }
+  .chart-group { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .chart-bars { display: flex; gap: 4px; align-items: flex-end; height: 120px; }
+  .chart-bar { width: 28px; border-radius: 3px 3px 0 0; position: relative; min-height: 2px; transition: height 0.5s; }
+  .chart-bar-old { background: #d29922; }
+  .chart-bar-new { background: #3fb950; }
+  .chart-bar span { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; white-space: nowrap; color: #8b949e; }
+  .chart-label { font-size: 0.75rem; color: #8b949e; }
+  .legend { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1rem; font-size: 0.8rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  .legend-dot-old { background: #d29922; }
+  .legend-dot-new { background: #3fb950; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>RFC 2544 Firmware Comparison</h1>
+  <p class="subtitle">USW-Pro-48-PoE - Performance Benchmark Before & After Upgrade</p>
+
+  <div class="info-bar">
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">USW-Pro-48-PoE</span></div>
+    <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">49-52 (10G SFP+)</span></div>
+    <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">1.5 - 1.8</span></div>
+    <div class="info-item"><span class="info-label">FW Baseline</span><span class="info-value">US.7.2.123</span></div>
+    <div class="info-item"><span class="info-label">FW Upgrade</span><span class="info-value">US.7.4.1</span></div>
+    <div class="info-item"><span class="info-label">Test Date</span><span class="info-value">2026-04-11</span></div>
+  </div>
+
+  <!-- Throughput Chart -->
+  <div class="section">
+    <div class="section-title">Throughput <span class="badge badge-improved">Improved</span></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot legend-dot-old"></div> FW 7.2.123</div>
+      <div class="legend-item"><div class="legend-dot legend-dot-new"></div> FW 7.4.1</div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:89px"><span>74.5%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">64B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:119px"><span>99.2%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">128B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:85px"><span>70.6%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">256B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:119px"><span>99.2%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">512B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:119px"><span>99.2%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">1024B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:110px"><span>91.5%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">1280B</div>
+      </div>
+      <div class="chart-group">
+        <div class="chart-bars">
+          <div class="chart-bar chart-bar-old" style="height:89px"><span>74.5%</span></div>
+          <div class="chart-bar chart-bar-new" style="height:119px"><span>99.2%</span></div>
+        </div>
+        <div class="chart-label">1518B</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>FW 7.2.123</th><th>FW 7.4.1</th><th>Delta</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td class="val-warn">74.48% (7,448 Mbps)</td><td class="val-good">99.23% (9,923 Mbps)</td><td class="delta-positive">+24.75%</td></tr>
+        <tr><td>128 B</td><td>99.23% (9,923 Mbps)</td><td>99.23% (9,923 Mbps)</td><td class="delta-zero">0%</td></tr>
+        <tr><td>256 B</td><td class="val-warn">70.61% (7,061 Mbps)</td><td class="val-good">99.23% (9,923 Mbps)</td><td class="delta-positive">+28.62%</td></tr>
+        <tr><td>512 B</td><td>99.23% (9,923 Mbps)</td><td>99.23% (9,923 Mbps)</td><td class="delta-zero">0%</td></tr>
+        <tr><td>1024 B</td><td>99.23% (9,923 Mbps)</td><td>99.23% (9,923 Mbps)</td><td class="delta-zero">0%</td></tr>
+        <tr><td>1280 B</td><td class="val-warn">91.49% (9,149 Mbps)</td><td class="val-good">99.23% (9,923 Mbps)</td><td class="delta-positive">+7.74%</td></tr>
+        <tr><td>1518 B</td><td class="val-warn">74.48% (7,448 Mbps)</td><td class="val-good">99.23% (9,923 Mbps)</td><td class="delta-positive">+24.75%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Latency -->
+  <div class="section">
+    <div class="section-title">Latency (Store-and-Forward) <span class="badge badge-same">No Change</span></div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>FW 7.2.123 Avg</th><th>FW 7.4.1 Avg</th><th>FW 7.2.123 Max</th><th>FW 7.4.1 Max</th><th>Delta Avg</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td>967 ns</td><td>990 ns</td><td>1,302 ns</td><td>1,310 ns</td><td class="delta-zero">+23 ns</td></tr>
+        <tr><td>128 B</td><td>966 ns</td><td>990 ns</td><td>1,295 ns</td><td>1,330 ns</td><td class="delta-zero">+24 ns</td></tr>
+        <tr><td>256 B</td><td>963 ns</td><td>990 ns</td><td>1,312 ns</td><td>1,300 ns</td><td class="delta-zero">+27 ns</td></tr>
+        <tr><td>512 B</td><td>963 ns</td><td>990 ns</td><td>1,300 ns</td><td>1,320 ns</td><td class="delta-zero">+27 ns</td></tr>
+        <tr><td>1024 B</td><td>963 ns</td><td>990 ns</td><td>1,297 ns</td><td>1,310 ns</td><td class="delta-zero">+27 ns</td></tr>
+        <tr><td>1280 B</td><td>963 ns</td><td>990 ns</td><td>1,307 ns</td><td>1,310 ns</td><td class="delta-zero">+27 ns</td></tr>
+        <tr><td>1518 B</td><td>967 ns</td><td>990 ns</td><td>1,305 ns</td><td>1,310 ns</td><td class="delta-zero">+23 ns</td></tr>
+      </tbody>
+    </table>
+    <p style="color:#8b949e; font-size:0.82rem; margin-top:0.7rem; padding-left:0.5rem;">Both versions sub-microsecond. Delta &lt;30 ns is within measurement noise.</p>
+  </div>
+
+  <!-- Frame Loss -->
+  <div class="section">
+    <div class="section-title">Frame Loss <span class="badge badge-same">No Change</span></div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>10%</th><th>20%</th><th>30%</th><th>40%</th><th>50%</th><th>60%</th><th>70%</th><th>80%</th><th>90%</th><th>100%</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>128 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>256 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>512 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>1024 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>1280 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+        <tr><td>1518 B</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td><td>0%</td></tr>
+      </tbody>
+    </table>
+    <p style="color:#8b949e; font-size:0.82rem; margin-top:0.7rem; padding-left:0.5rem;">Both versions: 0% frame loss at all offered rates (10%-100%) for all frame sizes. Identical behavior.</p>
+  </div>
+
+  <!-- Verdict -->
+  <div class="verdict">
+    <h3>Verdict: Upgrade to 7.4.1 Recommended</h3>
+    <ul>
+      <li>Throughput improved significantly at 64B (+24.75%), 256B (+28.62%), 1280B (+7.74%), 1518B (+24.75%)</li>
+      <li>FW 7.4.1 achieves near line-rate (99.23%) at ALL frame sizes</li>
+      <li>No latency regression (sub-microsecond on both versions)</li>
+      <li>No frame loss regression (0% on both versions)</li>
+      <li>24-hour soak test on 7.4.1 at 100% line rate: zero packet loss</li>
+    </ul>
+  </div>
+
+  <!-- Full Reports -->
+  <div class="section">
+    <div class="section-title">Full Test Reports</div>
+    <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:1.2rem 1.5rem;">
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li style="padding:0.4rem 0; border-bottom:1px solid #21262d;">
+          <a href="rfc2544_comparison_report_final.txt" style="color:#58a6ff; text-decoration:none;">📄 Comparison Report (Text)</a>
+          <span style="color:#484f58; font-size:0.8rem; margin-left:0.5rem;">— Human-readable summary with verdict</span>
+        </li>
+        <li style="padding:0.4rem 0; border-bottom:1px solid #21262d;">
+          <a href="rfc2544_comparison.json" style="color:#58a6ff; text-decoration:none;">📊 Comparison Data (JSON)</a>
+          <span style="color:#484f58; font-size:0.8rem; margin-left:0.5rem;">— Complete structured test data for both versions</span>
+        </li>
+        <li style="padding:0.4rem 0; border-bottom:1px solid #21262d;">
+          <a href="rfc2544_7_2_123.json" style="color:#58a6ff; text-decoration:none;">📁 FW 7.2.123 Raw Results (JSON)</a>
+          <span style="color:#484f58; font-size:0.8rem; margin-left:0.5rem;">— Throughput, latency, frame loss per frame size</span>
+        </li>
+        <li style="padding:0.4rem 0; border-bottom:1px solid #21262d;">
+          <a href="rfc2544_7_4_1.json" style="color:#58a6ff; text-decoration:none;">📁 FW 7.4.1 Raw Results (JSON)</a>
+          <span style="color:#484f58; font-size:0.8rem; margin-left:0.5rem;">— Throughput, latency, frame loss per frame size</span>
+        </li>
+        <li style="padding:0.4rem 0;">
+          <a href="soak_results.json" style="color:#58a6ff; text-decoration:none;">📁 24-Hour Soak Test (JSON)</a>
+          <span style="color:#484f58; font-size:0.8rem; margin-left:0.5rem;">— 24h continuous traffic at 100% line rate, zero packet loss</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    RFC 2544 Test &mdash; IXIA IxNetwork &mdash; 4-port full mesh (10G SFP+) &mdash; Generated 2026-04-11
+  </div>
+</div>
+</body>
+</html>

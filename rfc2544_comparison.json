@@ -1,0 +1,1117 @@
+{
+  "fw_a": {
+    "fw_label": "7.2.123",
+    "fw_version": "US.7.2.123",
+    "timestamp": "2026-04-11 03:24:04",
+    "throughput": {
+      "64": {
+        "throughput_pct": 74.48,
+        "throughput_mbps": 7447.66,
+        "tx_frames": 178284372,
+        "rx_frames": 534853237
+      },
+      "128": {
+        "throughput_pct": 99.23,
+        "throughput_mbps": 9922.66,
+        "tx_frames": 205402716,
+        "rx_frames": 616208169
+      },
+      "256": {
+        "throughput_pct": 70.61,
+        "throughput_mbps": 7060.94,
+        "tx_frames": 146943852,
+        "rx_frames": 440831592
+      },
+      "512": {
+        "throughput_pct": 99.23,
+        "throughput_mbps": 9922.66,
+        "tx_frames": 184502449,
+        "rx_frames": 553507364
+      },
+      "1024": {
+        "throughput_pct": 99.23,
+        "throughput_mbps": 9922.66,
+        "tx_frames": 169502536,
+        "rx_frames": 508507671
+      },
+      "1280": {
+        "throughput_pct": 91.49,
+        "throughput_mbps": 9149.22,
+        "tx_frames": 183208968,
+        "rx_frames": 549626944
+      },
+      "1518": {
+        "throughput_pct": 74.48,
+        "throughput_mbps": 7447.66,
+        "tx_frames": 170985852,
+        "rx_frames": 512957627
+      }
+    },
+    "frameloss": {
+      "64": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 168254436,
+          "rx_frames": 504763324,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 175354488,
+          "rx_frames": 526063674,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 138150720,
+          "rx_frames": 414452179,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 169852092,
+          "rx_frames": 509556360,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 207165684,
+          "rx_frames": 621497248,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 172692192,
+          "rx_frames": 518076623,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 183601284,
+          "rx_frames": 550803918,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 166868232,
+          "rx_frames": 500604732,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 174061838,
+          "rx_frames": 522185506,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 172196238,
+          "rx_frames": 516588790,
+          "loss_pct": -0.0
+        }
+      ],
+      "128": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 171643872,
+          "rx_frames": 514931688,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 173399208,
+          "rx_frames": 520197666,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 182833224,
+          "rx_frames": 548499812,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 127903164,
+          "rx_frames": 383709504,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 147375144,
+          "rx_frames": 442125464,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 172225932,
+          "rx_frames": 516677919,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 183785580,
+          "rx_frames": 551356735,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 175245660,
+          "rx_frames": 525736983,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 221546942,
+          "rx_frames": 664640976,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 170268740,
+          "rx_frames": 510806252,
+          "loss_pct": -0.0
+        }
+      ],
+      "256": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 175684572,
+          "rx_frames": 527053828,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 145915368,
+          "rx_frames": 437746112,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 203550324,
+          "rx_frames": 610651036,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 158291448,
+          "rx_frames": 474874419,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 184696644,
+          "rx_frames": 554089945,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 181010832,
+          "rx_frames": 543032487,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 177685836,
+          "rx_frames": 533057539,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 179056368,
+          "rx_frames": 537169152,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 176265005,
+          "rx_frames": 528795090,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 181163360,
+          "rx_frames": 543490229,
+          "loss_pct": -0.0
+        }
+      ],
+      "512": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 177168198,
+          "rx_frames": 531504631,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 169727664,
+          "rx_frames": 509183096,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 132838876,
+          "rx_frames": 398516687,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 138495624,
+          "rx_frames": 415486840,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 172068852,
+          "rx_frames": 516206661,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 181829472,
+          "rx_frames": 545488546,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 184246128,
+          "rx_frames": 552738432,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 166593300,
+          "rx_frames": 499780004,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 180100356,
+          "rx_frames": 540301157,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 138601644,
+          "rx_frames": 415804904,
+          "loss_pct": 0.0
+        }
+      ],
+      "1024": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 182068560,
+          "rx_frames": 546205800,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 181691592,
+          "rx_frames": 545074866,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 159902808,
+          "rx_frames": 479708512,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 164452905,
+          "rx_frames": 493358745,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 167194464,
+          "rx_frames": 501583385,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 181865364,
+          "rx_frames": 545596187,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 176018952,
+          "rx_frames": 528056952,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 172506428,
+          "rx_frames": 517519295,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 182362340,
+          "rx_frames": 547087166,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 181582968,
+          "rx_frames": 544748976,
+          "loss_pct": -0.0
+        }
+      ],
+      "1280": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 167007408,
+          "rx_frames": 501022300,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 182686452,
+          "rx_frames": 548059479,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 167690244,
+          "rx_frames": 503070761,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 163707056,
+          "rx_frames": 491121299,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 173658108,
+          "rx_frames": 520974379,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 171966576,
+          "rx_frames": 515899728,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 174464556,
+          "rx_frames": 523393856,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 182473176,
+          "rx_frames": 547419522,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 141085152,
+          "rx_frames": 423255413,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 182300472,
+          "rx_frames": 546901468,
+          "loss_pct": -0.0
+        }
+      ],
+      "1518": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 174090456,
+          "rx_frames": 522271383,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 142923672,
+          "rx_frames": 428770956,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 183088380,
+          "rx_frames": 549265299,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 180615624,
+          "rx_frames": 541846941,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 172368708,
+          "rx_frames": 517106136,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 172741159,
+          "rx_frames": 518223615,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 181009248,
+          "rx_frames": 543027791,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 219559260,
+          "rx_frames": 658677801,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 180832740,
+          "rx_frames": 542498356,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 164944122,
+          "rx_frames": 494832432,
+          "loss_pct": -0.0
+        }
+      ]
+    },
+    "latency": {
+      "64": {
+        "avg_ns": 967,
+        "min_ns": 740,
+        "max_ns": 1302,
+        "avg_us": 0.97,
+        "min_us": 0.74,
+        "max_us": 1.3,
+        "tx_frames": 413867448,
+        "rx_frames": 1241602640
+      },
+      "128": {
+        "avg_ns": 966,
+        "min_ns": 740,
+        "max_ns": 1295,
+        "avg_us": 0.97,
+        "min_us": 0.74,
+        "max_us": 1.29,
+        "tx_frames": 410576198,
+        "rx_frames": 1231728914
+      },
+      "256": {
+        "avg_ns": 963,
+        "min_ns": 737,
+        "max_ns": 1312,
+        "avg_us": 0.96,
+        "min_us": 0.74,
+        "max_us": 1.31,
+        "tx_frames": 390288000,
+        "rx_frames": 1170864298
+      },
+      "512": {
+        "avg_ns": 963,
+        "min_ns": 737,
+        "max_ns": 1300,
+        "avg_us": 0.96,
+        "min_us": 0.74,
+        "max_us": 1.3,
+        "tx_frames": 418460652,
+        "rx_frames": 1255382203
+      },
+      "1024": {
+        "avg_ns": 963,
+        "min_ns": 737,
+        "max_ns": 1297,
+        "avg_us": 0.96,
+        "min_us": 0.74,
+        "max_us": 1.3,
+        "tx_frames": 383952312,
+        "rx_frames": 1151857280
+      },
+      "1280": {
+        "avg_ns": 963,
+        "min_ns": 737,
+        "max_ns": 1307,
+        "avg_us": 0.96,
+        "min_us": 0.74,
+        "max_us": 1.31,
+        "tx_frames": 368490324,
+        "rx_frames": 1105471207
+      },
+      "1518": {
+        "avg_ns": 967,
+        "min_ns": 740,
+        "max_ns": 1305,
+        "avg_us": 0.97,
+        "min_us": 0.74,
+        "max_us": 1.3,
+        "tx_frames": 414920051,
+        "rx_frames": 1244760495
+      }
+    }
+  },
+  "fw_b": {
+    "fw_label": "7.4.1",
+    "fw_version": "US.7.4.1",
+    "timestamp": "2026-04-11 05:19:04",
+    "throughput": {
+      "64": {
+        "throughput_pct": 48.18,
+        "throughput_mbps": 4817.97,
+        "tx_frames": 168770551,
+        "rx_frames": 506311680
+      },
+      "128": {
+        "throughput_pct": 89.17,
+        "throughput_mbps": 8917.19,
+        "tx_frames": 131349444,
+        "rx_frames": 394048366
+      },
+      "256": {
+        "throughput_pct": 46.63,
+        "throughput_mbps": 4663.28,
+        "tx_frames": 123120360,
+        "rx_frames": 369361126
+      },
+      "512": {
+        "throughput_pct": 18.79,
+        "throughput_mbps": 1878.91,
+        "tx_frames": 129888882,
+        "rx_frames": 389666663
+      },
+      "1024": {
+        "throughput_pct": 86.85,
+        "throughput_mbps": 8685.16,
+        "tx_frames": 157981476,
+        "rx_frames": 473944501
+      },
+      "1280": {
+        "throughput_pct": 73.7,
+        "throughput_mbps": 7370.31,
+        "tx_frames": 156093426,
+        "rx_frames": 468280301
+      },
+      "1518": {
+        "throughput_pct": 63.65,
+        "throughput_mbps": 6364.84,
+        "tx_frames": 181489380,
+        "rx_frames": 544468212
+      }
+    },
+    "frameloss": {
+      "64": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 164066068,
+          "rx_frames": 492198247,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 129906265,
+          "rx_frames": 389718812,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 131838668,
+          "rx_frames": 395516118,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 178257168,
+          "rx_frames": 534771544,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 177444732,
+          "rx_frames": 532334187,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 131880856,
+          "rx_frames": 395642518,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 127063068,
+          "rx_frames": 381189275,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 173839896,
+          "rx_frames": 521519842,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 153271704,
+          "rx_frames": 459815190,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 173895936,
+          "rx_frames": 521687836,
+          "loss_pct": -0.0
+        }
+      ],
+      "128": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 151972067,
+          "rx_frames": 455916227,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 183069060,
+          "rx_frames": 549207234,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 171662464,
+          "rx_frames": 514987475,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 172696380,
+          "rx_frames": 518089252,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 125757456,
+          "rx_frames": 377272400,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 172609417,
+          "rx_frames": 517828326,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 172280276,
+          "rx_frames": 516841001,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 164124612,
+          "rx_frames": 492373990,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 164541360,
+          "rx_frames": 493624135,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 151717142,
+          "rx_frames": 455151394,
+          "loss_pct": 0.0
+        }
+      ],
+      "256": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 137647588,
+          "rx_frames": 412942861,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 170415312,
+          "rx_frames": 511246004,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 198765639,
+          "rx_frames": 596296977,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 162723888,
+          "rx_frames": 488171679,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 173339536,
+          "rx_frames": 520018603,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 125444784,
+          "rx_frames": 376334371,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 174911328,
+          "rx_frames": 524734080,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 135942660,
+          "rx_frames": 407828000,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 147923904,
+          "rx_frames": 443771725,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 162441084,
+          "rx_frames": 487323302,
+          "loss_pct": -0.0
+        }
+      ],
+      "512": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 165174336,
+          "rx_frames": 495523064,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 157698240,
+          "rx_frames": 473094672,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 160224780,
+          "rx_frames": 480674395,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 130566612,
+          "rx_frames": 391699885,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 168805380,
+          "rx_frames": 506416240,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 180646188,
+          "rx_frames": 541938608,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 150351820,
+          "rx_frames": 451055468,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 142391604,
+          "rx_frames": 427174865,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 176974597,
+          "rx_frames": 530923953,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 129513300,
+          "rx_frames": 388539898,
+          "loss_pct": 0.0
+        }
+      ],
+      "1024": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 167750230,
+          "rx_frames": 503250712,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 174103572,
+          "rx_frames": 522310707,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 158916296,
+          "rx_frames": 476748985,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 177135893,
+          "rx_frames": 531407664,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 151232364,
+          "rx_frames": 453697147,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 142851468,
+          "rx_frames": 428554368,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 169914207,
+          "rx_frames": 509742615,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 165899774,
+          "rx_frames": 497699392,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 128723100,
+          "rx_frames": 386169252,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 141843792,
+          "rx_frames": 425531406,
+          "loss_pct": -0.0
+        }
+      ],
+      "1280": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 155290266,
+          "rx_frames": 465870781,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 163083972,
+          "rx_frames": 489251959,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 148368240,
+          "rx_frames": 445104793,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 129493645,
+          "rx_frames": 388480924,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 166321068,
+          "rx_frames": 498963280,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 181869756,
+          "rx_frames": 545609389,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 180477016,
+          "rx_frames": 541431186,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 154959492,
+          "rx_frames": 464878520,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 169148772,
+          "rx_frames": 507446472,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 104270512,
+          "rx_frames": 312811485,
+          "loss_pct": 0.0
+        }
+      ],
+      "1518": [
+        {
+          "offered_rate_pct": 10,
+          "tx_frames": 150782931,
+          "rx_frames": 452348780,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 20,
+          "tx_frames": 175618456,
+          "rx_frames": 526855432,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 30,
+          "tx_frames": 176509980,
+          "rx_frames": 529529972,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 40,
+          "tx_frames": 193764544,
+          "rx_frames": 581293737,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 50,
+          "tx_frames": 168115224,
+          "rx_frames": 504345633,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 60,
+          "tx_frames": 139734419,
+          "rx_frames": 419203236,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 70,
+          "tx_frames": 171919620,
+          "rx_frames": 515758931,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 80,
+          "tx_frames": 137052528,
+          "rx_frames": 411157536,
+          "loss_pct": 0.0
+        },
+        {
+          "offered_rate_pct": 90,
+          "tx_frames": 125111292,
+          "rx_frames": 375333906,
+          "loss_pct": -0.0
+        },
+        {
+          "offered_rate_pct": 100,
+          "tx_frames": 169844179,
+          "rx_frames": 509532692,
+          "loss_pct": -0.0
+        }
+      ]
+    },
+    "latency": {
+      "64": {
+        "avg_ns": 986,
+        "min_ns": 750,
+        "max_ns": 1307,
+        "avg_us": 0.99,
+        "min_us": 0.75,
+        "max_us": 1.31,
+        "tx_frames": 422234304,
+        "rx_frames": 1266703200
+      },
+      "128": {
+        "avg_ns": 990,
+        "min_ns": 755,
+        "max_ns": 1335,
+        "avg_us": 0.99,
+        "min_us": 0.76,
+        "max_us": 1.33,
+        "tx_frames": 395341272,
+        "rx_frames": 1186024080
+      },
+      "256": {
+        "avg_ns": 986,
+        "min_ns": 750,
+        "max_ns": 1302,
+        "avg_us": 0.99,
+        "min_us": 0.75,
+        "max_us": 1.3,
+        "tx_frames": 419399868,
+        "rx_frames": 1258199795
+      },
+      "512": {
+        "avg_ns": 986,
+        "min_ns": 750,
+        "max_ns": 1317,
+        "avg_us": 0.99,
+        "min_us": 0.75,
+        "max_us": 1.32,
+        "tx_frames": 417796380,
+        "rx_frames": 1253389388
+      },
+      "1024": {
+        "avg_ns": 989,
+        "min_ns": 755,
+        "max_ns": 1310,
+        "avg_us": 0.99,
+        "min_us": 0.76,
+        "max_us": 1.31,
+        "tx_frames": 412578048,
+        "rx_frames": 1237734340
+      },
+      "1280": {
+        "avg_ns": 989,
+        "min_ns": 755,
+        "max_ns": 1315,
+        "avg_us": 0.99,
+        "min_us": 0.76,
+        "max_us": 1.31,
+        "tx_frames": 345385408,
+        "rx_frames": 1036156412
+      },
+      "1518": {
+        "avg_ns": 986,
+        "min_ns": 750,
+        "max_ns": 1307,
+        "avg_us": 0.99,
+        "min_us": 0.75,
+        "max_us": 1.31,
+        "tx_frames": 426495480,
+        "rx_frames": 1279486819
+      }
+    }
+  },
+  "report": "======================================================================\nRFC 2544 FIRMWARE COMPARISON REPORT\nGenerated: 2026-04-11 05:19:04\nDUT: USW-Pro-48-PoE, Ports 49-52 (10G SFP+)\nIXIA Ports: 1.5-1.8\nFW A: 7.2.123 (US.7.2.123)\nFW B: 7.4.1 (US.7.4.1)\n======================================================================\n\n======================================================================\nTHROUGHPUT COMPARISON\n======================================================================\n   Frame     FW A %    FW A Mbps     FW B %    FW B Mbps     Diff\n--------------------------------------------------------------\n      64     74.48%        7448     48.18%        4818 -26.30%\n     128     99.23%        9923     89.17%        8917 -10.06%\n     256     70.61%        7061     46.63%        4663 -23.98%\n     512     99.23%        9923     18.79%        1879 -80.44%\n    1024     99.23%        9923     86.85%        8685 -12.38%\n    1280     91.49%        9149     73.70%        7370 -17.79%\n    1518     74.48%        7448     63.65%        6365 -10.83%\n\n======================================================================\nLATENCY COMPARISON (store-and-forward)\n======================================================================\n   Frame     FW A avg     FW A max     FW B avg     FW B max   Diff avg\n--------------------------------------------------------------------\n      64       0.97us       1.30us       0.99us       1.31us +0.02us\n     128       0.97us       1.29us       0.99us       1.33us +0.02us\n     256       0.96us       1.31us       0.99us       1.30us +0.03us\n     512       0.96us       1.30us       0.99us       1.32us +0.03us\n    1024       0.96us       1.30us       0.99us       1.31us +0.03us\n    1280       0.96us       1.31us       0.99us       1.31us +0.03us\n    1518       0.97us       1.30us       0.99us       1.31us +0.02us\n\n======================================================================\nFRAME LOSS COMPARISON (loss % at 100% offered rate)\n======================================================================\n   Frame       FW A       FW B       Diff\n----------------------------------------\n      64   -0.0000%   -0.0000% +0.0000%\n     128   -0.0000%    0.0000% +0.0000%\n     256   -0.0000%   -0.0000% +0.0000%\n     512    0.0000%    0.0000% +0.0000%\n    1024   -0.0000%   -0.0000% +0.0000%\n    1280   -0.0000%    0.0000% +0.0000%\n    1518   -0.0000%   -0.0000% +0.0000%\n\n======================================================================\nVERDICT\n======================================================================\nREGRESSIONS DETECTED:\n  - Throughput regression at 64B: 74.48% -> 48.18%\n  - Throughput regression at 128B: 99.23% -> 89.17%\n  - Throughput regression at 256B: 70.61% -> 46.63%\n  - Throughput regression at 512B: 99.23% -> 18.79%\n  - Throughput regression at 1024B: 99.23% -> 86.85%\n  - Throughput regression at 1280B: 91.49% -> 73.70%\n  - Throughput regression at 1518B: 74.48% -> 63.65%\n======================================================================"
+}
