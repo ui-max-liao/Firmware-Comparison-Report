@@ -1,0 +1,230 @@
+======================================================================
+RELEASE TEST: FIRMWARE COMPARISON REPORT
+======================================================================
+Generated: 2026-04-11 18:00:53
+DUT: USW-Pro-48-PoE
+FW A (baseline): US.7.2.123
+FW B (upgrade):  US.7.4.1
+
+======================================================================
+ITEM 6: CPU & MEMORY USAGE
+======================================================================
+Metric                    FW US.7.2.123        FW US.7.4.1          Delta           Status
+-----------------------------------------------------------------------------------------------
+Memory Used %             36.5                 38.7                 +2.2            OK
+Memory Total (KB)         499636               499636              
+Memory Available (KB)     317260               306088              
+CPU usr %                 16                   12                   -4.0           
+CPU sys %                 33                   37                   +4.0           
+CPU sirq %                50                   50                   0              
+Load Average (1m)         2.96                 2.96                 0              
+
+======================================================================
+ITEM 2: STP TOPOLOGY STABILITY
+======================================================================
+Port       FW US.7.2.123        FW US.7.4.1          Status
+-----------------------------------------------------------------
+Port 1     disabled             disabled             SAME
+Port 2     disabled             disabled             SAME
+Port 3     disabled             disabled             SAME
+Port 4     disabled             disabled             SAME
+Port 5     disabled             disabled             SAME
+Port 6     disabled             disabled             SAME
+Port 7     disabled             disabled             SAME
+Port 8     disabled             disabled             SAME
+Port 9     disabled             disabled             SAME
+Port 10    disabled             disabled             SAME
+Port 11    disabled             disabled             SAME
+Port 12    disabled             disabled             SAME
+Port 13    disabled             disabled             SAME
+Port 14    disabled             disabled             SAME
+Port 15    disabled             disabled             SAME
+Port 16    disabled             disabled             SAME
+Port 17    disabled             disabled             SAME
+Port 18    disabled             disabled             SAME
+Port 19    disabled             disabled             SAME
+Port 20    disabled             disabled             SAME
+Port 21    disabled             disabled             SAME
+Port 22    disabled             disabled             SAME
+Port 23    disabled             disabled             SAME
+Port 24    disabled             disabled             SAME
+Port 25    disabled             disabled             SAME
+Port 26    disabled             disabled             SAME
+Port 27    disabled             disabled             SAME
+Port 28    disabled             disabled             SAME
+Port 29    disabled             disabled             SAME
+Port 30    disabled             disabled             SAME
+Port 31    disabled             disabled             SAME
+Port 32    disabled             disabled             SAME
+Port 33    disabled             disabled             SAME
+Port 34    disabled             disabled             SAME
+Port 35    disabled             disabled             SAME
+Port 36    disabled             disabled             SAME
+Port 37    disabled             disabled             SAME
+Port 38    disabled             disabled             SAME
+Port 39    disabled             disabled             SAME
+Port 40    disabled             disabled             SAME
+Port 41    disabled             disabled             SAME
+Port 42    disabled             disabled             SAME
+Port 43    disabled             disabled             SAME
+Port 44    disabled             disabled             SAME
+Port 45    disabled             disabled             SAME
+Port 46    disabled             disabled             SAME
+Port 47    disabled             disabled             SAME
+Port 48    forwarding           forwarding           SAME
+Port 49    forwarding           forwarding           SAME
+Port 50    forwarding           forwarding           SAME
+Port 51    forwarding           forwarding           SAME
+Port 52    forwarding           forwarding           SAME
+
+RSTP BPDU Counts (active ports):
+  Port 48: FW_A TX=10 RX=22 | FW_B TX=10 RX=26126
+  Port 49: FW_A TX=31 RX=0 | FW_B TX=26173 RX=0
+  Port 50: FW_A TX=28 RX=0 | FW_B TX=26173 RX=0
+  Port 51: FW_A TX=30 RX=0 | FW_B TX=26174 RX=0
+  Port 52: FW_A TX=31 RX=0 | FW_B TX=26175 RX=0
+
+Verdict: NO CHANGE
+
+======================================================================
+ITEM 3: PoE PORT HEALTH
+======================================================================
+Port     FW_A OpMode  FW_A Power   FW_B OpMode  FW_B Power   Status
+----------------------------------------------------------------------
+1        Auto         0.00         Auto         0.00         SAME
+2        Auto         0.00         Auto         0.00         SAME
+3        Auto         0.00         Auto         0.00         SAME
+4        Auto         0.00         Auto         0.00         SAME
+5        Auto         0.00         Auto         0.00         SAME
+6        Auto         0.00         Auto         0.00         SAME
+7        Auto         0.00         Auto         0.00         SAME
+8        Auto         0.00         Auto         0.00         SAME
+9        Auto         0.00         Auto         0.00         SAME
+10       Auto         0.00         Auto         0.00         SAME
+11       Auto         0.00         Auto         0.00         SAME
+12       Auto         0.00         Auto         0.00         SAME
+13       Auto         0.00         Auto         0.00         SAME
+14       Auto         0.00         Auto         0.00         SAME
+15       Auto         0.00         Auto         0.00         SAME
+16       Auto         0.00         Auto         0.00         SAME
+17       Auto         0.00         Auto         0.00         SAME
+18       Auto         0.00         Auto         0.00         SAME
+19       Auto         0.00         Auto         0.00         SAME
+20       Auto         0.00         Auto         0.00         SAME
+21       Auto         0.00         Auto         0.00         SAME
+22       Auto         0.00         Auto         0.00         SAME
+23       Auto         0.00         Auto         0.00         SAME
+24       Auto         0.00         Auto         0.00         SAME
+25       Auto         0.00         Auto         0.00         SAME
+26       Auto         0.00         Auto         0.00         SAME
+27       Auto         0.00         Auto         0.00         SAME
+28       Auto         0.00         Auto         0.00         SAME
+29       Auto         0.00         Auto         0.00         SAME
+30       Auto         0.00         Auto         0.00         SAME
+31       Auto         0.00         Auto         0.00         SAME
+32       Auto         0.00         Auto         0.00         SAME
+33       Auto         0.00         Auto         0.00         SAME
+34       Auto         0.00         Auto         0.00         SAME
+35       Auto         0.00         Auto         0.00         SAME
+36       Auto         0.00         Auto         0.00         SAME
+37       Auto         0.00         Auto         0.00         SAME
+38       Auto         0.00         Auto         0.00         SAME
+39       Auto         0.00         Auto         0.00         SAME
+40       Auto         0.00         Auto         0.00         SAME
+41       Auto         0.00         Auto         0.00         SAME
+42       Auto         0.00         Auto         0.00         SAME
+43       Auto         0.00         Auto         0.00         SAME
+44       Auto         0.00         Auto         0.00         SAME
+45       Auto         0.00         Auto         0.00         SAME
+46       Auto         0.00         Auto         0.00         SAME
+47       Auto         0.00         Auto         0.00         SAME
+48       Auto         0.00         Auto         0.00         SAME
+
+Verdict: NO CHANGE
+
+======================================================================
+ITEM 4: CONNECTED DEVICE COUNT (MAC per port)
+======================================================================
+Port       FW US.7.2.123   FW US.7.4.1     Delta
+-------------------------------------------------------
+Port 48    21              32              +11
+TOTAL      21              32              +11.0
+
+======================================================================
+ITEM 8: ERROR COUNTERS PER PORT
+======================================================================
+Port     Metric             FW US.7.2.123   FW US.7.4.1     Status
+----------------------------------------------------------------------
+48       rx_discard         10              0               IMPROVED
+48       tx_discard         0               1155636019      (expected on 1G uplink)
+
+======================================================================
+ITEM 11: LAG STATUS POST UPGRADE
+======================================================================
+No LAG configured on either firmware version.
+
+Verdict: LAG PRESERVED
+
+======================================================================
+ENVIRONMENT (Temperature & Fans)
+======================================================================
+FW US.7.2.123:
+General Temperature (C): 53
+Temp Sensor      Temp (C)     State            Max Temp (C)  Alert Temp (C)
+===============  ===========  ===============  ============  ==============
+TA               50           Normal           50            80            
+PSU              47           Normal           48            80            
+PHY-1 (Remote)   47           Normal           47            80            
+PHY-2 (Remote)   53           Normal           53            80            
+MAC-1 (Remote)   52           Normal           52            80            
+MAC-2 (Remote)   53           Normal           53            80            
+MAC-1 (Local)    55           Normal           56            80            
+MAC-2 (Local)    62           Normal           64            80            
+
+Fan Duty Level: 57
+Fan              Speed       Duty level  State
+===============  ==========  ==========  ===============
+FAN-1            5744        57          Operational    
+FAN-2            5666        57          Operational
+
+FW US.7.4.1:
+General Temperature (C): 54
+Temp Sensor      Temp (C)     State            Max Temp (C)  Alert Temp (C)
+===============  ===========  ===============  ============  ==============
+TA               50           Normal           50            80            
+PSU              48           Normal           48            80            
+PHY-1 (Remote)   47           Normal           47            80            
+PHY-2 (Remote)   54           Normal           54            80            
+MAC-1 (Remote)   52           Normal           52            80            
+MAC-2 (Remote)   53           Normal           53            80            
+MAC-1 (Local)    54           Normal           56            80            
+MAC-2 (Local)    63           Normal           64            80            
+
+Fan Duty Level: 59
+Fan              Speed       Duty level  State
+===============  ==========  ==========  ===============
+FAN-1            5921        59          Operational    
+FAN-2            5927        59          Operational
+
+======================================================================
+ITEM 12: ROLLBACK RECOMMENDATION SCORE
+======================================================================
+Score: 0/100 (lower = safer to upgrade, higher = consider rollback)
+
+  [ 0 ] Memory usage OK: 36.5% -> 38.7%
+  [ 0 ] CPU usage OK: 99% -> 99%
+  [ 0 ] STP topology stable
+  [ 0 ] LAG status preserved
+  [ 0 ] MAC count stable: 21 -> 32
+
+Recommendation: SAFE TO UPGRADE - No significant regressions detected
+
+======================================================================
+OVERALL VERDICT
+======================================================================
+  STP Topology              NO CHANGE
+  PoE Health                NO CHANGE
+  LAG Status                PRESERVED
+  Error Counters            ERRORS DETECTED
+  Rollback Score            0/100
+======================================================================

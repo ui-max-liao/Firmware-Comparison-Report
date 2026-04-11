@@ -1,0 +1,211 @@
+{
+  "fw_a": {
+    "firmware": "US.7.2.123",
+    "timestamp": "2026-04-11T18:00:32.079235",
+    "uptime": "06:56:26 up 1 min,  load average: 2.96, 0.76, 0.25",
+    "loadavg": "2.97 0.76 0.26 2/203 2118",
+    "meminfo": "MemTotal:         499636 kB\nMemFree:          244720 kB\nMemAvailable:     317260 kB\nBuffers:               0 kB\nCached:            79352 kB\nSwapCached:            0 kB\nActive:           168732 kB\nInactive:          73596 kB\nActive(anon):     162976 kB\nInactive(anon):        0 kB\nActive(file):       5756 kB\nInactive(file):    73596 kB\nUnevictable:           0 kB\nMlocked:               0 kB\nHighTotal:             0 kB\nHighFree:              0 kB\nLowTotal:         499636 kB\nLowFree:          244720 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                 0 kB\nWriteback:             0 kB\nAnonPages:        163052 kB\nMapped:            24916 kB\nShmem:                 0 kB\nSlab:               3432 kB\nSReclaimable:       1060 kB\nSUnreclaim:         2372 kB\nKernelStack:        1648 kB\nPageTables:         1240 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:      249816 kB\nCommitted_AS:     220096 kB\nVmallocTotal:     516096 kB\nVmallocUsed:       17984 kB\nVmallocChunk:     491512 kB",
+    "top": "Mem: 253312K used, 246324K free, 0K shrd, 0K buff, 79352K cached\nCPU:  16% usr  33% sys   0% nic   0% idle   0% io   0% irq  50% sirq\nLoad average: 2.97 0.76 0.26 7/202 2270\n  PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND\n 2246  2242 ubiquiti R     3812   1%   8% sh /usr/etc/syswrapper.sh ssh-trace-cmd -c top -bn1 | head -5 -n 1",
+    "mem_summary": {
+      "total_kb": 499636,
+      "free_kb": 244720,
+      "available_kb": 317260,
+      "used_pct": 36.5
+    },
+    "cpu_summary": {
+      "usr": 16,
+      "sys": 33,
+      "idle": 0,
+      "sirq": 50
+    },
+    "load_1m": 2.96,
+    "port_status": "Packets                  Bytes\nPort  Link  Rate    Receive   Transmit     Receive     Transmit   state    STP     1x Ctrl Mode  1x Status    Anomaly      LAG    \n----  ---- ------ ---------- ---------- ------------ ------------ ----- ---------- ------------ ------------ ------------ --------\n   1  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   2  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   3  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   4  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   5  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   6  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   7  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   8  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   9  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  10  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  11  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  12  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  13  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  14  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  15  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  16  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  17  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  18  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  19  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  20  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  21  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  22  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  23  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  24  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  25  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  26  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  27  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  28  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  29  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  30  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  31  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  32  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  33  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  34  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  35  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  36  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  37  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  38  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  39  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  40  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  41  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  42  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  43  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  44  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  45  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  46  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  47  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n U48  U/U   1000F        495        620       119064       120793       forwarding unknown      disabled     0x0                  \n  49  U/U  10000F          0        160            0        14111  N    forwarding unknown      disabled     0x0                  \n  50  U/U  10000F          0        158            0        13983  N    forwarding unknown      disabled     0x0                  \n  51  U/U  10000F          0        158            0        13983  N    forwarding unknown      disabled     0x0                  \n  52  U/U  10000F          0        159            0        14047  N    forwarding unknown      disabled     0x0",
+    "poe": "Total Power Limit(mW): -1098806292\n\nPort  OpMode      HpMode    PwrLimit   Class   PoEPwr  PwrGood  Power(W)  Voltage(V)  Current(mA)\n                              (mW)                                                               \n----  ------  ------------  --------  -------  ------  -------  --------  ----------  -----------\n   1    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   2    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   3    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   4    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   5    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   6    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   7    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   8    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   9    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  10    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  11    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  12    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  13    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  14    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  15    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  16    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  17    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  18    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  19    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  20    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  21    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  22    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  23    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  24    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  25    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  26    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  27    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  28    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  29    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  30    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  31    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  32    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  33    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  34    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  35    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  36    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  37    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  38    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  39    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  40    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  41    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  42    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  43    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  44    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  45    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  46    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  47    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  48    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00",
+    "mac_table": "port vlan mac-address       ip-address      hostname          uptime     age wireless-type\n---- ---- ----------------- --------------- ---------------- ------- ------- -------------\n  48 4040 1c:0b:8b:dc:b9:32                                       30      30              \n  48 4040 0c:ea:14:5d:1c:4f                                       27      27              \n  48  130 1c:0b:8b:dc:b9:32                                       27      27              \n  48  110 1c:0b:8b:dc:b9:32                                       31      31              \n  48   15 1c:0b:8b:dc:b9:32                                       30      30              \n  48   13 1c:0b:8b:dc:b9:32                                       31      31              \n  48    7 1c:0b:8b:dc:b9:32                                       25      25              \n  48    6 1c:0b:8b:dc:b9:32                                       23      23              \n  48    5 1c:0b:8b:dc:b9:32                                       29      29              \n  48    4 1c:0b:8b:dc:b9:32                                       24      24              \n  48    3 1c:0b:8b:dc:b9:32                                       25      25              \n  48    2 1c:0b:8b:dc:b9:32                                       17      17              \n  48    1 fc:ec:da:ff:68:29 192.168.2.4                           27      23              \n  48    1 ac:8b:a9:b4:ef:d2                                       24      24              \n  48    1 9c:05:d6:f1:85:cc 192.168.1.34                          27       6              \n  48    1 84:78:48:76:1e:3b                                       32      32              \n  48    1 60:22:32:fa:b2:f9 192.168.3.163                         34      26              \n  48    1 60:22:32:fa:b2:8d 192.168.3.55                          31      12              \n  48    1 1c:0b:8b:dc:b9:32                                       29      29              \n  48    1 0c:ea:14:5d:1c:4f 192.168.1.1                           32       4              \n  48    1 00:10:74:48:b1:ca                                       21      21              \nTotal number of entries: 21",
+    "mac_per_port": {
+      "48": 21
+    },
+    "mac_total": 21,
+    "port_counters": {
+      "48": {
+        "tx_pkts": 722,
+        "rx_pkts": 594,
+        "tx_discard": 0,
+        "rx_discard": 10,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 10,
+        "rx_rstp_bpdu": 22
+      },
+      "49": {
+        "tx_pkts": 190,
+        "rx_pkts": 0,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 31,
+        "rx_rstp_bpdu": 0
+      },
+      "50": {
+        "tx_pkts": 188,
+        "rx_pkts": 0,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 28,
+        "rx_rstp_bpdu": 0
+      },
+      "51": {
+        "tx_pkts": 188,
+        "rx_pkts": 0,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 30,
+        "rx_rstp_bpdu": 0
+      },
+      "52": {
+        "tx_pkts": 207,
+        "rx_pkts": 0,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 31,
+        "rx_rstp_bpdu": 0
+      }
+    },
+    "lag": "No LAG",
+    "env": "General Temperature (C): 53\nTemp Sensor      Temp (C)     State            Max Temp (C)  Alert Temp (C)\n===============  ===========  ===============  ============  ==============\nTA               50           Normal           50            80            \nPSU              47           Normal           48            80            \nPHY-1 (Remote)   47           Normal           47            80            \nPHY-2 (Remote)   53           Normal           53            80            \nMAC-1 (Remote)   52           Normal           52            80            \nMAC-2 (Remote)   53           Normal           53            80            \nMAC-1 (Local)    55           Normal           56            80            \nMAC-2 (Local)    62           Normal           64            80            \n\nFan Duty Level: 57\nFan              Speed       Duty level  State\n===============  ==========  ==========  ===============\nFAN-1            5744        57          Operational    \nFAN-2            5666        57          Operational",
+    "lldp": "Port  Chassis ID           Remote Port ID     System Name\n----- -------------------- ------------------ ------------------\n  48  84:78:48:76:1E:0D    te1/0/30           MUSWProXG48PoE",
+    "vlan": ""
+  },
+  "fw_b": {
+    "firmware": "US.7.4.1",
+    "timestamp": "2026-04-11T17:57:50.149553",
+    "uptime": "17:57:50 up 14:32,  load average: 2.96, 3.10, 3.12",
+    "loadavg": "2.97 3.11 3.13 2/200 2312",
+    "meminfo": "MemTotal:         499636 kB\nMemFree:          232676 kB\nMemAvailable:     306088 kB\nBuffers:               0 kB\nCached:            80156 kB\nSwapCached:            0 kB\nActive:           179872 kB\nInactive:          73988 kB\nActive(anon):     173704 kB\nInactive(anon):        0 kB\nActive(file):       6168 kB\nInactive(file):    73988 kB\nUnevictable:           0 kB\nMlocked:               0 kB\nHighTotal:             0 kB\nHighFree:              0 kB\nLowTotal:         499636 kB\nLowFree:          232676 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                 0 kB\nWriteback:             0 kB\nAnonPages:        173756 kB\nMapped:            25180 kB\nShmem:                 0 kB\nSlab:               3636 kB\nSReclaimable:       1200 kB\nSUnreclaim:         2436 kB\nKernelStack:        1608 kB\nPageTables:         1284 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:      249816 kB\nCommitted_AS:     233764 kB\nVmallocTotal:     516096 kB\nVmallocUsed:       17984 kB\nVmallocChunk:     491512 kB",
+    "top": "Mem: 262348K used, 237288K free, 0K shrd, 0K buff, 80156K cached\nCPU:  12% usr  37% sys   0% nic   0% idle   0% io   0% irq  50% sirq\nLoad average: 3.21 3.16 3.15 7/204 2458\n  PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND\n 2435  2431 ubiquiti S     3812   1%  12% sh /usr/etc/syswrapper.sh ssh-trace-cmd -c top -bn1 | head -5 -n 1",
+    "mem_summary": {
+      "total_kb": 499636,
+      "free_kb": 232676,
+      "available_kb": 306088,
+      "used_pct": 38.7
+    },
+    "cpu_summary": {
+      "usr": 12,
+      "sys": 37,
+      "idle": 0,
+      "sirq": 50
+    },
+    "load_1m": 2.96,
+    "port_status": "Packets                  Bytes\nPort  Link  Rate    Receive   Transmit     Receive     Transmit   state    STP     1x Ctrl Mode  1x Status    Anomaly      LAG    \n----  ---- ------ ---------- ---------- ------------ ------------ ----- ---------- ------------ ------------ ------------ --------\n   1  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   2  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   3  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   4  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   5  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   6  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   7  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   8  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n   9  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  10  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  11  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  12  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  13  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  14  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  15  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  16  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  17  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  18  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  19  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  20  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  21  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  22  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  23  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  24  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  25  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  26  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  27  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  28  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  29  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  30  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  31  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  32  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  33  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  34  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  35  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  36  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  37  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  38  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  39  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  40  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  41  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  42  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  43  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  44  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  45  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  46  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n  47  U/D      0H          0          0            0            0       disabled   unknown                   0x0                  \n U48  U/U   1000F     223713 2838468626     17799992 181666596427       forwarding unknown      disabled     0x0                  \n  49  U/U  10000F 8514712236 25544355664 544941583104 1634842174283  N    forwarding unknown      disabled     0x0                  \n  50  U/U  10000F 8514712236 25544355665 544941583104 1634842174336  N    forwarding unknown      disabled     0x0                  \n  51  U/U  10000F 8514712236 25544355666 544941583104 1634842174400  N    forwarding unknown      disabled     0x0                  \n  52  U/U  10000F 8514712236 25544355667 544941583104 1634842174516  N    forwarding unknown      disabled     0x0",
+    "poe": "Total Power Limit(mW): -1094898708\n\nPort  OpMode      HpMode    PwrLimit   Class   PoEPwr  PwrGood  Power(W)  Voltage(V)  Current(mA)\n                              (mW)                                                               \n----  ------  ------------  --------  -------  ------  -------  --------  ----------  -----------\n   1    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   2    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   3    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   4    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   5    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   6    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   7    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   8    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n   9    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  10    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  11    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  12    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  13    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  14    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  15    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  16    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  17    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  18    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  19    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  20    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  21    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  22    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  23    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  24    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  25    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  26    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  27    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  28    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  29    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  30    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  31    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  32    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  33    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  34    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  35    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  36    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  37    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  38    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  39    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  40    Auto        Dot3at        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  41    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  42    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  43    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  44    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  45    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  46    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  47    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00\n  48    Auto  Dot3bt-type3        -1  Unknown     Off      Bad      0.00        0.00         0.00",
+    "mac_table": "port vlan mac-address       ip-address      hostname          uptime     age wireless-type\n---- ---- ----------------- --------------- ---------------- ------- ------- -------------\n  48 4040 a8:9c:6c:7e:c9:11                                    52042   52042              \n  48 4040 94:2a:6f:42:0c:da                                    52235   52235              \n  48 4040 1c:0b:8b:dc:c3:9e 10.255.253.4                       52290      16              \n  48 4040 1c:0b:8b:dc:b9:32 10.255.253.3                       52284      18              \n  48 4040 0c:ea:14:5d:1c:4f 10.255.253.1                       52308   31554              \n  48  130 1c:0b:8b:dc:b9:32                                    52302   52302              \n  48  110 1c:0b:8b:dc:b9:32                                    52302   52302              \n  48   15 1c:0b:8b:dc:b9:32                                    52301   52301              \n  48   13 1c:0b:8b:dc:b9:32                                    52302   52302              \n  48    7 1c:0b:8b:dc:b9:32                                    52310   52310              \n  48    6 1c:0b:8b:dc:b9:32                                    52311   52311              \n  48    5 1c:0b:8b:dc:b9:32                                    52301   52301              \n  48    4 1c:0b:8b:dc:b9:32                                    52312   52312              \n  48    3 1c:0b:8b:dc:b9:32                                    52313   52313              \n  48    2 1c:0b:8b:dc:b9:32                                    52301   52301              \n  48    1 fc:ec:da:ff:68:29 192.168.2.4                        52278      42              \n  48    1 f4:e2:c6:ea:d9:69 192.168.1.221                      52261      19              \n  48    1 ac:8b:a9:b4:ef:d2 192.168.1.71                       52312     176              \n  48    1 a8:9c:6c:7e:c9:0f 192.168.3.253                      52251      62              \n  48    1 9c:05:d6:f1:85:cc 192.168.1.34                       52308       6              \n  48    1 94:2a:6f:42:0c:da                                    52234   52234              \n  48    1 94:2a:6f:42:0c:d8 192.168.0.151                      52199       9              \n  48    1 8c:30:66:de:be:44 192.168.2.233                      52214      21              \n  48    1 84:78:48:76:1e:3b                                    52310   52310              \n  48    1 84:78:48:76:1e:0d 192.168.2.84                       52211     154              \n  48    1 84:78:48:5e:3d:40 192.168.0.243                      52177     149              \n  48    1 60:22:32:fa:b2:f9 192.168.3.163                      52312       8              \n  48    1 60:22:32:fa:b2:8d 192.168.3.55                       52313      30              \n  48    1 1c:0b:8b:dc:c3:9e 192.168.1.169                      52225     127              \n  48    1 1c:0b:8b:dc:b9:32 192.168.3.124                      52287      59              \n  48    1 0c:ea:14:5d:1c:4f 192.168.1.1                        52314       2              \n  48    1 00:10:74:48:b1:ca 192.168.1.96                       52309    7078              \nTotal number of entries: 32",
+    "mac_per_port": {
+      "48": 32
+    },
+    "mac_total": 32,
+    "port_counters": {
+      "48": {
+        "tx_pkts": 2838468736,
+        "rx_pkts": 223837,
+        "tx_discard": 1155636019,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 10,
+        "rx_rstp_bpdu": 26126
+      },
+      "49": {
+        "tx_pkts": 25544355686,
+        "rx_pkts": 8514712236,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 26173,
+        "rx_rstp_bpdu": 0
+      },
+      "50": {
+        "tx_pkts": 25544355689,
+        "rx_pkts": 8514712236,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 26173,
+        "rx_rstp_bpdu": 0
+      },
+      "51": {
+        "tx_pkts": 25544355698,
+        "rx_pkts": 8514712236,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 26174,
+        "rx_rstp_bpdu": 0
+      },
+      "52": {
+        "tx_pkts": 25544355699,
+        "rx_pkts": 8514712236,
+        "tx_discard": 0,
+        "rx_discard": 0,
+        "tx_error": 0,
+        "rx_error": 0,
+        "tx_fcs_error": 0,
+        "rx_fcs_error": 0,
+        "tx_collision": 0,
+        "rx_overrun": 0,
+        "tx_rstp_bpdu": 26175,
+        "rx_rstp_bpdu": 0
+      }
+    },
+    "lag": "No LAG",
+    "env": "General Temperature (C): 54\nTemp Sensor      Temp (C)     State            Max Temp (C)  Alert Temp (C)\n===============  ===========  ===============  ============  ==============\nTA               50           Normal           50            80            \nPSU              48           Normal           48            80            \nPHY-1 (Remote)   47           Normal           47            80            \nPHY-2 (Remote)   54           Normal           54            80            \nMAC-1 (Remote)   52           Normal           52            80            \nMAC-2 (Remote)   53           Normal           53            80            \nMAC-1 (Local)    54           Normal           56            80            \nMAC-2 (Local)    63           Normal           64            80            \n\nFan Duty Level: 59\nFan              Speed       Duty level  State\n===============  ==========  ==========  ===============\nFAN-1            5921        59          Operational    \nFAN-2            5927        59          Operational",
+    "lldp": "Port  Chassis ID           Remote Port ID     System Name\n----- -------------------- ------------------ ------------------\n  48  84:78:48:76:1E:0D    te1/0/30           MUSWProXG48PoE",
+    "vlan": ""
+  },
+  "generated": "2026-04-11T18:00:53.803706"
+}
