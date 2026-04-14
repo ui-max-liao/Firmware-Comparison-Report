@@ -121,7 +121,7 @@
     <div class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></div>
-    <div class="summary-card warn"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">7.2 Testing</div></div>
+    <div class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></div>
     <div class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></div>
@@ -237,8 +237,7 @@
     <div class="section-header">
       <span class="section-num">#5</span>
       <span class="section-title">Uplink Stability</span>
-      <span class="badge badge-pass">7.4.1 Pass</span>
-      <span class="badge badge-na">7.2.123 In Progress</span>
+      <span class="badge badge-pass">Pass</span>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> IXIA sends continuous L2 traffic at 100% line rate (40 Gbps aggregate, 4x 10G ports, 1518B frames) for 24 hours. Script polls IXIA stats every 30 seconds, recording TX/RX frame counts and calculating cumulative packet loss. Port 48 (1G management uplink) is monitored for link status and error counters throughout.
@@ -248,15 +247,15 @@
         <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.2.123</th></tr>
       </thead>
       <tbody>
-        <tr><td>Duration</td><td>24h 04m</td><td class="val-warn">Testing...</td></tr>
-        <tr><td>Total TX Frames</td><td>1,544,136,948</td><td class="val-warn">--</td></tr>
-        <tr><td>Packet Loss</td><td class="val-good">0 frames</td><td class="val-warn">--</td></tr>
+        <tr><td>Duration</td><td>24h 04m</td><td>24h 01m</td></tr>
+        <tr><td>Total TX Frames</td><td>1,544,136,948</td><td>1,544,596,744,248</td></tr>
+        <tr><td>Packet Loss</td><td class="val-good">0 frames</td><td class="val-good">0 frames</td></tr>
         <tr><td>Rate</td><td>100% line rate (40 Gbps)</td><td>100% line rate (40 Gbps)</td></tr>
         <tr><td>Frame Size</td><td>1518 B</td><td>1518 B</td></tr>
-        <tr><td>Port 48 Uplink</td><td class="val-good">UP, zero errors</td><td class="val-warn">--</td></tr>
+        <tr><td>Port 48 Uplink</td><td class="val-good">UP, zero errors</td><td class="val-good">UP, zero errors</td></tr>
       </tbody>
     </table>
-    <p class="note">FW 7.2.123 24-hour soak test started 2026-04-11. Results will be updated upon completion.</p>
+    <p class="note">Both firmware versions passed the 24-hour soak test with zero packet loss at 100% line rate.</p>
   </div>
 
   <!-- ==================== ITEM 6 ==================== -->
