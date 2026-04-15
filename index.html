@@ -19,6 +19,8 @@
   .summary-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 2.5rem; }
   a.summary-card { text-decoration: none; color: inherit; cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
   a.summary-card:hover { border-color: #58a6ff; transform: translateY(-2px); }
+  .back-to-top { font-size: 0.75rem; color: #58a6ff; text-decoration: none; margin-left: auto; }
+  .back-to-top:hover { text-decoration: underline; }
   .summary-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 0.8rem 1rem; text-align: center; }
   .summary-card .num { font-size: 0.7rem; color: #484f58; }
   .summary-card .label { font-size: 0.75rem; color: #8b949e; margin-bottom: 0.2rem; }
@@ -118,7 +120,7 @@
   </div>
 
   <!-- Summary Strip -->
-  <div class="summary-strip">
+  <div id="summary" class="summary-strip">
     <a href="#item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
     <a href="#item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
     <a href="#item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
@@ -139,6 +141,7 @@
       <span class="section-num">#1</span>
       <span class="section-title">Packet Loss Baseline vs Post-Upgrade</span>
       <span class="badge badge-pass">Pass</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 4-port 10G full mesh (12 bidirectional flows), 7 frame sizes (64-1518B), offered rates 10%-100% in 10% steps. Binary search with 0% loss tolerance. Both firmware versions tested on same DUT with same IXIA session. Additionally, 24-hour continuous soak test at 100% line rate.
@@ -166,6 +169,7 @@
       <span class="section-num">#2</span>
       <span class="section-title">STP Topology Stability Check</span>
       <span class="badge badge-pass">No Change</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show</code> to read STP state column (forwarding / disabled / blocking / listening / learning) for all 52 ports. Execute <code>swctrl port show counters id &lt;port&gt;</code> on each active port to compare RSTP BPDU TX/RX counts. Run on both firmware versions and diff results.
@@ -192,6 +196,7 @@
       <span class="section-num">#3</span>
       <span class="section-title">PoE Port Health Check</span>
       <span class="badge badge-pass">No Change</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl poe show</code> to read all 48 PoE ports' OpMode, HpMode (802.3at/bt), Power Limit, Class, PoE Power state, Power(W), Voltage(V), Current(mA). Compare all fields across both firmware versions.
@@ -214,6 +219,7 @@
       <span class="section-num">#4</span>
       <span class="section-title">Connected Device Count</span>
       <span class="badge badge-pass">Pass</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl mac show</code> to dump the hardware FDB (Forwarding Database) table. Count unique MAC addresses per port. Compare totals and per-port counts across both firmware versions.
@@ -240,6 +246,7 @@
       <span class="section-num">#5</span>
       <span class="section-title">Uplink Stability</span>
       <span class="badge badge-pass">Pass</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> IXIA sends continuous L2 traffic at 100% line rate (40 Gbps aggregate, 4x 10G ports, 1518B frames) for 24 hours. Script polls IXIA stats every 30 seconds, recording TX/RX frame counts and calculating cumulative packet loss. Port 48 (1G management uplink) is monitored for link status and error counters throughout.
@@ -266,6 +273,7 @@
       <span class="section-num">#6</span>
       <span class="section-title">CPU and Memory Usage</span>
       <span class="badge badge-pass">Pass</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> SSH to DUT, read <code>/proc/meminfo</code> (MemTotal, MemFree, MemAvailable), <code>/proc/loadavg</code>, and <code>top -bn1</code> (CPU usr/sys/idle/sirq breakdown). Snapshot taken on each firmware version under same traffic conditions. Memory used % = (Total - Available) / Total.
@@ -330,6 +338,7 @@
       <span class="section-num">#7</span>
       <span class="section-title">Latency</span>
       <span class="badge badge-same">No Change</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> RFC 2544 Latency test using IXIA IxNetwork. Store-and-forward measurement at ~99% line rate. Traffic tracking enabled per traffic item (<code>trackingenabled0</code>). Avg/Min/Max latency read from "Traffic Item Statistics" view. 7 frame sizes tested on both firmware versions.
@@ -357,6 +366,7 @@
       <span class="section-num">#8</span>
       <span class="section-title">Error Counters Per Port</span>
       <span class="badge badge-pass">Clean</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show counters id &lt;port&gt;</code> for each active port (48-52). Compare the following counters across firmware versions: TX/RX Total Error, TX/RX FCS Error, TX/RX Pkt Discard, TX Total Collision, RX Overruns, RX Jabbers, RX Fragments, RX Alignment Errors, RX Undersize.
@@ -385,6 +395,7 @@
       <span class="section-num">#9</span>
       <span class="section-title">802.1X / RADIUS Authentication Test</span>
       <span class="badge badge-pass">Pass</span> <span class="badge badge-same">Same</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> Enabled 802.1X globally on the DUT (<code>switch.dot1x.status=enabled</code>) with RADIUS server configuration (EFG built-in RADIUS at 192.168.1.1:1812). Verified port 49 (SFP+ 10G, connected to IXIA) transitions to <code>auto + unauthorized</code> state, confirming the 802.1X authenticator is operational and correctly blocking unauthenticated traffic. Configuration applied via <code>system.cfg</code> + <code>cfgmtd -w</code> + reboot. Verified on serial console due to management port also entering unauthorized state.
@@ -409,6 +420,7 @@
       <span class="section-num">#10</span>
       <span class="section-title">DHCP Reachability &mdash; Max Client Capacity (Plan B)</span>
       <span class="badge badge-pass">PASS</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <p><strong>Method:</strong> IXIA IxNetwork DHCPv4 client emulation on Port_6 (DUT port 50, SFP+ 10G). Ramped client count from 10 to 249 (full DHCP pool) through the DUT to the existing network DHCP server at 192.168.1.1 (pool 192.168.1.6&ndash;254, /22 subnet). Each test creates unique MAC addresses and performs full DORA handshake.</p>
 
@@ -446,6 +458,7 @@
       <span class="section-num">#11</span>
       <span class="section-title">LAG Basic Functionality (LACP)</span>
       <span class="badge badge-pass">PASS</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <p><strong>Method:</strong> Created LAG 1 (LACP mode) with SFP+ ports 51+52 via <code>system.cfg</code> (<code>switch.port.N.opmode=aggregate</code>, <code>switch.port.N.lag=1</code>). IXIA IxNetwork emulated LACP peer on Port_7 + Port_8. Verified LACP negotiation, LAG formation, and port forwarding state on both firmware versions.</p>
 
@@ -482,6 +495,7 @@
     <div class="section-header">
       <span class="section-num">#12</span>
       <span class="section-title">Rollback Recommendation Score</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> Automated scoring based on 6 weighted factors from test items #2-#11. Each factor compares the post-upgrade value against the baseline. Score range 0-100: lower = safer to upgrade, higher = more risk.<br><br>
@@ -531,6 +545,7 @@
       <span class="section-num">+</span>
       <span class="section-title">Throughput Comparison (RFC 2544)</span>
       <span class="badge badge-improved">Improved</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="legend">
       <div class="legend-item"><div class="legend-dot legend-dot-old"></div> FW 7.2.123</div>
@@ -607,6 +622,7 @@
   <div class="section" id="reports">
     <div class="section-header">
       <span class="section-title">Full Test Reports</span>
+      <a href="#summary" class="back-to-top">&#9650; Summary</a>
     </div>
     <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:1rem 1.2rem;">
       <ul class="reports-list">
