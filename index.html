@@ -17,6 +17,8 @@
 
   /* Summary strip */
   .summary-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 2.5rem; }
+  a.summary-card { text-decoration: none; color: inherit; cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
+  a.summary-card:hover { border-color: #58a6ff; transform: translateY(-2px); }
   .summary-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 0.8rem 1rem; text-align: center; }
   .summary-card .num { font-size: 0.7rem; color: #484f58; }
   .summary-card .label { font-size: 0.75rem; color: #8b949e; margin-bottom: 0.2rem; }
@@ -117,18 +119,18 @@
 
   <!-- Summary Strip -->
   <div class="summary-strip">
-    <div class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#9</div><div class="label">802.1X / RADIUS</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></div>
-    <div class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></div>
+    <a href="#item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
+    <a href="#item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
+    <a href="#item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
+    <a href="#item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
+    <a href="#item5" class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></a>
+    <a href="#item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
+    <a href="#item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
+    <a href="#item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
+    <a href="#item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X / RADIUS</div><div class="value">PASS</div></a>
+    <a href="#item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
+    <a href="#item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
+    <a href="#item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
   </div>
 
   <!-- ==================== ITEM 1 ==================== -->
