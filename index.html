@@ -405,29 +405,36 @@
   <div class="section" id="item10">
     <div class="section-header">
       <span class="section-num">#10</span>
-      <span class="section-title">DHCP Reachability (Plan B &mdash; Existing Network DHCP Server)</span>
+      <span class="section-title">DHCP Reachability &mdash; Max Client Capacity (Plan B)</span>
       <span class="badge badge-pass">PASS</span>
     </div>
-    <p><strong>Method:</strong> IXIA IxNetwork DHCPv4 client emulation &mdash; 5 clients on Port_6 (DUT port 50, SFP+ 10G) sending DISCOVER/REQUEST through the DUT to the existing network DHCP server at 192.168.1.1.</p>
+    <p><strong>Method:</strong> IXIA IxNetwork DHCPv4 client emulation on Port_6 (DUT port 50, SFP+ 10G). Ramped client count from 10 to 249 (full DHCP pool) through the DUT to the existing network DHCP server at 192.168.1.1 (pool 192.168.1.6&ndash;254, /22 subnet). Each test creates unique MAC addresses and performs full DORA handshake.</p>
+
+    <h4 style="margin:1em 0 0.5em">DHCP Client Ramp Test</h4>
+    <table>
+      <tr><th style="text-align:left">Clients</th><th>7.2.123 Bound</th><th>7.2.123 Time</th><th>7.4.1 Bound</th><th>7.4.1 Time</th><th>Verdict</th></tr>
+      <tr><td>10</td><td>10 (100%)</td><td>5s</td><td>10 (100%)</td><td>5s</td><td class="val-good">PASS</td></tr>
+      <tr><td>50</td><td>50 (100%)</td><td>5s</td><td>50 (100%)</td><td>5s</td><td class="val-good">PASS</td></tr>
+      <tr><td>100</td><td>100 (100%)</td><td>21s</td><td>100 (100%)</td><td>25s</td><td class="val-good">PASS</td></tr>
+      <tr><td>150</td><td>150 (100%)</td><td>23s</td><td>150 (100%)</td><td>26s</td><td class="val-good">PASS</td></tr>
+      <tr><td>200</td><td>200 (100%)</td><td>30s</td><td>200 (100%)</td><td>26s</td><td class="val-good">PASS</td></tr>
+      <tr><td>240</td><td>240 (100%)</td><td>25s</td><td>240 (100%)</td><td>30s</td><td class="val-good">PASS</td></tr>
+      <tr style="font-weight:bold"><td>249 (pool max)</td><td>249 (100%)</td><td>25s</td><td>249 (100%)</td><td>25s</td><td class="val-good">PASS</td></tr>
+    </table>
+
+    <h4 style="margin:1em 0 0.5em">Summary</h4>
     <table>
       <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
-      <tr><td>DHCP Clients</td><td>5</td><td>5</td><td class="val-good">Same</td></tr>
-      <tr><td>Sessions Up</td><td>5 (100%)</td><td>5 (100%)</td><td class="val-good">PASS</td></tr>
-      <tr><td>Sessions Down</td><td>0</td><td>0</td><td class="val-good">Same</td></tr>
-      <tr><td>Discovers Sent</td><td>5</td><td>5</td><td class="val-good">Same</td></tr>
-      <tr><td>Offers Received</td><td>5</td><td>5</td><td class="val-good">Same</td></tr>
-      <tr><td>Requests Sent</td><td>5</td><td>5</td><td class="val-good">Same</td></tr>
-      <tr><td>ACKs Received</td><td>5</td><td>5</td><td class="val-good">Same</td></tr>
-      <tr><td>NACKs Received</td><td>0</td><td>0</td><td class="val-good">None</td></tr>
-      <tr><td>Assigned IPs</td><td>192.168.1.195&ndash;199</td><td>192.168.1.195&ndash;199</td><td class="val-good">Same</td></tr>
-      <tr><td>Gateway</td><td>192.168.1.1</td><td>192.168.1.1</td><td class="val-good">Same</td></tr>
-      <tr><td>Prefix Length</td><td>/22</td><td>/22</td><td class="val-good">Same</td></tr>
-      <tr><td>Avg Setup Time</td><td>1375 ms</td><td>&le; 1375 ms</td><td class="val-good">Same</td></tr>
-      <tr><td>Success Rate</td><td>100%</td><td>100%</td><td class="val-good">PASS</td></tr>
+      <tr><td>Max DHCP Clients (pool limit)</td><td>249 / 249</td><td>249 / 249</td><td class="val-good">Same</td></tr>
+      <tr><td>Success Rate at Max</td><td>100%</td><td>100%</td><td class="val-good">PASS</td></tr>
+      <tr><td>Time to Bind 249 Clients</td><td>~25s</td><td>~25s</td><td class="val-good">Same</td></tr>
+      <tr><td>DHCP Server</td><td>192.168.1.1</td><td>192.168.1.1</td><td class="val-good">Same</td></tr>
+      <tr><td>Pool Range</td><td colspan="2" style="text-align:center">192.168.1.6 &ndash; 192.168.1.254 (249 addresses)</td><td class="val-good">&mdash;</td></tr>
     </table>
+
     <div class="note-box">
-      <strong>Methodology:</strong> IXIA IxNetwork emulated 5 DHCPv4 clients behind the DUT. The full DORA (Discover&rarr;Offer&rarr;Request&rarr;Ack) handshake was verified for each client. DHCP server is the existing UniFi Network controller at 192.168.1.1 (scope 192.168.1.6&ndash;254, subnet 192.168.1.0/22).<br><br>
-      <strong>Verdict:</strong> DHCP pass-through works identically on both firmware versions. All 5 clients obtained valid leases with correct gateway and prefix. No regression.
+      <strong>Methodology:</strong> IXIA IxNetwork emulated DHCPv4 clients in ramp stages (10 &rarr; 50 &rarr; 100 &rarr; 150 &rarr; 200 &rarr; 240 &rarr; 249). Each stage creates a fresh topology with unique MAC addresses (00:AA:xx:00:00:01 incrementing) and runs the full DORA handshake. The maximum of 249 clients corresponds to the entire DHCP pool (192.168.1.6&ndash;254).<br><br>
+      <strong>Verdict:</strong> Both firmware versions successfully bound all 249 DHCP clients (100% of the pool) with identical performance. The DUT passes DHCP traffic without any loss or bottleneck up to the DHCP server&rsquo;s pool limit. <strong>No regression.</strong>
     </div>
   </div>
 
