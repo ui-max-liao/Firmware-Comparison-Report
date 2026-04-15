@@ -442,17 +442,36 @@
   <div class="section" id="item11">
     <div class="section-header">
       <span class="section-num">#11</span>
-      <span class="section-title">LAG Still Exist Post Upgrade</span>
-      <span class="badge badge-pass">Preserved</span>
+      <span class="section-title">LAG Basic Functionality (LACP)</span>
+      <span class="badge badge-pass">PASS</span>
     </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, check <code>/proc/net/bonding/bond*</code> (Linux bonding driver) and <code>teamdctl</code> (teamd) for LAG/bonding interfaces. Verify member ports, mode (LACP/static), and operational state. Compare across both firmware versions to detect any configuration drift or LAG loss.
-    </div>
+    <p><strong>Method:</strong> Created LAG 1 (LACP mode) with SFP+ ports 51+52 via <code>system.cfg</code> (<code>switch.port.N.opmode=aggregate</code>, <code>switch.port.N.lag=1</code>). IXIA IxNetwork emulated LACP peer on Port_7 + Port_8. Verified LACP negotiation, LAG formation, and port forwarding state on both firmware versions.</p>
+
+    <h4 style="margin:1em 0 0.5em">DUT-Side Verification</h4>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
+      <tr><td>LAG 1 Created</td><td>Yes (ports 51+52)</td><td>Yes (ports 51+52)</td><td class="val-good">Same</td></tr>
+      <tr><td>Port 51 Membership</td><td>A 51 &hellip; 1(U)</td><td>A 51 &hellip; 1(U)</td><td class="val-good">Up</td></tr>
+      <tr><td>Port 52 Membership</td><td>A 52 &hellip; 1(U)</td><td>A 52 &hellip; 1(U)</td><td class="val-good">Up</td></tr>
+      <tr><td>STP/Forwarding</td><td>forwarding</td><td>forwarding</td><td class="val-good">Same</td></tr>
+      <tr><td>Config Persistence</td><td>Survived reboot</td><td>Survived upgrade</td><td class="val-good">Preserved</td></tr>
+    </table>
+
+    <h4 style="margin:1em 0 0.5em">IXIA LACP Per-Port Statistics</h4>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
+      <tr><td>Sessions Up (Port_7)</td><td>1 / 1</td><td>1 / 1</td><td class="val-good">PASS</td></tr>
+      <tr><td>Sessions Up (Port_8)</td><td>1 / 1</td><td>1 / 1</td><td class="val-good">PASS</td></tr>
+      <tr><td>Link State</td><td>UP</td><td>UP</td><td class="val-good">Same</td></tr>
+      <tr><td>LAG Member Ports UP</td><td>3</td><td>3</td><td class="val-good">Same</td></tr>
+      <tr><td>LACPDU Tx / Rx</td><td>4 / 3</td><td>5 / 4</td><td class="val-good">Active</td></tr>
+      <tr><td>Marker PDU Tx</td><td>1</td><td>1</td><td class="val-good">Same</td></tr>
+      <tr><td>Partner System MAC</td><td colspan="2" style="text-align:center">0C:EA:14:DB:3B:4B (DUT MAC)</td><td class="val-good">Correct</td></tr>
+    </table>
+
     <div class="note-box">
-      No LAG (Link Aggregation Group) was configured on this DUT for either firmware version.<br>
-      Status is consistent: no LAG before upgrade, no LAG after upgrade.<br>
-      <br>
-      <strong>Verdict:</strong> LAG state preserved (no configuration drift).
+      <strong>Methodology:</strong> LAG was configured via <code>system.cfg</code> entries: <code>switch.port.51.opmode=aggregate</code>, <code>switch.port.51.lag=1</code> (same for port 52). IXIA IxNetwork emulated an LACP partner with matching system ID on Port_7 and Port_8. LACP negotiation was verified bidirectionally (LACPDU Tx/Rx) and the DUT correctly transitioned LAG members from <code>1(D)</code> (Down, no partner) to <code>1(U)</code> (Up, LACP negotiated) on both firmware versions.<br><br>
+      <strong>Verdict:</strong> LAG creation, LACP negotiation, and port aggregation work identically on both firmware versions. Configuration survives firmware upgrade. <strong>No regression.</strong>
     </div>
   </div>
 
