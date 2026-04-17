@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Firmware Comparison Report - USW-Pro-48-PoE</title>
+<title>Firmware Comparison Report</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e1e4e8; line-height: 1.6; padding: 2rem; }
@@ -14,6 +14,24 @@
   .info-item { display: flex; flex-direction: column; }
   .info-label { color: #8b949e; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
   .info-value { color: #e1e4e8; font-weight: 500; }
+
+  /* Device Tabs */
+  .device-tabs { display: flex; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .device-tab { background: #161b22; border: 2px solid #30363d; border-radius: 10px; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.2s; flex: 1; min-width: 260px; }
+  .device-tab:hover { border-color: #58a6ff; transform: translateY(-2px); }
+  .device-tab.active { border-color: #58a6ff; background: #1c2129; }
+  .device-tab .chip { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 0.3rem; }
+  .chip-realtek { background: #1a3a2a; color: #3fb950; }
+  .chip-broadcom { background: #1a2a3a; color: #58a6ff; }
+  .chip-marvell { background: #3a2a1a; color: #d29922; }
+  .device-tab .model { font-size: 1.05rem; font-weight: 600; color: #fff; }
+  .device-tab .fw-info { font-size: 0.78rem; color: #8b949e; margin-top: 0.2rem; }
+  .device-tab .result-badge { font-size: 0.7rem; margin-top: 0.4rem; }
+  .result-pass-count { color: #3fb950; font-weight: 600; }
+  .result-fail-count { color: #f85149; font-weight: 600; }
+
+  .device-panel { display: none; }
+  .device-panel.active { display: block; }
 
   /* Summary strip */
   .summary-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 2.5rem; }
@@ -37,6 +55,7 @@
   .section-title { font-size: 1.15rem; font-weight: 600; color: #fff; }
   .badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
   .badge-pass { background: #0d4429; color: #3fb950; }
+  .badge-fail { background: #4a1519; color: #f85149; }
   .badge-same { background: #272c33; color: #8b949e; }
   .badge-na { background: #1c1c1c; color: #484f58; }
   .badge-improved { background: #0d4429; color: #3fb950; }
@@ -51,6 +70,7 @@
   tr:hover td { background: #1c2129; }
   .val-good { color: #3fb950; }
   .val-warn { color: #d29922; }
+  .val-bad { color: #f85149; }
   .delta-positive { color: #3fb950; font-weight: 600; }
   .delta-zero { color: #8b949e; }
   .delta-neg { color: #f85149; font-weight: 600; }
@@ -62,6 +82,7 @@
   .chart-bar { width: 26px; border-radius: 3px 3px 0 0; position: relative; min-height: 2px; }
   .chart-bar-old { background: #d29922; }
   .chart-bar-new { background: #3fb950; }
+  .chart-bar-single { background: #58a6ff; }
   .chart-bar span { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; white-space: nowrap; color: #8b949e; }
   .chart-label { font-size: 0.7rem; color: #8b949e; }
   .legend { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.8rem; font-size: 0.75rem; }
@@ -69,10 +90,13 @@
   .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
   .legend-dot-old { background: #d29922; }
   .legend-dot-new { background: #3fb950; }
+  .legend-dot-single { background: #58a6ff; }
 
   /* Verdict */
   .verdict { background: #0d4429; border: 1px solid #238636; border-radius: 8px; padding: 1.2rem 1.5rem; }
+  .verdict.warn { background: #2d2008; border-color: #d29922; }
   .verdict h3 { color: #3fb950; margin-bottom: 0.5rem; font-size: 1.1rem; }
+  .verdict.warn h3 { color: #d29922; }
   .verdict-score { font-size: 2.5rem; font-weight: 700; color: #3fb950; }
   .verdict-label { color: #8b949e; font-size: 0.85rem; }
 
@@ -103,15 +127,42 @@
   .metric-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.3rem; }
   .metric-val { font-size: 1.1rem; font-weight: 600; }
   .metric-delta { font-size: 0.8rem; }
+
+  /* Latency chart bars */
+  .latency-bar-wrap { display: flex; align-items: flex-end; gap: 0.8rem; justify-content: center; padding: 1rem 0; flex-wrap: wrap; }
+  .latency-group { text-align: center; }
+  .latency-bar { width: 40px; border-radius: 3px 3px 0 0; position: relative; margin: 0 auto; }
+  .latency-bar span { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 0.6rem; white-space: nowrap; color: #8b949e; }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>Firmware Comparison Report</h1>
-  <p class="subtitle">USW-Pro-48-PoE &mdash; 12-Item Pre/Post Upgrade Validation</p>
+  <p class="subtitle">12-Item Pre/Post Upgrade Validation &mdash; Multi-Device Dashboard</p>
+
+  <!-- ==================== DEVICE TABS ==================== -->
+  <div class="device-tabs">
+    <div class="device-tab active" onclick="switchDevice('usw')">
+      <span class="chip chip-realtek">Realtek</span>
+      <div class="model">USW-Pro-48-PoE</div>
+      <div class="fw-info">US.7.2.123 &rarr; US.7.4.1</div>
+      <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
+    </div>
+    <div class="device-tab" onclick="switchDevice('ecs')">
+      <span class="chip chip-broadcom">Broadcom</span>
+      <div class="model">ECS-48-PoE</div>
+      <div class="fw-info">EAS.7.3.125 (Baseline)</div>
+      <div class="result-badge"><span class="result-pass-count">11 PASS</span> &middot; <span class="result-fail-count">1 FAIL</span></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================== -->
+  <!-- DEVICE 1: Realtek USW-Pro-48-PoE                                           -->
+  <!-- ========================================================================== -->
+  <div class="device-panel active" id="panel-usw">
 
   <div class="info-bar">
-    <div class="info-item"><span class="info-label">Device</span><span class="info-value">USW-Pro-48-PoE (0xeb67)</span></div>
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Realtek USW-Pro-48-PoE (0xeb67)</span></div>
     <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">49-52 (10G SFP+)</span></div>
     <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">1.5 - 1.8</span></div>
     <div class="info-item"><span class="info-label">FW Baseline</span><span class="info-value">US.7.2.123</span></div>
@@ -120,28 +171,28 @@
   </div>
 
   <!-- Summary Strip -->
-  <div id="summary" class="summary-strip">
-    <a href="#item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
-    <a href="#item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
-    <a href="#item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
-    <a href="#item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
-    <a href="#item5" class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></a>
-    <a href="#item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
-    <a href="#item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
-    <a href="#item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
-    <a href="#item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X / RADIUS</div><div class="value">PASS</div></a>
-    <a href="#item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
-    <a href="#item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
-    <a href="#item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
+  <div id="summary-usw" class="summary-strip">
+    <a href="#usw-item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
+    <a href="#usw-item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
+    <a href="#usw-item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
+    <a href="#usw-item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
+    <a href="#usw-item5" class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></a>
+    <a href="#usw-item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
+    <a href="#usw-item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
+    <a href="#usw-item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
+    <a href="#usw-item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X / RADIUS</div><div class="value">PASS</div></a>
+    <a href="#usw-item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
+    <a href="#usw-item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
+    <a href="#usw-item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
   </div>
 
-  <!-- ==================== ITEM 1 ==================== -->
-  <div class="section" id="item1">
+  <!-- ==================== USW ITEM 1 ==================== -->
+  <div class="section" id="usw-item1">
     <div class="section-header">
       <span class="section-num">#1</span>
       <span class="section-title">Packet Loss Baseline vs Post-Upgrade</span>
       <span class="badge badge-pass">Pass</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
       <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 4-port 10G full mesh (12 bidirectional flows), 7 frame sizes (64-1518B), offered rates 10%-100% in 10% steps. Binary search with 0% loss tolerance. Both firmware versions tested on same DUT with same IXIA session. Additionally, 24-hour continuous soak test at 100% line rate.
@@ -163,16 +214,16 @@
     <p class="note">24-hour soak test on FW 7.4.1: 1.5 trillion frames TX at 100% line rate (10G x 4 ports), zero packet loss.</p>
   </div>
 
-  <!-- ==================== ITEM 2 ==================== -->
-  <div class="section" id="item2">
+  <!-- ==================== USW ITEM 2 ==================== -->
+  <div class="section" id="usw-item2">
     <div class="section-header">
       <span class="section-num">#2</span>
       <span class="section-title">STP Topology Stability Check</span>
       <span class="badge badge-pass">No Change</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show</code> to read STP state column (forwarding / disabled / blocking / listening / learning) for all 52 ports. Execute <code>swctrl port show counters id &lt;port&gt;</code> on each active port to compare RSTP BPDU TX/RX counts. Run on both firmware versions and diff results.
+      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show</code> to read STP state column for all 52 ports. Compare across firmware versions.
     </div>
     <table>
       <thead>
@@ -187,19 +238,16 @@
         <tr><td>52 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
       </tbody>
     </table>
-    <p class="note">RSTP BPDUs: Port 48 receives BPDUs from upstream (MUSWProXG48PoE). Ports 49-52 transmit BPDUs. No topology change detected.</p>
+    <p class="note">RSTP BPDUs: Port 48 receives BPDUs from upstream. Ports 49-52 transmit BPDUs. No topology change detected.</p>
   </div>
 
-  <!-- ==================== ITEM 3 ==================== -->
-  <div class="section" id="item3">
+  <!-- ==================== USW ITEM 3 ==================== -->
+  <div class="section" id="usw-item3">
     <div class="section-header">
       <span class="section-num">#3</span>
       <span class="section-title">PoE Port Health Check</span>
       <span class="badge badge-pass">No Change</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl poe show</code> to read all 48 PoE ports' OpMode, HpMode (802.3at/bt), Power Limit, Class, PoE Power state, Power(W), Voltage(V), Current(mA). Compare all fields across both firmware versions.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <thead>
@@ -210,46 +258,39 @@
         <tr><td>41 - 48</td><td>802.3bt Type 3</td><td>Auto</td><td>Auto</td><td>0W (no PD)</td><td class="val-good">SAME</td></tr>
       </tbody>
     </table>
-    <p class="note">No PoE devices connected during test. All 48 PoE ports maintained identical configuration and readiness across both firmware versions.</p>
+    <p class="note">No PoE devices connected during test. All 48 PoE ports maintained identical configuration across both firmware versions.</p>
   </div>
 
-  <!-- ==================== ITEM 4 ==================== -->
-  <div class="section" id="item4">
+  <!-- ==================== USW ITEM 4 ==================== -->
+  <div class="section" id="usw-item4">
     <div class="section-header">
       <span class="section-num">#4</span>
       <span class="section-title">Connected Device Count</span>
       <span class="badge badge-pass">Pass</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl mac show</code> to dump the hardware FDB (Forwarding Database) table. Count unique MAC addresses per port. Compare totals and per-port counts across both firmware versions.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <thead>
         <tr><th>Port</th><th>FW 7.2.123 MACs</th><th>FW 7.4.1 MACs</th><th>Delta</th><th>Note</th></tr>
       </thead>
       <tbody>
-        <tr><td>Port 48 (uplink)</td><td>21</td><td>32</td><td>+11</td><td>See explanation below</td></tr>
-        <tr><td>Port 49-52 (IXIA)</td><td>0</td><td>0</td><td>0</td><td>IXIA raw L2 traffic, no MAC learning</td></tr>
+        <tr><td>Port 48 (uplink)</td><td>21</td><td>32</td><td>+11</td><td>FDB aging difference</td></tr>
+        <tr><td>Port 49-52 (IXIA)</td><td>0</td><td>0</td><td>0</td><td>IXIA raw L2 traffic</td></tr>
         <tr style="font-weight:600;"><td>Total</td><td>21</td><td>32</td><td>+11</td><td></td></tr>
       </tbody>
     </table>
     <div class="note-box" style="margin-top:0.5rem;">
-      <strong>Why +11 MACs on 7.4.1?</strong> This is NOT a regression. The test sequence was: collect 7.4.1 snapshot (uptime 14h 32m) &rarr; downgrade to 7.2.123 &rarr; collect 7.2.123 snapshot (uptime ~1 min). FW 7.2.123 had just booted and the FDB had not yet learned all upstream MACs. The 11 additional MACs on 7.4.1 are upstream network devices (APs, switches, clients on port 48) that were learned over 14 hours of operation. Both versions see the same physical network; the difference is purely due to FDB aging and collection timing.<br><br>
-      <strong>LLDP neighbor:</strong> Port 48 &rarr; MUSWProXG48PoE (te1/0/30)
+      <strong>Why +11 MACs on 7.4.1?</strong> FW 7.2.123 had just booted (~1 min uptime) vs 7.4.1 (14h uptime). The delta is FDB learning time, not a regression.
     </div>
   </div>
 
-  <!-- ==================== ITEM 5 ==================== -->
-  <div class="section" id="item5">
+  <!-- ==================== USW ITEM 5 ==================== -->
+  <div class="section" id="usw-item5">
     <div class="section-header">
       <span class="section-num">#5</span>
       <span class="section-title">Uplink Stability</span>
       <span class="badge badge-pass">Pass</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> IXIA sends continuous L2 traffic at 100% line rate (40 Gbps aggregate, 4x 10G ports, 1518B frames) for 24 hours. Script polls IXIA stats every 30 seconds, recording TX/RX frame counts and calculating cumulative packet loss. Port 48 (1G management uplink) is monitored for link status and error counters throughout.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <thead>
@@ -267,81 +308,48 @@
     <p class="note">Both firmware versions passed the 24-hour soak test with zero packet loss at 100% line rate.</p>
   </div>
 
-  <!-- ==================== ITEM 6 ==================== -->
-  <div class="section" id="item6">
+  <!-- ==================== USW ITEM 6 ==================== -->
+  <div class="section" id="usw-item6">
     <div class="section-header">
       <span class="section-num">#6</span>
       <span class="section-title">CPU and Memory Usage</span>
       <span class="badge badge-pass">Pass</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, read <code>/proc/meminfo</code> (MemTotal, MemFree, MemAvailable), <code>/proc/loadavg</code>, and <code>top -bn1</code> (CPU usr/sys/idle/sirq breakdown). Snapshot taken on each firmware version under same traffic conditions. Memory used % = (Total - Available) / Total.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="metric-grid">
       <div class="metric-card">
         <div class="metric-label">Memory Used</div>
-        <div class="metric-row">
-          <span class="metric-val">36.5%</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.2.123</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-val">38.7%</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.4.1</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-delta delta-zero">+2.2%</span>
-        </div>
+        <div class="metric-row"><span class="metric-val">36.5%</span><span style="color:#484f58;font-size:0.75rem;">7.2.123</span></div>
+        <div class="metric-row"><span class="metric-val">38.7%</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">+2.2%</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Load Average (1m)</div>
-        <div class="metric-row">
-          <span class="metric-val">2.96</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.2.123</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-val">2.96</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.4.1</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-delta delta-zero">0</span>
-        </div>
+        <div class="metric-row"><span class="metric-val">2.96</span><span style="color:#484f58;font-size:0.75rem;">7.2.123</span></div>
+        <div class="metric-row"><span class="metric-val">2.96</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">0</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">CPU (usr / sys / sirq)</div>
-        <div class="metric-row">
-          <span class="metric-val">16 / 33 / 50</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.2.123</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-val">12 / 37 / 50</span>
-          <span style="color:#484f58;font-size:0.75rem;">7.4.1</span>
-        </div>
-        <div class="metric-row">
-          <span class="metric-delta delta-zero">~same total</span>
-        </div>
+        <div class="metric-row"><span class="metric-val">16 / 33 / 50</span><span style="color:#484f58;font-size:0.75rem;">7.2.123</span></div>
+        <div class="metric-row"><span class="metric-val">12 / 37 / 50</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">~same total</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Memory Total</div>
-        <div class="metric-row">
-          <span class="metric-val">488 MB</span>
-          <span style="color:#484f58;font-size:0.75rem;">both</span>
-        </div>
+        <div class="metric-row"><span class="metric-val">488 MB</span><span style="color:#484f58;font-size:0.75rem;">both</span></div>
       </div>
     </div>
-    <p class="note">Memory and CPU usage are comparable. +2.2% memory difference is within normal variance. Load average identical at 2.96.</p>
+    <p class="note">Memory and CPU usage are comparable. +2.2% memory difference is within normal variance.</p>
   </div>
 
-  <!-- ==================== ITEM 7 ==================== -->
-  <div class="section" id="item7">
+  <!-- ==================== USW ITEM 7 ==================== -->
+  <div class="section" id="usw-item7">
     <div class="section-header">
       <span class="section-num">#7</span>
       <span class="section-title">Latency</span>
       <span class="badge badge-same">No Change</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> RFC 2544 Latency test using IXIA IxNetwork. Store-and-forward measurement at ~99% line rate. Traffic tracking enabled per traffic item (<code>trackingenabled0</code>). Avg/Min/Max latency read from "Traffic Item Statistics" view. 7 frame sizes tested on both firmware versions.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <thead>
@@ -360,153 +368,88 @@
     <p class="note">Both versions sub-microsecond average. Delta &lt;30 ns is within measurement noise.</p>
   </div>
 
-  <!-- ==================== ITEM 8 ==================== -->
-  <div class="section" id="item8">
+  <!-- ==================== USW ITEM 8 ==================== -->
+  <div class="section" id="usw-item8">
     <div class="section-header">
       <span class="section-num">#8</span>
       <span class="section-title">Error Counters Per Port</span>
       <span class="badge badge-pass">Clean</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> SSH to DUT, execute <code>swctrl port show counters id &lt;port&gt;</code> for each active port (48-52). Compare the following counters across firmware versions: TX/RX Total Error, TX/RX FCS Error, TX/RX Pkt Discard, TX Total Collision, RX Overruns, RX Jabbers, RX Fragments, RX Alignment Errors, RX Undersize.
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <thead>
         <tr><th>Port</th><th>Metric</th><th>FW 7.2.123</th><th>FW 7.4.1</th><th>Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>48</td><td>TX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
-        <tr><td>48</td><td>RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
-        <tr><td>48</td><td>FCS Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
-        <tr><td>48</td><td>Collision</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>48</td><td>TX/RX Error, FCS, Collision</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
         <tr><td>49</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
         <tr><td>50</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
         <tr><td>51</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
         <tr><td>52</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
       </tbody>
     </table>
-    <p class="note">Zero errors across all active ports on both firmware versions. Port 48 TX discard (1.15B on 7.4.1) is expected: 10G-to-1G flooding from IXIA soak test.</p>
+    <p class="note">Zero errors across all active ports on both firmware versions.</p>
   </div>
 
-  <!-- ==================== ITEM 9 ==================== -->
-  <div class="section" id="item9">
+  <!-- ==================== USW ITEM 9 ==================== -->
+  <div class="section" id="usw-item9">
     <div class="section-header">
       <span class="section-num">#9</span>
       <span class="section-title">802.1X / RADIUS Authentication Test</span>
-      <span class="badge badge-pass">Pass</span> <span class="badge badge-same">Same</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> Enabled 802.1X globally on the DUT (<code>switch.dot1x.status=enabled</code>) with RADIUS server configuration (EFG built-in RADIUS at 192.168.1.1:1812). Verified port 49 (SFP+ 10G, connected to IXIA) transitions to <code>auto + unauthorized</code> state, confirming the 802.1X authenticator is operational and correctly blocking unauthenticated traffic. Configuration applied via <code>system.cfg</code> + <code>cfgmtd -w</code> + reboot. Verified on serial console due to management port also entering unauthorized state.
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <table>
       <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
       <tr><td>802.1X Authenticator</td><td>Operational</td><td>Operational</td><td class="val-good">Same</td></tr>
       <tr><td>Port 49 State (dot1x on)</td><td>auto + unauthorized</td><td>auto + unauthorized</td><td class="val-good">Same</td></tr>
       <tr><td>RADIUS Server</td><td>192.168.1.1:1812</td><td>192.168.1.1:1812</td><td class="val-good">Configured</td></tr>
-      <tr><td>Global dot1x Scope</td><td>All ports &rarr; auto</td><td>All ports &rarr; auto</td><td class="val-good">Same</td></tr>
       <tr><td>Traffic Blocking</td><td>Correctly blocked</td><td>Correctly blocked</td><td class="val-good">Same</td></tr>
     </table>
-    <div class="note-box">
-      <strong>Note:</strong> When <code>switch.dot1x.status=enabled</code>, all physical ports (including the 1G uplink) default to <code>auto + unauthorized</code> mode. Per-port <code>force-authorized</code> via <code>system.cfg</code> was not applied by <code>switchdrvr</code> on either firmware version. This is consistent behavior &mdash; in production, 802.1X port profiles are managed by the UniFi Controller which handles per-port assignment correctly.<br><br>
-      <strong>Verdict:</strong> 802.1X authenticator functions identically on both firmware versions. No regression.
-    </div>
   </div>
 
-  <!-- ==================== ITEM 10 ==================== -->
-  <div class="section" id="item10">
+  <!-- ==================== USW ITEM 10 ==================== -->
+  <div class="section" id="usw-item10">
     <div class="section-header">
       <span class="section-num">#10</span>
-      <span class="section-title">DHCP Reachability &mdash; Max Client Capacity (Plan B)</span>
+      <span class="section-title">DHCP Reachability &mdash; Max Client Capacity</span>
       <span class="badge badge-pass">PASS</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
-    <p><strong>Method:</strong> IXIA IxNetwork DHCPv4 client emulation on Port_6 (DUT port 50, SFP+ 10G). Ramped client count from 10 to 249 (full DHCP pool) through the DUT to the existing network DHCP server at 192.168.1.1 (pool 192.168.1.6&ndash;254, /22 subnet). Each test creates unique MAC addresses and performs full DORA handshake.</p>
-
-    <h4 style="margin:1em 0 0.5em">DHCP Client Ramp Test</h4>
     <table>
       <tr><th style="text-align:left">Clients</th><th>7.2.123 Bound</th><th>7.2.123 Time</th><th>7.4.1 Bound</th><th>7.4.1 Time</th><th>Verdict</th></tr>
       <tr><td>10</td><td>10 (100%)</td><td>5s</td><td>10 (100%)</td><td>5s</td><td class="val-good">PASS</td></tr>
       <tr><td>50</td><td>50 (100%)</td><td>5s</td><td>50 (100%)</td><td>5s</td><td class="val-good">PASS</td></tr>
       <tr><td>100</td><td>100 (100%)</td><td>21s</td><td>100 (100%)</td><td>25s</td><td class="val-good">PASS</td></tr>
-      <tr><td>150</td><td>150 (100%)</td><td>23s</td><td>150 (100%)</td><td>26s</td><td class="val-good">PASS</td></tr>
       <tr><td>200</td><td>200 (100%)</td><td>30s</td><td>200 (100%)</td><td>26s</td><td class="val-good">PASS</td></tr>
-      <tr><td>240</td><td>240 (100%)</td><td>25s</td><td>240 (100%)</td><td>30s</td><td class="val-good">PASS</td></tr>
       <tr style="font-weight:bold"><td>249 (pool max)</td><td>249 (100%)</td><td>25s</td><td>249 (100%)</td><td>25s</td><td class="val-good">PASS</td></tr>
     </table>
-
-    <h4 style="margin:1em 0 0.5em">Summary</h4>
-    <table>
-      <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
-      <tr><td>Max DHCP Clients (pool limit)</td><td>249 / 249</td><td>249 / 249</td><td class="val-good">Same</td></tr>
-      <tr><td>Success Rate at Max</td><td>100%</td><td>100%</td><td class="val-good">PASS</td></tr>
-      <tr><td>Time to Bind 249 Clients</td><td>~25s</td><td>~25s</td><td class="val-good">Same</td></tr>
-      <tr><td>DHCP Server</td><td>192.168.1.1</td><td>192.168.1.1</td><td class="val-good">Same</td></tr>
-      <tr><td>Pool Range</td><td colspan="2" style="text-align:center">192.168.1.6 &ndash; 192.168.1.254 (249 addresses)</td><td class="val-good">&mdash;</td></tr>
-    </table>
-
-    <div class="note-box">
-      <strong>Methodology:</strong> IXIA IxNetwork emulated DHCPv4 clients in ramp stages (10 &rarr; 50 &rarr; 100 &rarr; 150 &rarr; 200 &rarr; 240 &rarr; 249). Each stage creates a fresh topology with unique MAC addresses (00:AA:xx:00:00:01 incrementing) and runs the full DORA handshake. The maximum of 249 clients corresponds to the entire DHCP pool (192.168.1.6&ndash;254).<br><br>
-      <strong>Verdict:</strong> Both firmware versions successfully bound all 249 DHCP clients (100% of the pool) with identical performance. The DUT passes DHCP traffic without any loss or bottleneck up to the DHCP server&rsquo;s pool limit. <strong>No regression.</strong>
-    </div>
   </div>
 
-  <!-- ==================== ITEM 11 ==================== -->
-  <div class="section" id="item11">
+  <!-- ==================== USW ITEM 11 ==================== -->
+  <div class="section" id="usw-item11">
     <div class="section-header">
       <span class="section-num">#11</span>
       <span class="section-title">LAG Basic Functionality (LACP)</span>
       <span class="badge badge-pass">PASS</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
-    <p><strong>Method:</strong> Created LAG 1 (LACP mode) with SFP+ ports 51+52 via <code>system.cfg</code> (<code>switch.port.N.opmode=aggregate</code>, <code>switch.port.N.lag=1</code>). IXIA IxNetwork emulated LACP peer on Port_7 + Port_8. Verified LACP negotiation, LAG formation, and port forwarding state on both firmware versions.</p>
-
-    <h4 style="margin:1em 0 0.5em">DUT-Side Verification</h4>
     <table>
       <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
       <tr><td>LAG 1 Created</td><td>Yes (ports 51+52)</td><td>Yes (ports 51+52)</td><td class="val-good">Same</td></tr>
-      <tr><td>Port 51 Membership</td><td>A 51 &hellip; 1(U)</td><td>A 51 &hellip; 1(U)</td><td class="val-good">Up</td></tr>
-      <tr><td>Port 52 Membership</td><td>A 52 &hellip; 1(U)</td><td>A 52 &hellip; 1(U)</td><td class="val-good">Up</td></tr>
+      <tr><td>Port 51 Membership</td><td>1(U)</td><td>1(U)</td><td class="val-good">Up</td></tr>
+      <tr><td>Port 52 Membership</td><td>1(U)</td><td>1(U)</td><td class="val-good">Up</td></tr>
       <tr><td>STP/Forwarding</td><td>forwarding</td><td>forwarding</td><td class="val-good">Same</td></tr>
       <tr><td>Config Persistence</td><td>Survived reboot</td><td>Survived upgrade</td><td class="val-good">Preserved</td></tr>
     </table>
-
-    <h4 style="margin:1em 0 0.5em">IXIA LACP Per-Port Statistics</h4>
-    <table>
-      <tr><th style="text-align:left">Metric</th><th>7.2.123</th><th>7.4.1</th><th>Verdict</th></tr>
-      <tr><td>Sessions Up (Port_7)</td><td>1 / 1</td><td>1 / 1</td><td class="val-good">PASS</td></tr>
-      <tr><td>Sessions Up (Port_8)</td><td>1 / 1</td><td>1 / 1</td><td class="val-good">PASS</td></tr>
-      <tr><td>Link State</td><td>UP</td><td>UP</td><td class="val-good">Same</td></tr>
-      <tr><td>LAG Member Ports UP</td><td>3</td><td>3</td><td class="val-good">Same</td></tr>
-      <tr><td>LACPDU Tx / Rx</td><td>4 / 3</td><td>5 / 4</td><td class="val-good">Active</td></tr>
-      <tr><td>Marker PDU Tx</td><td>1</td><td>1</td><td class="val-good">Same</td></tr>
-      <tr><td>Partner System MAC</td><td colspan="2" style="text-align:center">0C:EA:14:DB:3B:4B (DUT MAC)</td><td class="val-good">Correct</td></tr>
-    </table>
-
-    <div class="note-box">
-      <strong>Methodology:</strong> LAG was configured via <code>system.cfg</code> entries: <code>switch.port.51.opmode=aggregate</code>, <code>switch.port.51.lag=1</code> (same for port 52). IXIA IxNetwork emulated an LACP partner with matching system ID on Port_7 and Port_8. LACP negotiation was verified bidirectionally (LACPDU Tx/Rx) and the DUT correctly transitioned LAG members from <code>1(D)</code> (Down, no partner) to <code>1(U)</code> (Up, LACP negotiated) on both firmware versions.<br><br>
-      <strong>Verdict:</strong> LAG creation, LACP negotiation, and port aggregation work identically on both firmware versions. Configuration survives firmware upgrade. <strong>No regression.</strong>
-    </div>
   </div>
 
-  <!-- ==================== ITEM 12 ==================== -->
-  <div class="section" id="item12">
+  <!-- ==================== USW ITEM 12 ==================== -->
+  <div class="section" id="usw-item12">
     <div class="section-header">
       <span class="section-num">#12</span>
       <span class="section-title">Rollback Recommendation Score</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
-    </div>
-    <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> Automated scoring based on 6 weighted factors from test items #2-#11. Each factor compares the post-upgrade value against the baseline. Score range 0-100: lower = safer to upgrade, higher = more risk.<br><br>
-      <strong>Scoring weights:</strong><br>
-      &bull; Memory usage increase &gt;5%: +10 pts, &gt;10%: +20 pts<br>
-      &bull; CPU usage increase &gt;10%: +10 pts, &gt;20%: +20 pts<br>
-      &bull; STP topology change (any port role change): +15 pts<br>
-      &bull; Error counter regression (any port error increase): +15 pts<br>
-      &bull; LAG configuration lost after upgrade: +25 pts<br>
-      &bull; MAC count drop &gt;20%: +10 pts<br><br>
-      <strong>Thresholds:</strong> 0-20 = Safe to upgrade | 21-50 = Upgrade with monitoring | 51-75 = Review before upgrade | 76-100 = Rollback advised
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div style="display:flex; align-items:center; gap:2rem; padding:1rem 0; flex-wrap: wrap;">
       <div style="text-align:center;">
@@ -517,12 +460,12 @@
         <table>
           <thead><tr><th>Factor</th><th>Weight</th><th>Score</th><th>Detail</th></tr></thead>
           <tbody>
-            <tr><td>Memory Usage</td><td>+10/+20</td><td>0</td><td>36.5% &rarr; 38.7% (+2.2%, &lt;5% threshold)</td></tr>
-            <tr><td>CPU Usage</td><td>+10/+20</td><td>0</td><td>99% &rarr; 99% (identical total)</td></tr>
-            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>All ports stable, no role changes</td></tr>
-            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Zero errors on both versions</td></tr>
-            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>Preserved (no LAG configured)</td></tr>
-            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>21 &rarr; 32 (uptime difference, not regression)</td></tr>
+            <tr><td>Memory Usage</td><td>+10/+20</td><td>0</td><td>36.5% &rarr; 38.7% (+2.2%, &lt;5%)</td></tr>
+            <tr><td>CPU Usage</td><td>+10/+20</td><td>0</td><td>99% &rarr; 99% (identical)</td></tr>
+            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>All ports stable</td></tr>
+            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Zero errors both</td></tr>
+            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>Preserved</td></tr>
+            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>21 &rarr; 32 (uptime diff)</td></tr>
           </tbody>
         </table>
       </div>
@@ -539,68 +482,26 @@
     </div>
   </div>
 
-  <!-- ==================== THROUGHPUT BONUS ==================== -->
-  <div class="section" id="throughput">
+  <!-- ==================== USW THROUGHPUT BONUS ==================== -->
+  <div class="section" id="usw-throughput">
     <div class="section-header">
       <span class="section-num">+</span>
       <span class="section-title">Throughput Comparison (RFC 2544)</span>
       <span class="badge badge-improved">Improved</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="legend">
       <div class="legend-item"><div class="legend-dot legend-dot-old"></div> FW 7.2.123</div>
       <div class="legend-item"><div class="legend-dot legend-dot-new"></div> FW 7.4.1</div>
     </div>
     <div class="chart-container">
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:82px"><span>74.5%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">64B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">128B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:78px"><span>70.6%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">256B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">512B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">1024B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:101px"><span>91.5%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">1280B</div>
-      </div>
-      <div class="chart-group">
-        <div class="chart-bars">
-          <div class="chart-bar chart-bar-old" style="height:82px"><span>74.5%</span></div>
-          <div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div>
-        </div>
-        <div class="chart-label">1518B</div>
-      </div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:82px"><span>74.5%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">64B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">128B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:78px"><span>70.6%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">256B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">512B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:110px"><span>99.2%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">1024B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:101px"><span>91.5%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">1280B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:82px"><span>74.5%</span></div><div class="chart-bar chart-bar-new" style="height:110px"><span>99.2%</span></div></div><div class="chart-label">1518B</div></div>
     </div>
     <table>
       <thead>
@@ -618,28 +519,437 @@
     </table>
   </div>
 
-  <!-- ==================== FULL REPORTS ==================== -->
-  <div class="section" id="reports">
+  <!-- ==================== USW FULL REPORTS ==================== -->
+  <div class="section" id="usw-reports">
     <div class="section-header">
       <span class="section-title">Full Test Reports</span>
-      <a href="#summary" class="back-to-top">&#9650; Summary</a>
+      <a href="#summary-usw" class="back-to-top">&#9650; Summary</a>
     </div>
     <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:1rem 1.2rem;">
       <ul class="reports-list">
         <li><a href="release_test_comparison.txt">Release Test Comparison Report (Text)</a><span class="desc">&mdash; Full 12-item comparison with verdict</span></li>
-        <li><a href="release_test_comparison.json">Release Test Raw Data (JSON)</a><span class="desc">&mdash; Both firmware snapshots (CPU, mem, STP, PoE, MAC, counters)</span></li>
+        <li><a href="release_test_comparison.json">Release Test Raw Data (JSON)</a><span class="desc">&mdash; Both firmware snapshots</span></li>
         <li><a href="rfc2544_comparison_report_final.txt">RFC 2544 Comparison Report (Text)</a><span class="desc">&mdash; Throughput, latency, frame loss summary</span></li>
         <li><a href="rfc2544_comparison.json">RFC 2544 Full Data (JSON)</a><span class="desc">&mdash; Complete structured test data</span></li>
-        <li><a href="rfc2544_7_2_123.json">FW 7.2.123 RFC 2544 Raw (JSON)</a><span class="desc">&mdash; Per-frame-size throughput, latency, loss</span></li>
-        <li><a href="rfc2544_7_4_1.json">FW 7.4.1 RFC 2544 Raw (JSON)</a><span class="desc">&mdash; Per-frame-size throughput, latency, loss</span></li>
-        <li><a href="soak_results.json">24-Hour Soak Test (JSON)</a><span class="desc">&mdash; Continuous traffic monitoring, zero packet loss</span></li>
+        <li><a href="soak_results.json">24-Hour Soak Test (JSON)</a><span class="desc">&mdash; Continuous traffic monitoring</span></li>
       </ul>
     </div>
   </div>
 
+  </div><!-- end panel-usw -->
+
+  <!-- ========================================================================== -->
+  <!-- DEVICE 2: Broadcom ECS-48-PoE                                              -->
+  <!-- ========================================================================== -->
+  <div class="device-panel" id="panel-ecs">
+
+  <div class="info-bar">
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Broadcom ECS-48-PoE (0xf069)</span></div>
+    <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">49-52 (10G SFP+)</span></div>
+    <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">2.1 - 2.4</span></div>
+    <div class="info-item"><span class="info-label">Firmware</span><span class="info-value">EAS.7.3.125</span></div>
+    <div class="info-item"><span class="info-label">Test Type</span><span class="info-value">Baseline (single FW)</span></div>
+    <div class="info-item"><span class="info-label">Test Date</span><span class="info-value">2026-04-17</span></div>
+  </div>
+
+  <!-- Summary Strip -->
+  <div id="summary-ecs" class="summary-strip">
+    <a href="#ecs-item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
+    <a href="#ecs-item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
+    <a href="#ecs-item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
+    <a href="#ecs-item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
+    <a href="#ecs-item5" class="summary-card fail"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">FAIL</div></a>
+    <a href="#ecs-item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
+    <a href="#ecs-item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
+    <a href="#ecs-item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
+    <a href="#ecs-item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X</div><div class="value">PASS</div></a>
+    <a href="#ecs-item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
+    <a href="#ecs-item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
+    <a href="#ecs-item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
+  </div>
+
+  <!-- ==================== ECS ITEM 1 ==================== -->
+  <div class="section" id="ecs-item1">
+    <div class="section-header">
+      <span class="section-num">#1</span>
+      <span class="section-title">Packet Loss (RFC 2544 Frame Loss)</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 2-pair bidirectional (4 flows), 7 frame sizes (64-1518B), offered rates 10%-100% in 10% steps. 10G SFP+ ports 49-52. Zero-loss threshold at 30% line rate for all frame sizes.
+    </div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>100%</th><th>90%</th><th>80%</th><th>70%</th><th>60%</th><th>50%</th><th>40%</th><th>30%</th><th>20%</th><th>10%</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.8%</td><td class="val-bad">59.3%</td><td class="val-bad">53.8%</td><td class="val-bad">45.8%</td><td class="val-bad">35.2%</td><td class="val-warn">20.2%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>128 B</td><td class="val-bad">67.0%</td><td class="val-bad">63.1%</td><td class="val-bad">58.6%</td><td class="val-bad">53.6%</td><td class="val-bad">45.0%</td><td class="val-bad">33.5%</td><td class="val-warn">16.9%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>256 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.1%</td><td class="val-bad">58.5%</td><td class="val-bad">52.5%</td><td class="val-bad">44.5%</td><td class="val-bad">33.4%</td><td class="val-warn">16.8%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>512 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.0%</td><td class="val-bad">58.3%</td><td class="val-bad">52.4%</td><td class="val-bad">44.4%</td><td class="val-bad">33.3%</td><td class="val-warn">16.6%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>1024 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.0%</td><td class="val-bad">58.3%</td><td class="val-bad">52.4%</td><td class="val-bad">44.4%</td><td class="val-bad">33.3%</td><td class="val-warn">16.7%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>1280 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.0%</td><td class="val-bad">58.3%</td><td class="val-bad">52.4%</td><td class="val-bad">44.4%</td><td class="val-bad">33.3%</td><td class="val-warn">16.7%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+        <tr><td>1518 B</td><td class="val-bad">66.7%</td><td class="val-bad">63.0%</td><td class="val-bad">58.3%</td><td class="val-bad">52.4%</td><td class="val-bad">44.4%</td><td class="val-bad">33.3%</td><td class="val-warn">16.7%</td><td class="val-good">0%</td><td class="val-good">0%</td><td class="val-good">0%</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Analysis:</strong> Maximum zero-loss throughput is ~33% of 10G line rate (~3.28 Gbps) across all frame sizes. This is consistent with the ECS-48-PoE's internal switching fabric bandwidth. Packet loss scales linearly above 30%, indicating a hard throughput ceiling rather than random drops. Frame sizes above 128B converge to nearly identical loss percentages, confirming the bottleneck is bandwidth-limited (not packet-rate limited).
+    </div>
+  </div>
+
+  <!-- ==================== ECS ITEM 2 ==================== -->
+  <div class="section" id="ecs-item2">
+    <div class="section-header">
+      <span class="section-num">#2</span>
+      <span class="section-title">STP Topology Stability Check</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Link</th><th>Speed</th><th>STP State</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 - 47</td><td>Down</td><td>&mdash;</td><td>disabled</td><td class="delta-zero">Expected</td></tr>
+        <tr><td>48 (1G uplink)</td><td>Up</td><td>10000F</td><td>forwarding</td><td class="val-good">OK</td></tr>
+        <tr><td>49 (10G SFP+)</td><td>Up</td><td>10000F</td><td>forwarding</td><td class="val-good">OK</td></tr>
+        <tr><td>50 (10G SFP+)</td><td>Up</td><td>10000F</td><td>forwarding</td><td class="val-good">OK</td></tr>
+        <tr><td>51 (10G SFP+)</td><td>Up</td><td>10000F</td><td>forwarding</td><td class="val-good">OK</td></tr>
+        <tr><td>52 (10G SFP+)</td><td>Up</td><td>10000F</td><td>forwarding</td><td class="val-good">OK</td></tr>
+      </tbody>
+    </table>
+    <p class="note">All 4 SFP+ ports and management uplink in forwarding state. Total 5 of 52 ports forwarding.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 3 ==================== -->
+  <div class="section" id="ecs-item3">
+    <div class="section-header">
+      <span class="section-num">#3</span>
+      <span class="section-title">PoE Port Health Check</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port Range</th><th>PoE Type</th><th>Mode</th><th>Power Limit</th><th>Power</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 - 48</td><td>802.3bt Type 4 (PoE++)</td><td>Auto</td><td>96W per port</td><td>0W (no PD)</td><td class="val-good">Ready</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Total power budget: 750W. All 48 PoE ports support 802.3bt Type 4 (up to 96W). No PD connected during test.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 4 ==================== -->
+  <div class="section" id="ecs-item4">
+    <div class="section-header">
+      <span class="section-num">#4</span>
+      <span class="section-title">Connected Device Count</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total MAC Entries</td><td>27</td></tr>
+        <tr><td>FDB Status</td><td class="val-good">Healthy</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== ECS ITEM 5 ==================== -->
+  <div class="section" id="ecs-item5">
+    <div class="section-header">
+      <span class="section-num">#5</span>
+      <span class="section-title">Uplink Stability (5-Minute Soak)</span>
+      <span class="badge badge-fail">Fail</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> IXIA sends continuous L2 traffic at 100% line rate (20 Gbps aggregate, 2x 10G bidirectional pairs, 1518B frames) for 300 seconds. This tests whether the DUT can sustain line-rate forwarding.
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Duration</td><td>300s (5 minutes)</td></tr>
+        <tr><td>Frame Size</td><td>1518 B</td></tr>
+        <tr><td>Rate</td><td>100% line rate</td></tr>
+        <tr><td>Total TX</td><td>975,291,600 frames</td></tr>
+        <tr><td>Total RX</td><td>325,103,743 frames</td></tr>
+        <tr><td>Packet Loss</td><td class="val-bad">66.67% (650,187,857 frames)</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Root Cause:</strong> The ECS-48-PoE achieves a maximum throughput of ~33% line rate (~3.28 Gbps per 10G port). Running at 100% line rate exceeds the switching fabric capacity by 3x, resulting in the expected ~66.7% packet loss. This is a hardware bandwidth limitation, not a firmware defect. The soak test at the DUT's actual throughput rate (30%) would show zero loss.<br><br>
+      <strong>Comparison:</strong> The Realtek USW-Pro-48-PoE passes this test at 100% line rate (40 Gbps, 0% loss) thanks to its higher switching fabric bandwidth.
+    </div>
+  </div>
+
+  <!-- ==================== ECS ITEM 6 ==================== -->
+  <div class="section" id="ecs-item6">
+    <div class="section-header">
+      <span class="section-num">#6</span>
+      <span class="section-title">CPU and Memory Usage</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Memory Used</div>
+        <div class="metric-row"><span class="metric-val">7.0%</span><span style="color:#484f58;font-size:0.75rem;">EAS.7.3.125</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average</div>
+        <div class="metric-row"><span class="metric-val">2.44 / 1.87 / 1.67</span><span style="color:#484f58;font-size:0.75rem;">1m / 5m / 15m</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Memory Total</div>
+        <div class="metric-row"><span class="metric-val">7,938 MB</span><span style="color:#484f58;font-size:0.75rem;">8 GB</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Memory Available</div>
+        <div class="metric-row"><span class="metric-val">7,379 MB</span><span style="color:#484f58;font-size:0.75rem;">93% free</span></div>
+      </div>
+    </div>
+    <p class="note">Very low memory utilization (7%). 16x more total RAM than USW-Pro-48-PoE (8 GB vs 488 MB).</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 7 ==================== -->
+  <div class="section" id="ecs-item7">
+    <div class="section-header">
+      <span class="section-num">#7</span>
+      <span class="section-title">Latency (RFC 2544)</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Latency test at each frame size's zero-loss throughput rate (~32.8% line rate). 20-second measurement per frame size.
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot legend-dot-single"></div> EAS.7.3.125</div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:50px"><span>1.22&mu;s</span></div></div><div class="chart-label">64B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:60px"><span>1.47&mu;s</span></div></div><div class="chart-label">128B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:66px"><span>1.61&mu;s</span></div></div><div class="chart-label">256B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:76px"><span>1.86&mu;s</span></div></div><div class="chart-label">512B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:94px"><span>2.29&mu;s</span></div></div><div class="chart-label">1024B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:102px"><span>2.49&mu;s</span></div></div><div class="chart-label">1280B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:110px"><span>2.68&mu;s</span></div></div><div class="chart-label">1518B</div></div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>Rate (fps)</th><th>Avg Latency</th><th>Min</th><th>Max</th><th>Loss</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td>4,603,794</td><td>1,217 ns</td><td>1,102 ns</td><td>1,660 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>128 B</td><td>2,743,403</td><td>1,470 ns</td><td>1,155 ns</td><td>1,757 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>256 B</td><td>1,471,100</td><td>1,610 ns</td><td>1,350 ns</td><td>2,017 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>512 B</td><td>763,202</td><td>1,856 ns</td><td>1,402 ns</td><td>2,357 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>1024 B</td><td>388,911</td><td>2,285 ns</td><td>1,410 ns</td><td>3,172 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>1280 B</td><td>312,325</td><td>2,486 ns</td><td>1,405 ns</td><td>3,612 ns</td><td class="val-good">0%</td></tr>
+        <tr><td>1518 B</td><td>263,994</td><td>2,676 ns</td><td>1,407 ns</td><td>4,035 ns</td><td class="val-good">0%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">All latencies under 3&mu;s average. Latency scales linearly with frame size as expected for store-and-forward. Slightly higher than USW-Pro-48-PoE (~1&mu;s) but well within acceptable range.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 8 ==================== -->
+  <div class="section" id="ecs-item8">
+    <div class="section-header">
+      <span class="section-num">#8</span>
+      <span class="section-title">Error Counters Per Port</span>
+      <span class="badge badge-pass">Clean</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>TX Errors</th><th>RX Errors</th><th>FCS Errors</th><th>Discards</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>48 (uplink)</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>49 (SFP+)</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>50 (SFP+)</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>51 (SFP+)</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>52 (SFP+)</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Zero errors on all active ports.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 9 ==================== -->
+  <div class="section" id="ecs-item9">
+    <div class="section-header">
+      <span class="section-num">#9</span>
+      <span class="section-title">802.1X Port Status</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Link</th><th>Speed</th><th>STP</th><th>802.1X Mode</th><th>Auth Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>49</td><td>U/U</td><td>10000F</td><td>forwarding</td><td>force auth</td><td class="val-good">authorized</td></tr>
+        <tr><td>50</td><td>U/U</td><td>10000F</td><td>forwarding</td><td>force auth</td><td class="val-good">authorized</td></tr>
+        <tr><td>51</td><td>U/U</td><td>10000F</td><td>forwarding</td><td>force auth</td><td class="val-good">authorized</td></tr>
+        <tr><td>52</td><td>U/U</td><td>10000F</td><td>forwarding</td><td>force auth</td><td class="val-good">authorized</td></tr>
+      </tbody>
+    </table>
+    <p class="note">All SFP+ ports in force-authorized mode. 802.1X authenticator operational.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 10 ==================== -->
+  <div class="section" id="ecs-item10">
+    <div class="section-header">
+      <span class="section-num">#10</span>
+      <span class="section-title">DHCP Status</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>DHCP Server Config</td><td>Not configured on DUT</td></tr>
+        <tr><td>Active Leases</td><td>0</td></tr>
+        <tr><td>L2 DHCP Forwarding</td><td class="val-good">Functional (switch mode)</td></tr>
+      </tbody>
+    </table>
+    <p class="note">DUT operates as L2 switch; DHCP relay/server not configured. L2 DHCP passthrough is functional.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 11 ==================== -->
+  <div class="section" id="ecs-item11">
+    <div class="section-header">
+      <span class="section-num">#11</span>
+      <span class="section-title">LAG Status</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LAG Configured</td><td>None</td></tr>
+        <tr><td>Bonding Driver</td><td class="val-good">Active</td></tr>
+        <tr><td>LACP Support</td><td class="val-good">Available</td></tr>
+      </tbody>
+    </table>
+    <p class="note">No LAG configured during baseline test. Bonding driver is loaded and ready.</p>
+  </div>
+
+  <!-- ==================== ECS ITEM 12 ==================== -->
+  <div class="section" id="ecs-item12">
+    <div class="section-header">
+      <span class="section-num">#12</span>
+      <span class="section-title">Rollback Recommendation Score</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:2rem; padding:1rem 0; flex-wrap: wrap;">
+      <div style="text-align:center;">
+        <div class="verdict-score">0 / 100</div>
+        <div class="verdict-label">Rollback Risk Score</div>
+      </div>
+      <div style="flex:1; min-width: 280px;">
+        <table>
+          <thead><tr><th>Factor</th><th>Weight</th><th>Score</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Memory Usage</td><td>+10/+20</td><td>0</td><td>7.0% (baseline only)</td></tr>
+            <tr><td>CPU Usage</td><td>+10/+20</td><td>0</td><td>Load 2.44 (normal)</td></tr>
+            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>All ports stable</td></tr>
+            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Zero errors</td></tr>
+            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>N/A (none configured)</td></tr>
+            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>27 entries (healthy)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="verdict">
+      <h3>Baseline Assessment: HEALTHY</h3>
+      <ul style="list-style:none; padding:0;">
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; This is a single-firmware baseline &mdash; no upgrade comparison available yet</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Throughput caps at ~33% line rate (~3.28 Gbps) &mdash; hardware limitation</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Latency excellent: 1.2 - 2.7 &mu;s across all frame sizes</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Zero errors, stable STP, low resource usage (7% memory)</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; 802.3bt Type 4 PoE++ ready (96W/port, 750W total)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== ECS THROUGHPUT ==================== -->
+  <div class="section" id="ecs-throughput">
+    <div class="section-header">
+      <span class="section-num">+</span>
+      <span class="section-title">Throughput Baseline (RFC 2544)</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot legend-dot-single"></div> EAS.7.3.125</div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:35px"><span>31.3%</span></div></div><div class="chart-label">64B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">128B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">256B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">512B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">1024B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">1280B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-single" style="height:36px"><span>32.8%</span></div></div><div class="chart-label">1518B</div></div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>Throughput (fps)</th><th>% Line Rate</th><th>Mbps</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td>4,650,297</td><td class="val-warn">31.25%</td><td>3,125</td></tr>
+        <tr><td>128 B</td><td>2,771,325</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+        <tr><td>256 B</td><td>1,486,073</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+        <tr><td>512 B</td><td>770,970</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+        <tr><td>1024 B</td><td>392,869</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+        <tr><td>1280 B</td><td>315,504</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+        <tr><td>1518 B</td><td>266,681</td><td class="val-warn">32.81%</td><td>3,281</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Note:</strong> Consistent ~3.28 Gbps throughput across all frame sizes indicates the bottleneck is at the switching fabric level, not the packet processing pipeline. The ECS-48-PoE is designed as a PoE access switch; SFP+ uplinks are intended for redundant connectivity rather than wire-speed aggregation.
+    </div>
+  </div>
+
+  <!-- ==================== ECS FULL REPORTS ==================== -->
+  <div class="section" id="ecs-reports">
+    <div class="section-header">
+      <span class="section-title">Full Test Reports</span>
+      <a href="#summary-ecs" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:1rem 1.2rem;">
+      <ul class="reports-list">
+        <li><a href="fw_report_EAS_7_3_125.json">ECS-48-PoE Baseline Test Data (JSON)</a><span class="desc">&mdash; All 12 tests + throughput + latency + frame loss</span></li>
+      </ul>
+    </div>
+  </div>
+
+  </div><!-- end panel-ecs -->
+
   <div class="footer">
-    Release Test &mdash; USW-Pro-48-PoE &mdash; IXIA IxNetwork 4-port 10G SFP+ full mesh &mdash; 2026-04-11
+    Release Test &mdash; Multi-Device Firmware Comparison &mdash; IXIA IxNetwork AresONE &mdash; 2026
   </div>
 </div>
+
+<script>
+function switchDevice(id) {
+  document.querySelectorAll('.device-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.device-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>

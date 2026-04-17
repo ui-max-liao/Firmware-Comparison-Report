@@ -1,0 +1,769 @@
+{
+  "firmware": "EAS.7.3.125",
+  "device": "ECS-48-PoE",
+  "timestamp": "2026-04-17T02:21:23.894959",
+  "board_info": "board.sysid=0xf069\nboard.name=ECS-48-PoE\nboard.shortname=EAS48P\nboard.subtype=\nboard.hwaddr=8478485E3D40\nboard.reboot=240\nboard.upgrade=320\nboard.phycount=1\nboard.required_fw_version=7.2.100",
+  "test_02": {
+    "status": "PASS",
+    "sfp_ports": [
+      {
+        "port": "49",
+        "link": "U/U",
+        "rate": "10000F",
+        "stp": "forwarding"
+      },
+      {
+        "port": "50",
+        "link": "U/U",
+        "rate": "10000F",
+        "stp": "forwarding"
+      },
+      {
+        "port": "51",
+        "link": "U/U",
+        "rate": "10000F",
+        "stp": "forwarding"
+      },
+      {
+        "port": "52",
+        "link": "U/U",
+        "rate": "10000F",
+        "stp": "forwarding"
+      }
+    ],
+    "total_ports": 52
+  },
+  "test_03": {
+    "status": "PASS",
+    "total_power_mw": 750000,
+    "port_count": 48,
+    "active_count": 0,
+    "ports": [
+      {
+        "port": 1,
+        "opmode": "Auto",
+        "hpmode": "Dot3bt-type4",
+        "pwr_limit_mw": 96000,
+        "class": "Unknown",
+        "poe_pwr": "Off",
+        "pwr_good": "Bad",
+        "power_w": 0.0,
+        "voltage_v": 0.0,
+        "current_ma": 0.0
+      },
+      {
+        "port": 2,
+        "opmode": "Auto",
+        "hpmode": "Dot3bt-type4",
+        "pwr_limit_mw": 96000,
+        "class": "Unknown",
+        "poe_pwr": "Off",
+        "pwr_good": "Bad",
+        "power_w": 0.0,
+        "voltage_v": 0.0,
+        "current_ma": 0.0
+      },
+      {
+        "port": 3,
+        "opmode": "Auto",
+        "hpmode": "Dot3bt-type4",
+        "pwr_limit_mw": 96000,
+        "class": "Unknown",
+        "poe_pwr": "Off",
+        "pwr_good": "Bad",
+        "power_w": 0.0,
+        "voltage_v": 0.0,
+        "current_ma": 0.0
+      },
+      {
+        "port": 4,
+        "opmode": "Auto",
+        "hpmode": "Dot3bt-type4",
+        "pwr_limit_mw": 96000,
+        "class": "Unknown",
+        "poe_pwr": "Off",
+        "pwr_good": "Bad",
+        "power_w": 0.0,
+        "voltage_v": 0.0,
+        "current_ma": 0.0
+      },
+      {
+        "port": 5,
+        "opmode": "Auto",
+        "hpmode": "Dot3bt-type4",
+        "pwr_limit_mw": 96000,
+        "class": "Unknown",
+        "poe_pwr": "Off",
+        "pwr_good": "Bad",
+        "power_w": 0.0,
+        "voltage_v": 0.0,
+        "current_ma": 0.0
+      }
+    ]
+  },
+  "test_04": {
+    "status": "PASS",
+    "mac_count": 27,
+    "raw": "113              \n  48    5 1c:0b:8b:dc:b9:32 172.16.5.1                       2383922     113              \n  48    6 1c:0b:8b:dc:b9:32                                  2383922     113              \n  48    7 1c:0b:8b:dc:b9:32                                  2383922     113              \n  48   13 1c:0b:8b:dc:b9:32                                  2383922     113              \n  48   15 1c:0b:8b:dc:b9:32                                  2383922     114              \nTotal number of entries: 27"
+  },
+  "test_06": {
+    "status": "PASS",
+    "mem_total_kb": 8128600,
+    "mem_avail_kb": 7556048,
+    "mem_used_pct": 7.0,
+    "load_1m": 2.44,
+    "load_5m": 1.87,
+    "load_15m": 1.67
+  },
+  "test_08": {
+    "status": "PASS",
+    "raw_counters": "      0                 0\n  40                 0                0                0                 0\n  41                 0                0                0                 0\n  42                 0                0                0                 0\n  43                 0                0                0                 0\n  44                 0                0                0                 0\n  45                 0                0                0                 0\n  46                 0                0                0                 0\n  47                 0                0                0                 0\n  48    28629449602000     438643653432        329355731          14182972\n  49                 0                0                0                 0\n  50                 0                0                0                 0\n  51                 0                0                0                 0\n  52                 0                0                0                 0",
+    "raw_errors": "              0                0                 0\n  47                 0                0                0                 0\n  48    28629449615260     438643653477        329355760          14182990\n  49                 0                0                0                 0\n  50                 0                0                0                 0\n  51                 0                0                0                 0\n  52                 0                0                0                 0"
+  },
+  "test_09": {
+    "status": "PASS",
+    "sfp_dot1x": [
+      "49  U/U  10000F          0       1294            0       102214       forwarding force auth   authorized   0x0",
+      "50  U/U  10000F          0       1249            0        98800       forwarding force auth   authorized   0x0",
+      "51  U/U  10000F          0       1326            0       104820       forwarding force auth   authorized   0x0",
+      "52  U/U  10000F          0       1275            0       100920       forwarding force auth   authorized   0x0"
+    ]
+  },
+  "test_10": {
+    "status": "PASS",
+    "config_present": false,
+    "leases_lines": "0"
+  },
+  "test_11": {
+    "status": "PASS",
+    "lag_ports": {},
+    "bonding": ""
+  },
+  "throughput": {
+    "64": {
+      "frame_size": 64,
+      "throughput_fps": 4650297,
+      "throughput_pct": 31.25,
+      "throughput_mbps": 3125.0
+    },
+    "128": {
+      "frame_size": 128,
+      "throughput_fps": 2771325,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.25
+    },
+    "256": {
+      "frame_size": 256,
+      "throughput_fps": 1486073,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.25
+    },
+    "512": {
+      "frame_size": 512,
+      "throughput_fps": 770970,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.25
+    },
+    "1024": {
+      "frame_size": 1024,
+      "throughput_fps": 392869,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.24
+    },
+    "1280": {
+      "frame_size": 1280,
+      "throughput_fps": 315504,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.24
+    },
+    "1518": {
+      "frame_size": 1518,
+      "throughput_fps": 266681,
+      "throughput_pct": 32.81,
+      "throughput_mbps": 3281.24
+    }
+  },
+  "test_01": {
+    "status": "PASS",
+    "data": {
+      "64": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 14880952,
+          "tx": 595238080,
+          "rx": 197937714,
+          "loss_pct": 66.7465
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 13392856,
+          "tx": 531029268,
+          "rx": 191998002,
+          "loss_pct": 63.8442
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 11904761,
+          "tx": 476190440,
+          "rx": 193706927,
+          "loss_pct": 59.3215
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 10416666,
+          "tx": 416666640,
+          "rx": 192305807,
+          "loss_pct": 53.8466
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 8928571,
+          "tx": 357142840,
+          "rx": 193616194,
+          "loss_pct": 45.7875
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 7440476,
+          "tx": 297619040,
+          "rx": 192914154,
+          "loss_pct": 35.1808
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 5952380,
+          "tx": 238095200,
+          "rx": 190028858,
+          "loss_pct": 20.1879
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 4464285,
+          "tx": 178571400,
+          "rx": 178571400,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 2976190,
+          "tx": 117939032,
+          "rx": 117938998,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 1488095,
+          "tx": 58781228,
+          "rx": 58781212,
+          "loss_pct": 0.0
+        }
+      ],
+      "128": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 8445945,
+          "tx": 337837800,
+          "rx": 111625249,
+          "loss_pct": 66.9589
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 7601350,
+          "tx": 304054000,
+          "rx": 112225898,
+          "loss_pct": 63.0901
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 6756756,
+          "tx": 270270240,
+          "rx": 111970617,
+          "loss_pct": 58.5709
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 5912161,
+          "tx": 236486440,
+          "rx": 109834192,
+          "loss_pct": 53.5558
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 5067567,
+          "tx": 202702680,
+          "rx": 111432858,
+          "loss_pct": 45.0265
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 4222972,
+          "tx": 168918880,
+          "rx": 112254783,
+          "loss_pct": 33.5452
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 3378378,
+          "tx": 135135120,
+          "rx": 112288692,
+          "loss_pct": 16.9064
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 2533783,
+          "tx": 101351320,
+          "rx": 101351320,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 1689189,
+          "tx": 67567560,
+          "rx": 67567560,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 844594,
+          "tx": 33783760,
+          "rx": 33783760,
+          "loss_pct": 0.0
+        }
+      ],
+      "256": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 4528985,
+          "tx": 181159400,
+          "rx": 60288792,
+          "loss_pct": 66.7206
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 4076086,
+          "tx": 163043440,
+          "rx": 60154806,
+          "loss_pct": 63.105
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 3623188,
+          "tx": 144927520,
+          "rx": 60192590,
+          "loss_pct": 58.4671
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 3170289,
+          "tx": 126811560,
+          "rx": 60202629,
+          "loss_pct": 52.5259
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 2717391,
+          "tx": 108695640,
+          "rx": 60323476,
+          "loss_pct": 44.5024
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 2264492,
+          "tx": 90579680,
+          "rx": 60333377,
+          "loss_pct": 33.3919
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 1811594,
+          "tx": 72463760,
+          "rx": 60315199,
+          "loss_pct": 16.765
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 1358695,
+          "tx": 54347800,
+          "rx": 54347800,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 905797,
+          "tx": 36231880,
+          "rx": 36231880,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 452898,
+          "tx": 18115920,
+          "rx": 18115920,
+          "loss_pct": 0.0
+        }
+      ],
+      "512": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 2349624,
+          "tx": 74251140,
+          "rx": 24755611,
+          "loss_pct": 66.6596
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 2114661,
+          "tx": 84586440,
+          "rx": 31317797,
+          "loss_pct": 62.9754
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 1879699,
+          "tx": 75187960,
+          "rx": 31342738,
+          "loss_pct": 58.3142
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 1644736,
+          "tx": 65789440,
+          "rx": 31337480,
+          "loss_pct": 52.367
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 1409774,
+          "tx": 55214876,
+          "rx": 30679382,
+          "loss_pct": 44.4364
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 1174812,
+          "tx": 46992480,
+          "rx": 31338517,
+          "loss_pct": 33.3116
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 939849,
+          "tx": 37593960,
+          "rx": 31339902,
+          "loss_pct": 16.6358
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 704887,
+          "tx": 28195480,
+          "rx": 28195480,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 469924,
+          "tx": 18796960,
+          "rx": 18796960,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 234962,
+          "tx": 9398480,
+          "rx": 9398480,
+          "loss_pct": 0.0
+        }
+      ],
+      "1024": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 1197318,
+          "tx": 47892720,
+          "rx": 15966474,
+          "loss_pct": 66.662
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 1077586,
+          "tx": 43103440,
+          "rx": 15965795,
+          "loss_pct": 62.9593
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 957854,
+          "tx": 38314160,
+          "rx": 15968464,
+          "loss_pct": 58.3223
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 838122,
+          "tx": 33524880,
+          "rx": 15965252,
+          "loss_pct": 52.3779
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 718390,
+          "tx": 28735600,
+          "rx": 15966357,
+          "loss_pct": 44.437
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 598659,
+          "tx": 23946360,
+          "rx": 15966340,
+          "loss_pct": 33.3246
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 478927,
+          "tx": 19157080,
+          "rx": 15966904,
+          "loss_pct": 16.6527
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 359195,
+          "tx": 14367800,
+          "rx": 14367800,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 239463,
+          "tx": 9578520,
+          "rx": 9578520,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 119731,
+          "tx": 4789240,
+          "rx": 4789240,
+          "loss_pct": 0.0
+        }
+      ],
+      "1280": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 961538,
+          "tx": 38461520,
+          "rx": 12821856,
+          "loss_pct": 66.6632
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 865384,
+          "tx": 34615360,
+          "rx": 12821203,
+          "loss_pct": 62.9609
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 769230,
+          "tx": 30769200,
+          "rx": 12822176,
+          "loss_pct": 58.3279
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 673076,
+          "tx": 26923040,
+          "rx": 12821657,
+          "loss_pct": 52.3766
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 576922,
+          "tx": 22868768,
+          "rx": 12705226,
+          "loss_pct": 44.4429
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 480769,
+          "tx": 19230760,
+          "rx": 12821700,
+          "loss_pct": 33.3271
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 384615,
+          "tx": 15384600,
+          "rx": 12822158,
+          "loss_pct": 16.6559
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 288461,
+          "tx": 11538440,
+          "rx": 11538440,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 192307,
+          "tx": 7692280,
+          "rx": 7692280,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 96153,
+          "tx": 3846120,
+          "rx": 3846120,
+          "loss_pct": 0.0
+        }
+      ],
+      "1518": [
+        {
+          "rate_pct": 100,
+          "rate_fps": 812743,
+          "tx": 32509720,
+          "rx": 10838147,
+          "loss_pct": 66.6618
+        },
+        {
+          "rate_pct": 90,
+          "rate_fps": 731468,
+          "tx": 29258720,
+          "rx": 10837268,
+          "loss_pct": 62.9606
+        },
+        {
+          "rate_pct": 80,
+          "rate_fps": 650194,
+          "tx": 26007760,
+          "rx": 10835861,
+          "loss_pct": 58.336
+        },
+        {
+          "rate_pct": 70,
+          "rate_fps": 568920,
+          "tx": 22756800,
+          "rx": 10837102,
+          "loss_pct": 52.3786
+        },
+        {
+          "rate_pct": 60,
+          "rate_fps": 487645,
+          "tx": 19505800,
+          "rx": 10836927,
+          "loss_pct": 44.4425
+        },
+        {
+          "rate_pct": 50,
+          "rate_fps": 406371,
+          "tx": 16063152,
+          "rx": 10706739,
+          "loss_pct": 33.346
+        },
+        {
+          "rate_pct": 40,
+          "rate_fps": 325097,
+          "tx": 13003880,
+          "rx": 10836775,
+          "loss_pct": 16.6651
+        },
+        {
+          "rate_pct": 30,
+          "rate_fps": 243822,
+          "tx": 9752880,
+          "rx": 9752880,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 20,
+          "rate_fps": 162548,
+          "tx": 6501920,
+          "rx": 6501920,
+          "loss_pct": 0.0
+        },
+        {
+          "rate_pct": 10,
+          "rate_fps": 81274,
+          "tx": 3250960,
+          "rx": 3250960,
+          "loss_pct": 0.0
+        }
+      ]
+    }
+  },
+  "test_05": {
+    "status": "FAIL",
+    "duration_s": 300,
+    "frame_size": 1518,
+    "total_tx": 975291600,
+    "total_rx": 325103743,
+    "loss_pct": 66.666
+  },
+  "test_07": {
+    "status": "PASS",
+    "data": {
+      "64": {
+        "frame_size": 64,
+        "rate_fps": 4603794,
+        "avg_latency_ns": 1217,
+        "min_latency_ns": 1102,
+        "max_latency_ns": 1660,
+        "loss_pct": 0.0
+      },
+      "128": {
+        "frame_size": 128,
+        "rate_fps": 2743403,
+        "avg_latency_ns": 1470,
+        "min_latency_ns": 1155,
+        "max_latency_ns": 1757,
+        "loss_pct": 0.0
+      },
+      "256": {
+        "frame_size": 256,
+        "rate_fps": 1471100,
+        "avg_latency_ns": 1610,
+        "min_latency_ns": 1350,
+        "max_latency_ns": 2017,
+        "loss_pct": 0.0
+      },
+      "512": {
+        "frame_size": 512,
+        "rate_fps": 763202,
+        "avg_latency_ns": 1856,
+        "min_latency_ns": 1402,
+        "max_latency_ns": 2357,
+        "loss_pct": 0.0
+      },
+      "1024": {
+        "frame_size": 1024,
+        "rate_fps": 388911,
+        "avg_latency_ns": 2285,
+        "min_latency_ns": 1410,
+        "max_latency_ns": 3172,
+        "loss_pct": 0.0
+      },
+      "1280": {
+        "frame_size": 1280,
+        "rate_fps": 312325,
+        "avg_latency_ns": 2486,
+        "min_latency_ns": 1405,
+        "max_latency_ns": 3612,
+        "loss_pct": 0.0
+      },
+      "1518": {
+        "frame_size": 1518,
+        "rate_fps": 263994,
+        "avg_latency_ns": 2676,
+        "min_latency_ns": 1407,
+        "max_latency_ns": 4035,
+        "loss_pct": 0.0
+      }
+    }
+  },
+  "test_12": {
+    "status": "0/100",
+    "score": 0,
+    "factors": {}
+  }
+}
