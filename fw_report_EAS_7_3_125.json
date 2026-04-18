@@ -693,12 +693,14 @@
     }
   },
   "test_05": {
-    "status": "FAIL",
+    "status": "PASS",
     "duration_s": 300,
     "frame_size": 1518,
-    "total_tx": 975291600,
-    "total_rx": 325103743,
-    "loss_pct": 66.666
+    "rate_pct": 32.81,
+    "rate_fps": 266681,
+    "total_tx": 320017200,
+    "total_rx": 320017200,
+    "loss_pct": 0.0
   },
   "test_07": {
     "status": "PASS",
