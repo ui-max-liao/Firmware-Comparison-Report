@@ -155,7 +155,7 @@
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
     </div>
     <div class="device-tab" onclick="switchDevice('promax24')">
-      <span class="chip chip-broadcom">Broadcom</span>
+      <span class="chip chip-realtek">Realtek</span>
       <div class="model">USW-Pro-Max-24-PoE</div>
       <div class="fw-info">US2.7.2.123 &rarr; US2.7.4.1</div>
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
@@ -943,12 +943,12 @@
   </div><!-- end panel-ecs -->
 
   <!-- ========================================================================== -->
-  <!-- DEVICE 3: Broadcom USW-Pro-Max-24-PoE                                      -->
+  <!-- DEVICE 3: Realtek USW-Pro-Max-24-PoE                                      -->
   <!-- ========================================================================== -->
   <div class="device-panel" id="panel-promax24">
 
   <div class="info-bar">
-    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Broadcom USW-Pro-Max-24-PoE</span></div>
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Realtek USW-Pro-Max-24-PoE</span></div>
     <div class="info-item"><span class="info-label">DUT IP</span><span class="info-value">192.168.2.232</span></div>
     <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">25-26 (10G SFP+)</span></div>
     <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">1.3 - 1.4</span></div>
@@ -998,7 +998,7 @@
         <tr><td>1518 B</td><td>100% line rate</td><td colspan="2" style="text-align:center; color:#8b949e;">Extrapolated</td><td class="val-good">0%</td><td class="val-good">SAME</td></tr>
       </tbody>
     </table>
-    <p class="note">Zero packet loss at 100% line rate across all frame sizes. Broadcom ASIC forwards at full wire speed on 10G SFP+ uplinks.</p>
+    <p class="note">Zero packet loss at 100% line rate across all frame sizes. Realtek RTL9302 ASIC forwards at full wire speed on 10G SFP+ uplinks.</p>
   </div>
 
   <!-- ==================== PROMAX24 ITEM 2 ==================== -->
@@ -1123,7 +1123,7 @@
       <a href="#summary-promax24" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Result:</strong> Sub-microsecond latency on both firmware versions. Broadcom ASIC cut-through forwarding is consistent with USW-Pro-48-PoE performance (~967-990 ns average).
+      <strong>Result:</strong> Sub-microsecond latency on both firmware versions. Realtek RTL9302 ASIC store-and-forward latency is within expected range for the RTL9300 platform.
     </div>
     <table>
       <thead>
@@ -1131,10 +1131,10 @@
       </thead>
       <tbody>
         <tr><td>Average Latency</td><td>&lt; 1 &mu;s</td><td>&lt; 1 &mu;s</td><td class="val-good">Sub-&mu;s</td></tr>
-        <tr><td>Forwarding Mode</td><td>Cut-through</td><td>Cut-through</td><td class="delta-zero">SAME</td></tr>
+        <tr><td>Forwarding Mode</td><td>Store-and-forward</td><td>Store-and-forward</td><td class="delta-zero">SAME</td></tr>
       </tbody>
     </table>
-    <p class="note">Broadcom ASIC delivers consistent sub-microsecond latency, matching USW-Pro-48-PoE behavior.</p>
+    <p class="note">Realtek RTL9302 delivers consistent low latency on 10G SFP+ uplinks.</p>
   </div>
 
   <!-- ==================== PROMAX24 ITEM 8 ==================== -->
@@ -1253,7 +1253,7 @@
         <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Zero packet loss at 100% line rate (10G SFP+) on both firmware versions</li>
         <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; CPU/Memory improved: load 3.20 &rarr; 1.97, memory 13.1% &rarr; 11.3%</li>
         <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Error counters improved: 421 eth0 RX drops &rarr; 0</li>
-        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Sub-microsecond latency (Broadcom ASIC cut-through)</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Low latency (Realtek RTL9302 ASIC)</li>
         <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; PoE budget (400W), STP, DHCP snooping all identical</li>
       </ul>
     </div>
