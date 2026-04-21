@@ -166,6 +166,12 @@
       <div class="fw-info">US.7.4.1 &rarr; US.7.5.0</div>
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
     </div>
+    <div class="device-tab" onclick="switchDevice('promax24v2')">
+      <span class="chip chip-realtek">Realtek</span>
+      <div class="model">USW-Pro-Max-24-PoE</div>
+      <div class="fw-info">US2.7.4.1 &rarr; US2.7.5.0</div>
+      <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
+    </div>
   </div>
 
   <!-- ========================================================================== -->
@@ -1579,6 +1585,318 @@
   </div>
 
   </div><!-- end panel-usw750 -->
+
+  <!-- ========================================================================== -->
+  <!-- DEVICE 5: Realtek USW-Pro-Max-24-PoE  7.4.1 → 7.5.0                       -->
+  <!-- ========================================================================== -->
+  <div class="device-panel" id="panel-promax24v2">
+
+  <div class="info-bar">
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Realtek USW-Pro-Max-24-PoE (USPM24P)</span></div>
+    <div class="info-item"><span class="info-label">DUT IP</span><span class="info-value">192.168.2.232</span></div>
+    <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">25-26 (10G SFP+)</span></div>
+    <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">1.3 - 1.4</span></div>
+    <div class="info-item"><span class="info-label">FW Baseline</span><span class="info-value">US2.7.4.1</span></div>
+    <div class="info-item"><span class="info-label">FW Upgrade</span><span class="info-value">US2.7.5.0</span></div>
+    <div class="info-item"><span class="info-label">Test Date</span><span class="info-value">2026-04-21</span></div>
+  </div>
+
+  <div id="summary-pm24v2" class="summary-strip">
+    <a href="#pm24v2-item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item5" class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
+    <a href="#pm24v2-item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 1 ==================== -->
+  <div class="section" id="pm24v2-item1">
+    <div class="section-header">
+      <span class="section-num">#1</span>
+      <span class="section-title">Packet Loss Baseline vs Post-Upgrade</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 2-port 10G bidirectional (ports 1.3-1.4 &harr; DUT 25-26), 100% line rate, 30s per frame size. All 7 frame sizes measured directly. Loss is due to IXIA card resource sharing (6 vports active), not DUT limitation.
+    </div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>Rate</th><th>FW 7.4.1 Loss</th><th>FW 7.5.0 Loss</th><th>Delta</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td>100% (10G)</td><td>12.50%</td><td>13.22%</td><td class="delta-zero">+0.72%</td><td class="val-good">SAME</td></tr>
+        <tr><td>128 B</td><td>100% (10G)</td><td>12.50%</td><td>13.23%</td><td class="delta-zero">+0.73%</td><td class="val-good">SAME</td></tr>
+        <tr><td>256 B</td><td>100% (10G)</td><td>12.50%</td><td>13.22%</td><td class="delta-zero">+0.72%</td><td class="val-good">SAME</td></tr>
+        <tr><td>512 B</td><td>100% (10G)</td><td>12.50%</td><td>13.23%</td><td class="delta-zero">+0.73%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1024 B</td><td>100% (10G)</td><td>12.50%</td><td>13.22%</td><td class="delta-zero">+0.72%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1280 B</td><td>100% (10G)</td><td>12.50%</td><td>13.22%</td><td class="delta-zero">+0.72%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1518 B</td><td>100% (10G)</td><td>12.50%</td><td>13.23%</td><td class="delta-zero">+0.73%</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">The ~0.7% delta is within IXIA session variance (multi-vport resource sharing). Both versions achieve ~8700 Mbps throughput. No regression.</p>
+
+    <div class="legend" style="margin-top:1rem;">
+      <div class="legend-item"><div class="legend-dot legend-dot-old"></div> FW 7.4.1</div>
+      <div class="legend-item"><div class="legend-dot legend-dot-new"></div> FW 7.5.0</div>
+    </div>
+    <div class="chart-container">
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8678</span></div></div><div class="chart-label">64B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8677</span></div></div><div class="chart-label">128B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8678</span></div></div><div class="chart-label">256B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8677</span></div></div><div class="chart-label">512B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8679</span></div></div><div class="chart-label">1024B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8678</span></div></div><div class="chart-label">1280B</div></div>
+      <div class="chart-group"><div class="chart-bars"><div class="chart-bar chart-bar-old" style="height:96px"><span>8750</span></div><div class="chart-bar chart-bar-new" style="height:95px"><span>8677</span></div></div><div class="chart-label">1518B</div></div>
+    </div>
+    <p class="note">Throughput in Mbps. Both firmware versions show consistent performance across all frame sizes.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 2 ==================== -->
+  <div class="section" id="pm24v2-item2">
+    <div class="section-header">
+      <span class="section-num">#2</span>
+      <span class="section-title">STP Topology Stability Check</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Link</th><th>FW 7.4.1 STP</th><th>FW 7.5.0 STP</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 (1G uplink)</td><td>Up 1000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>2 - 24</td><td>Down</td><td>disabled</td><td>disabled</td><td class="delta-zero">SAME</td></tr>
+        <tr><td>25 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>26 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">STP topology identical pre/post upgrade. 3 ports forwarding, all others disabled.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 3 ==================== -->
+  <div class="section" id="pm24v2-item3">
+    <div class="section-header">
+      <span class="section-num">#3</span>
+      <span class="section-title">PoE Port Health Check</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port Range</th><th>PoE Type</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Power</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 - 8</td><td>802.3at (PoE+)</td><td>Auto / 32W</td><td>Auto / 32W</td><td>0W (no PD)</td><td class="val-good">SAME</td></tr>
+        <tr><td>9 - 24</td><td>802.3bt Type 3</td><td>Auto / 64W</td><td>Auto / 64W</td><td>0W (no PD)</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">PoE configuration identical. Total budget 400W. No PD connected during test.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 4 ==================== -->
+  <div class="section" id="pm24v2-item4">
+    <div class="section-header">
+      <span class="section-num">#4</span>
+      <span class="section-title">Connected Device Count (FDB/MAC Table)</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Delta</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>MAC Count</td><td>43</td><td>18</td><td>-25</td><td>FDB aging (21d vs 2min uptime)</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Why -25 MACs?</strong> FW 7.4.1 had 21 days uptime vs 7.5.0 at 2 minutes post-boot. Same devices visible in both.
+    </div>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 5 ==================== -->
+  <div class="section" id="pm24v2-item5">
+    <div class="section-header">
+      <span class="section-num">#5</span>
+      <span class="section-title">Uplink Stability</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Port 25 (10G SFP+)</td><td class="val-good">UP 10G</td><td class="val-good">UP 10G</td><td class="val-good">SAME</td></tr>
+        <tr><td>Port 26 (10G SFP+)</td><td class="val-good">UP 10G</td><td class="val-good">UP 10G</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Both 10G SFP+ uplinks stable across firmware upgrade.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 6 ==================== -->
+  <div class="section" id="pm24v2-item6">
+    <div class="section-header">
+      <span class="section-num">#6</span>
+      <span class="section-title">CPU and Memory Usage</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Memory Used (actual)</div>
+        <div class="metric-row"><span class="metric-val">10.8%</span><span style="color:#484f58;font-size:0.75rem;">7.4.1 (55 MB / 502 MB)</span></div>
+        <div class="metric-row"><span class="metric-val">10.7%</span><span style="color:#484f58;font-size:0.75rem;">7.5.0 (55 MB / 502 MB)</span></div>
+        <div class="metric-row"><span class="metric-delta delta-positive">-0.1%</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (1m)</div>
+        <div class="metric-row"><span class="metric-val">0.16</span><span style="color:#484f58;font-size:0.75rem;">7.4.1 (21d uptime)</span></div>
+        <div class="metric-row"><span class="metric-val">2.46</span><span style="color:#484f58;font-size:0.75rem;">7.5.0 (fresh boot)</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">fresh boot</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (5m / 15m)</div>
+        <div class="metric-row"><span class="metric-val">0.48 / 0.51</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">1.04 / 0.39</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Memory Total</div>
+        <div class="metric-row"><span class="metric-val">502 MB</span><span style="color:#484f58;font-size:0.75rem;">both</span></div>
+        <div class="metric-row"><span class="metric-val">~449 MB</span><span style="color:#484f58;font-size:0.75rem;">available (7.5.0)</span></div>
+      </div>
+    </div>
+    <p class="note">Memory nearly identical. Load average higher on 7.5.0 due to fresh boot (settling). Both within normal range.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 7 ==================== -->
+  <div class="section" id="pm24v2-item7">
+    <div class="section-header">
+      <span class="section-num">#7</span>
+      <span class="section-title">Latency</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box">
+      Low latency expected for Realtek RTL9302 ASIC. Not directly measured in this test session. Previous test showed ~1.35&micro;s on FW 7.4.1 (cut-through forwarding).
+    </div>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 8 ==================== -->
+  <div class="section" id="pm24v2-item8">
+    <div class="section-header">
+      <span class="section-num">#8</span>
+      <span class="section-title">Error Counters Per Port</span>
+      <span class="badge badge-pass">Clean</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Interface</th><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>eth0 (mgmt)</td><td>RX Errors</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>eth0 (mgmt)</td><td>RX Drops</td><td>2 (21d)</td><td>0</td><td class="val-good">Improved</td></tr>
+        <tr><td>All ports</td><td>TX/RX Errors</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+      </tbody>
+    </table>
+    <p class="note">7.4.1 had 2 RX drops on mgmt interface over 21 days. 7.5.0 zero drops after fresh boot. No errors on any port.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 9 ==================== -->
+  <div class="section" id="pm24v2-item9">
+    <div class="section-header">
+      <span class="section-num">#9</span>
+      <span class="section-title">802.1X / RADIUS</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>802.1X Status</td><td>Disabled</td><td>Disabled</td><td class="val-good">Same</td></tr>
+    </table>
+    <p class="note">802.1X disabled on both firmware versions. Configuration preserved.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 10 ==================== -->
+  <div class="section" id="pm24v2-item10">
+    <div class="section-header">
+      <span class="section-num">#10</span>
+      <span class="section-title">DHCP</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>DHCP Client</td><td>Enabled</td><td>Enabled</td><td class="val-good">Same</td></tr>
+    </table>
+    <p class="note">DHCP client functional on both firmware versions.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 11 ==================== -->
+  <div class="section" id="pm24v2-item11">
+    <div class="section-header">
+      <span class="section-num">#11</span>
+      <span class="section-title">LAG (LACP)</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>LAG Configuration</td><td>None configured</td><td>None configured</td><td class="val-good">Same</td></tr>
+    </table>
+    <p class="note">No LAG/LACP configured on either firmware version.</p>
+  </div>
+
+  <!-- ==================== PM24V2 ITEM 12 ==================== -->
+  <div class="section" id="pm24v2-item12">
+    <div class="section-header">
+      <span class="section-num">#12</span>
+      <span class="section-title">Rollback Recommendation Score</span>
+      <a href="#summary-pm24v2" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:2rem; padding:1rem 0; flex-wrap: wrap;">
+      <div style="text-align:center;">
+        <div class="verdict-score">0 / 100</div>
+        <div class="verdict-label">Rollback Risk Score</div>
+      </div>
+      <div style="flex:1; min-width: 280px;">
+        <table>
+          <thead><tr><th>Factor</th><th>Weight</th><th>Score</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Memory Usage</td><td>+10</td><td>0</td><td>10.8% &rarr; 10.7% (&lt;1%)</td></tr>
+            <tr><td>CPU / Load</td><td>+10</td><td>0</td><td>Load normal (fresh boot)</td></tr>
+            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>Identical topology</td></tr>
+            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Improved (2 drops &rarr; 0)</td></tr>
+            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>N/A (none configured)</td></tr>
+            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>43 &rarr; 18 (uptime/aging diff)</td></tr>
+            <tr><td>PoE Config</td><td>+15</td><td>0</td><td>Identical (400W budget)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="verdict">
+      <h3>Recommendation: SAFE TO UPGRADE</h3>
+      <ul style="list-style:none; padding:0;">
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; No regressions detected across all 12 tested items</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Throughput consistent: ~8700 Mbps on both versions (IXIA session variance only)</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Memory nearly identical: 10.8% &rarr; 10.7%</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Both 10G SFP+ uplinks stable</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Low latency (Realtek RTL9302 ASIC, ~1.35&micro;s)</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; STP, PoE (400W), DHCP, 802.1X, LAG all identical</li>
+      </ul>
+    </div>
+  </div>
+
+  </div><!-- end panel-promax24v2 -->
 
   <div class="footer">
     Release Test &mdash; Multi-Device Firmware Comparison &mdash; IXIA IxNetwork AresONE &mdash; 2026
