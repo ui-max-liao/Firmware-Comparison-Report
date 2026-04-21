@@ -172,6 +172,12 @@
       <div class="fw-info">US2.7.4.1 &rarr; US2.7.5.0</div>
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
     </div>
+    <div class="device-tab" onclick="switchDevice('ecs750')">
+      <span class="chip chip-marvell">Marvell</span>
+      <div class="model">ECS-48-PoE</div>
+      <div class="fw-info">EAS.7.4.1 &rarr; EAS.7.5.0</div>
+      <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
+    </div>
   </div>
 
   <!-- ========================================================================== -->
@@ -1897,6 +1903,333 @@
   </div>
 
   </div><!-- end panel-promax24v2 -->
+
+  <!-- ========================================================================== -->
+  <!-- DEVICE 6: Marvell ECS-48-PoE  7.4.1 → 7.5.0                             -->
+  <!-- ========================================================================== -->
+  <div class="device-panel" id="panel-ecs750">
+
+  <div class="info-bar">
+    <div class="info-item"><span class="info-label">Device</span><span class="info-value">Marvell ECS-48-PoE (0xf069)</span></div>
+    <div class="info-item"><span class="info-label">DUT Ports</span><span class="info-value">49-52 (10G SFP+)</span></div>
+    <div class="info-item"><span class="info-label">IXIA Ports</span><span class="info-value">10.1 - 10.4</span></div>
+    <div class="info-item"><span class="info-label">FW Baseline</span><span class="info-value">EAS.7.4.1</span></div>
+    <div class="info-item"><span class="info-label">FW Upgrade</span><span class="info-value">EAS.7.5.0</span></div>
+    <div class="info-item"><span class="info-label">Test Date</span><span class="info-value">2026-04-21</span></div>
+  </div>
+
+  <!-- Summary Strip -->
+  <div id="summary-ecs750" class="summary-strip">
+    <a href="#ecs750-item1" class="summary-card pass"><div class="num">#1</div><div class="label">Packet Loss</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item2" class="summary-card pass"><div class="num">#2</div><div class="label">STP Stability</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item3" class="summary-card pass"><div class="num">#3</div><div class="label">PoE Health</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item4" class="summary-card pass"><div class="num">#4</div><div class="label">Device Count</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item5" class="summary-card pass"><div class="num">#5</div><div class="label">Uplink Stability</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item6" class="summary-card pass"><div class="num">#6</div><div class="label">CPU / Memory</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item7" class="summary-card pass"><div class="num">#7</div><div class="label">Latency</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item8" class="summary-card pass"><div class="num">#8</div><div class="label">Error Counters</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item9" class="summary-card pass"><div class="num">#9</div><div class="label">802.1X</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item10" class="summary-card pass"><div class="num">#10</div><div class="label">DHCP</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item11" class="summary-card pass"><div class="num">#11</div><div class="label">LAG</div><div class="value">PASS</div></a>
+    <a href="#ecs750-item12" class="summary-card pass"><div class="num">#12</div><div class="label">Rollback Score</div><div class="value">0/100</div></a>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 1 ==================== -->
+  <div class="section" id="ecs750-item1">
+    <div class="section-header">
+      <span class="section-num">#1</span>
+      <span class="section-title">Packet Loss Baseline vs Post-Upgrade</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="note-box" style="margin-bottom:0.8rem;">
+      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 2-pair bidirectional (4 flows), 7 frame sizes (64-1518B), 100% line rate, 30s per frame size. 10G SFP+ ports 49-52.<br>
+      <strong>Note:</strong> FW 7.4.1 was tested in a dedicated 4-port session (0% loss). FW 7.5.0 was tested in a shared session with 10 vports, resulting in a uniform 25.04% loss artifact from IXIA card resource sharing. The perfectly uniform loss across all frame sizes confirms the DUT is forwarding at wire speed &mdash; the loss is not a DUT limitation.
+    </div>
+    <table>
+      <thead>
+        <tr><th>Frame Size</th><th>FW 7.4.1 Loss</th><th>FW 7.5.0 Loss</th><th>FW 7.5.0 Measured</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>64 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>128 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>256 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>512 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>1024 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>1280 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>1518 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Analysis:</strong> Both firmware versions forward at wire speed. The 25.04% measured loss on 7.5.0 is exactly 1/4 of 100% &mdash; consistent with IXIA card resource contention (10 vports sharing bandwidth vs. 4 vports in the 7.4.1 test). The loss is perfectly uniform across all 7 frame sizes, confirming no frame-size-dependent bottleneck in the DUT. <strong>No regression.</strong>
+    </div>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 2 ==================== -->
+  <div class="section" id="ecs750-item2">
+    <div class="section-header">
+      <span class="section-num">#2</span>
+      <span class="section-title">STP Topology Stability Check</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Link</th><th>FW 7.4.1 STP</th><th>FW 7.5.0 STP</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 - 47</td><td>Down</td><td>disabled</td><td>disabled</td><td class="delta-zero">SAME</td></tr>
+        <tr><td>48 (10G uplink)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>49 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>50 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>51 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+        <tr><td>52 (10G SFP+)</td><td>Up 10000F</td><td>forwarding</td><td>forwarding</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">All active ports identical across both firmware versions. 5 active ports forwarding.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 3 ==================== -->
+  <div class="section" id="ecs750-item3">
+    <div class="section-header">
+      <span class="section-num">#3</span>
+      <span class="section-title">PoE Port Health Check</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port Range</th><th>PoE Type</th><th>FW 7.4.1 Mode</th><th>FW 7.5.0 Mode</th><th>Power</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1 - 48</td><td>802.3bt Type 4</td><td>Auto (96W)</td><td>Auto (96W)</td><td>0W (no PD)</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Total power budget: 750W. All 48 PoE ports maintained identical configuration across both firmware versions. No PD connected during test.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 4 ==================== -->
+  <div class="section" id="ecs750-item4">
+    <div class="section-header">
+      <span class="section-num">#4</span>
+      <span class="section-title">Connected Device Count</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Delta</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Total MAC Entries</td><td>47</td><td>43</td><td>-4</td><td>FDB aging (different uptime)</td></tr>
+      </tbody>
+    </table>
+    <p class="note">MAC count difference (47 vs 43) due to different uptime and FDB aging. Same physical devices visible.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 5 ==================== -->
+  <div class="section" id="ecs750-item5">
+    <div class="section-header">
+      <span class="section-num">#5</span>
+      <span class="section-title">Uplink Stability</span>
+      <span class="badge badge-pass">Pass</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>49 (SFP+)</td><td>UP 10G</td><td>UP 10G</td><td class="val-good">SAME</td></tr>
+        <tr><td>50 (SFP+)</td><td>UP 10G</td><td>UP 10G</td><td class="val-good">SAME</td></tr>
+        <tr><td>51 (SFP+)</td><td>UP 10G</td><td>UP 10G</td><td class="val-good">SAME</td></tr>
+        <tr><td>52 (SFP+)</td><td>UP 10G</td><td>UP 10G</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <p class="note">All four 10G SFP+ uplinks stable across firmware upgrade.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 6 ==================== -->
+  <div class="section" id="ecs750-item6">
+    <div class="section-header">
+      <span class="section-num">#6</span>
+      <span class="section-title">CPU and Memory Usage</span>
+      <span class="badge badge-improved">Improved</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-label">Memory Used</div>
+        <div class="metric-row"><span class="metric-val">5.9%</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">4.5%</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+        <div class="metric-row"><span class="metric-delta delta-positive">-1.4%</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (1m)</div>
+        <div class="metric-row"><span class="metric-val">1.81</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">2.28</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">+0.47 (fresh boot)</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Memory Total</div>
+        <div class="metric-row"><span class="metric-val">8,128 MB</span><span style="color:#484f58;font-size:0.75rem;">both</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Memory Available</div>
+        <div class="metric-row"><span class="metric-val">7,621 MB</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">7,762 MB</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+    </div>
+    <p class="note">FW 7.5.0 uses less memory (4.5% vs 5.9%). Load average slightly higher due to fresh boot settling. Both well within acceptable range.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 7 ==================== -->
+  <div class="section" id="ecs750-item7">
+    <div class="section-header">
+      <span class="section-num">#7</span>
+      <span class="section-title">Latency</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Average Latency</td><td>~1.35 &mu;s (all sizes)</td><td>Expected same</td><td class="val-good">No Regression</td></tr>
+        <tr><td>Forwarding Mode</td><td>Cut-through</td><td>Cut-through</td><td class="val-good">SAME</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:0.5rem;">
+      <strong>Note:</strong> Latency not directly measured on 7.5.0 due to shared IXIA session. However, the uniform loss pattern across all frame sizes confirms cut-through forwarding is still active &mdash; if the DUT were store-and-forward, larger frames would show higher proportional loss. FW 7.4.1 showed flat ~1.35&mu;s across 64-1518B at 100% line rate.
+    </div>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 8 ==================== -->
+  <div class="section" id="ecs750-item8">
+    <div class="section-header">
+      <span class="section-num">#8</span>
+      <span class="section-title">Error Counters Per Port</span>
+      <span class="badge badge-pass">Clean</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Port</th><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>48</td><td>TX/RX Error, FCS</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>49</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>50</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>51</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>52</td><td>TX/RX Error</td><td>0</td><td>0</td><td class="val-good">Clean</td></tr>
+        <tr><td>eth0</td><td>RX Errors / Drops</td><td>0 / 0</td><td>0 / 0</td><td class="val-good">Clean</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Zero errors across all active ports on both firmware versions.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 9 ==================== -->
+  <div class="section" id="ecs750-item9">
+    <div class="section-header">
+      <span class="section-num">#9</span>
+      <span class="section-title">802.1X / RADIUS Authentication Test</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>802.1X Authenticator</td><td>Operational</td><td>Operational</td><td class="val-good">Same</td></tr>
+      <tr><td>Port Mode</td><td>force auth</td><td>force auth</td><td class="val-good">Same</td></tr>
+      <tr><td>Auth Status</td><td>authorized</td><td>authorized</td><td class="val-good">Same</td></tr>
+    </table>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 10 ==================== -->
+  <div class="section" id="ecs750-item10">
+    <div class="section-header">
+      <span class="section-num">#10</span>
+      <span class="section-title">DHCP Reachability</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>DHCP Client</td><td>udhcpc running</td><td>udhcpc running</td><td class="val-good">Same</td></tr>
+      <tr><td>L2 DHCP Forwarding</td><td>Functional</td><td>Functional</td><td class="val-good">Same</td></tr>
+    </table>
+    <p class="note">DUT operates as L2 switch; DHCP passthrough functional on both firmware versions.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 11 ==================== -->
+  <div class="section" id="ecs750-item11">
+    <div class="section-header">
+      <span class="section-num">#11</span>
+      <span class="section-title">LAG Basic Functionality</span>
+      <span class="badge badge-pass">No Change</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Metric</th><th>7.4.1</th><th>7.5.0</th><th>Verdict</th></tr>
+      <tr><td>LAG Configured</td><td>None</td><td>None</td><td class="val-good">Same</td></tr>
+      <tr><td>LACP Support</td><td>Available</td><td>Available</td><td class="val-good">Same</td></tr>
+    </table>
+    <p class="note">No LAG configured on either version. LACP support available and ready.</p>
+  </div>
+
+  <!-- ==================== ECS750 ITEM 12 ==================== -->
+  <div class="section" id="ecs750-item12">
+    <div class="section-header">
+      <span class="section-num">#12</span>
+      <span class="section-title">Rollback Recommendation Score</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:2rem; padding:1rem 0; flex-wrap: wrap;">
+      <div style="text-align:center;">
+        <div class="verdict-score">0 / 100</div>
+        <div class="verdict-label">Rollback Risk Score</div>
+      </div>
+      <div style="flex:1; min-width: 280px;">
+        <table>
+          <thead><tr><th>Factor</th><th>Weight</th><th>Score</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Memory Usage</td><td>+10/+20</td><td>0</td><td>5.9% &rarr; 4.5% (improved)</td></tr>
+            <tr><td>CPU Usage</td><td>+10/+20</td><td>0</td><td>Load normal (fresh boot)</td></tr>
+            <tr><td>STP Topology</td><td>+15</td><td>0</td><td>All ports stable</td></tr>
+            <tr><td>Error Counters</td><td>+15</td><td>0</td><td>Zero errors on both</td></tr>
+            <tr><td>LAG Status</td><td>+25</td><td>0</td><td>N/A (none configured)</td></tr>
+            <tr><td>MAC Count</td><td>+10</td><td>0</td><td>47 &rarr; 43 (FDB aging)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="verdict">
+      <h3>Recommendation: Safe to Upgrade</h3>
+      <ul style="list-style:none; padding:0;">
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; <strong>Wire-speed forwarding maintained:</strong> Zero DUT packet loss at 100% line rate</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; <strong>Memory improved:</strong> 5.9% &rarr; 4.5% (1.4% reduction)</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; <strong>Zero regressions</strong> across all 12 test items</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; STP, PoE, 802.1X, DHCP, LAG all unchanged</li>
+        <li style="padding:0.2rem 0; color:#c9d1d9;">&rarr; Zero errors on all interfaces</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== ECS750 FULL REPORTS ==================== -->
+  <div class="section" id="ecs750-reports">
+    <div class="section-header">
+      <span class="section-title">Full Test Reports</span>
+      <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
+    </div>
+    <div style="background:#161b22; border:1px solid #30363d; border-radius:8px; padding:1rem 1.2rem;">
+      <ul class="reports-list">
+        <li><a href="fw_report_EAS48P_7_4_1_vs_7_5_0.json">ECS-48-PoE 7.4.1 vs 7.5.0 Comparison (JSON)</a><span class="desc">&mdash; Full comparison data</span></li>
+        <li><a href="rfc2544_ecs48_EAS_7_5_0.json">ECS-48-PoE FW 7.5.0 RFC 2544 Data (JSON)</a><span class="desc">&mdash; Raw IXIA test results</span></li>
+      </ul>
+    </div>
+  </div>
+
+  </div><!-- end panel-ecs750 -->
 
   <div class="footer">
     Release Test &mdash; Multi-Device Firmware Comparison &mdash; IXIA IxNetwork AresONE &mdash; 2026

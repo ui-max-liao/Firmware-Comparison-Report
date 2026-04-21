@@ -1,0 +1,227 @@
+{
+  "dut": "ECS-48-PoE",
+  "fw": "EAS.7.5.0",
+  "dut_ports": "49-52 (10G SFP+)",
+  "ixia_ports": "10.1-10.4",
+  "timestamp": "2026-04-21T14:17:22",
+  "duration_sec": 30,
+  "results": {
+    "64": {
+      "frame_size": 64,
+      "tx_frames": 266595060,
+      "rx_frames": 199837977,
+      "loss_pct": 25.0406,
+      "throughput_fps": 1665316.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.94,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66648765,
+          "rx": 44709169
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66648765,
+          "rx": 11061787
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66648765,
+          "rx": 139005332
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66648765,
+          "rx": 5061689
+        }
+      ]
+    },
+    "128": {
+      "frame_size": 128,
+      "tx_frames": 266770932,
+      "rx_frames": 199967429,
+      "loss_pct": 25.0415,
+      "throughput_fps": 1666395.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.85,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66692733,
+          "rx": 44737559
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66692733,
+          "rx": 11067336
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66692733,
+          "rx": 139102087
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66692733,
+          "rx": 5060447
+        }
+      ]
+    },
+    "256": {
+      "frame_size": 256,
+      "tx_frames": 267330916,
+      "rx_frames": 200387442,
+      "loss_pct": 25.0414,
+      "throughput_fps": 1669895.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.86,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66832729,
+          "rx": 44832503
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66832729,
+          "rx": 11083937
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66832729,
+          "rx": 139401384
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66832729,
+          "rx": 5069618
+        }
+      ]
+    },
+    "512": {
+      "frame_size": 512,
+      "tx_frames": 267513720,
+      "rx_frames": 200525229,
+      "loss_pct": 25.0411,
+      "throughput_fps": 1671044.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.89,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66878430,
+          "rx": 44862755
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66878430,
+          "rx": 11092769
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66878430,
+          "rx": 139480160
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66878430,
+          "rx": 5089545
+        }
+      ]
+    },
+    "1024": {
+      "frame_size": 1024,
+      "tx_frames": 266912828,
+      "rx_frames": 200074688,
+      "loss_pct": 25.0412,
+      "throughput_fps": 1667289.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.88,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66728207,
+          "rx": 44755612
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66728207,
+          "rx": 11066710
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66728207,
+          "rx": 139182414
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66728207,
+          "rx": 5069952
+        }
+      ]
+    },
+    "1280": {
+      "frame_size": 1280,
+      "tx_frames": 267756848,
+      "rx_frames": 200708511,
+      "loss_pct": 25.0408,
+      "throughput_fps": 1672571.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.92,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66939212,
+          "rx": 44903468
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66939212,
+          "rx": 11108865
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66939212,
+          "rx": 139613364
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66939212,
+          "rx": 5082814
+        }
+      ]
+    },
+    "1518": {
+      "frame_size": 1518,
+      "tx_frames": 267183852,
+      "rx_frames": 200277774,
+      "loss_pct": 25.0412,
+      "throughput_fps": 1668981.0,
+      "throughput_pct": 74.96,
+      "throughput_mbps": 7495.88,
+      "port_stats": [
+        {
+          "port": "port_10_1",
+          "tx": 66795963,
+          "rx": 44809556
+        },
+        {
+          "port": "port_10_2",
+          "tx": 66795963,
+          "rx": 11075575
+        },
+        {
+          "port": "port_10_3",
+          "tx": 66795963,
+          "rx": 139325930
+        },
+        {
+          "port": "port_10_4",
+          "tx": 66795963,
+          "rx": 5066713
+        }
+      ]
+    }
+  }
+}
