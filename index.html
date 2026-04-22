@@ -16,8 +16,8 @@
   .info-value { color: #e1e4e8; font-weight: 500; }
 
   /* Device Tabs */
-  .device-tabs { display: flex; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
-  .device-tab { background: #161b22; border: 2px solid #30363d; border-radius: 10px; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.2s; flex: 1; min-width: 260px; }
+  .device-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 2rem; }
+  .device-tab { background: #161b22; border: 2px solid #30363d; border-radius: 10px; padding: 1rem 1.5rem; cursor: pointer; transition: all 0.2s; }
   .device-tab:hover { border-color: #58a6ff; transform: translateY(-2px); }
   .device-tab.active { border-color: #58a6ff; background: #1c2129; }
   .device-tab .chip { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 0.3rem; }
@@ -166,16 +166,16 @@
       <div class="fw-info">US.7.4.1 &rarr; US.7.5.0</div>
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
     </div>
-    <div class="device-tab" onclick="switchDevice('promax24v2')">
-      <span class="chip chip-realtek">Realtek</span>
-      <div class="model">USW-Pro-Max-24-PoE</div>
-      <div class="fw-info">US2.7.4.1 &rarr; US2.7.5.0</div>
-      <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
-    </div>
     <div class="device-tab" onclick="switchDevice('ecs750')">
       <span class="chip chip-marvell">Marvell</span>
       <div class="model">ECS-48-PoE</div>
       <div class="fw-info">EAS.7.4.1 &rarr; EAS.7.5.0</div>
+      <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
+    </div>
+    <div class="device-tab" onclick="switchDevice('promax24v2')">
+      <span class="chip chip-realtek">Realtek</span>
+      <div class="model">USW-Pro-Max-24-PoE</div>
+      <div class="fw-info">US2.7.4.1 &rarr; US2.7.5.0</div>
       <div class="result-badge"><span class="result-pass-count">12/12 PASS</span></div>
     </div>
   </div>
