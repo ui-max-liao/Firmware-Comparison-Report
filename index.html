@@ -1458,10 +1458,22 @@
         <div class="metric-row"><span class="metric-delta delta-positive">-0.51</span></div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Load Average (5m / 15m)</div>
-        <div class="metric-row"><span class="metric-val">3.12 / 3.12</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
-        <div class="metric-row"><span class="metric-val">0.97 / 0.35</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
-        <div class="metric-row"><span class="metric-delta delta-zero">fresh boot</span></div>
+        <div class="metric-label">CPU (usr / sys / sirq)</div>
+        <div class="metric-row"><span class="metric-val">12 / 37 / 50</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">6 / 1 / 51</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+        <div class="metric-row"><span class="metric-delta delta-positive">sys 37%&rarr;1%</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CPU Idle</div>
+        <div class="metric-row"><span class="metric-val">0%</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">41%</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+        <div class="metric-row"><span class="metric-delta delta-positive">+41% headroom</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (1m / 5m / 15m)</div>
+        <div class="metric-row"><span class="metric-val">3.18 / 3.12 / 3.12</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">3.09 / 3.26 / 3.23</span><span style="color:#484f58;font-size:0.75rem;">7.5.0 (2d uptime)</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">~same</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Memory Total</div>
@@ -1469,7 +1481,7 @@
         <div class="metric-row"><span class="metric-val">~313 MB</span><span style="color:#484f58;font-size:0.75rem;">available (7.5.0)</span></div>
       </div>
     </div>
-    <p class="note">Memory slightly improved by 0.5% on 7.5.0. Load average lower on 7.5.0 (fresh boot). Both within normal range.</p>
+    <p class="note">CPU sys usage dropped significantly (37% &rarr; 1%). sirq stable at ~51% (hardware interrupt processing). Overall CPU idle improved from 0% to 41%, indicating substantially more headroom on 7.5.0. Memory slightly improved by 0.5%.</p>
   </div>
 
   <!-- ==================== USW750 ITEM 7 ==================== -->
@@ -1770,9 +1782,20 @@
         <div class="metric-row"><span class="metric-delta delta-zero">fresh boot</span></div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Load Average (5m / 15m)</div>
-        <div class="metric-row"><span class="metric-val">0.48 / 0.51</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
-        <div class="metric-row"><span class="metric-val">1.04 / 0.39</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+        <div class="metric-label">CPU (usr / sys / sirq)</div>
+        <div class="metric-row"><span class="metric-val">&mdash;</span><span style="color:#484f58;font-size:0.75rem;">7.4.1 (not captured)</span></div>
+        <div class="metric-row"><span class="metric-val">1 / 17 / 0</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CPU Idle</div>
+        <div class="metric-row"><span class="metric-val">&mdash;</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">80%</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (1m / 5m / 15m)</div>
+        <div class="metric-row"><span class="metric-val">0.16 / 0.48 / 0.51</span><span style="color:#484f58;font-size:0.75rem;">7.4.1 (21d uptime)</span></div>
+        <div class="metric-row"><span class="metric-val">0.74 / 0.94 / 1.00</span><span style="color:#484f58;font-size:0.75rem;">7.5.0 (1d uptime)</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">different uptime</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Memory Total</div>
@@ -1780,7 +1803,7 @@
         <div class="metric-row"><span class="metric-val">~449 MB</span><span style="color:#484f58;font-size:0.75rem;">available (7.5.0)</span></div>
       </div>
     </div>
-    <p class="note">Memory nearly identical. Load average higher on 7.5.0 due to fresh boot (settling). Both within normal range.</p>
+    <p class="note">7.5.0 CPU: 1% usr, 17% sys, 80% idle. 7.4.1 CPU % not captured before upgrade (only load average available). Memory nearly identical. Load average difference due to different uptime (21d vs 1d).</p>
   </div>
 
   <!-- ==================== PM24V2 ITEM 7 ==================== -->
@@ -2065,10 +2088,20 @@
         <div class="metric-row"><span class="metric-delta delta-positive">-1.4%</span></div>
       </div>
       <div class="metric-card">
-        <div class="metric-label">Load Average (1m)</div>
-        <div class="metric-row"><span class="metric-val">1.81</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
-        <div class="metric-row"><span class="metric-val">2.28</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
-        <div class="metric-row"><span class="metric-delta delta-zero">+0.47 (fresh boot)</span></div>
+        <div class="metric-label">CPU (usr / sys / sirq)</div>
+        <div class="metric-row"><span class="metric-val">&mdash;</span><span style="color:#484f58;font-size:0.75rem;">7.4.1 (not captured)</span></div>
+        <div class="metric-row"><span class="metric-val">2 / 4 / 0</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CPU Idle</div>
+        <div class="metric-row"><span class="metric-val">&mdash;</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">91%</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Load Average (1m / 5m / 15m)</div>
+        <div class="metric-row"><span class="metric-val">1.81 / 1.50 / 1.30</span><span style="color:#484f58;font-size:0.75rem;">7.4.1</span></div>
+        <div class="metric-row"><span class="metric-val">1.53 / 1.54 / 1.61</span><span style="color:#484f58;font-size:0.75rem;">7.5.0 (1d uptime)</span></div>
+        <div class="metric-row"><span class="metric-delta delta-zero">~same</span></div>
       </div>
       <div class="metric-card">
         <div class="metric-label">Memory Total</div>
@@ -2080,7 +2113,7 @@
         <div class="metric-row"><span class="metric-val">7,762 MB</span><span style="color:#484f58;font-size:0.75rem;">7.5.0</span></div>
       </div>
     </div>
-    <p class="note">FW 7.5.0 uses less memory (4.5% vs 5.9%). Load average slightly higher due to fresh boot settling. Both well within acceptable range.</p>
+    <p class="note">7.5.0 CPU: 2% usr, 4% sys, 91% idle &mdash; very light load. 7.4.1 CPU % not captured before upgrade (only load average available). Memory improved 5.9% &rarr; 4.5%. Load average comparable across versions.</p>
   </div>
 
   <!-- ==================== ECS750 ITEM 7 ==================== -->
