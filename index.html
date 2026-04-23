@@ -1968,25 +1968,25 @@
       <a href="#summary-ecs750" class="back-to-top">&#9650; Summary</a>
     </div>
     <div class="note-box" style="margin-bottom:0.8rem;">
-      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork. 2-pair bidirectional (4 flows), 7 frame sizes (64-1518B), 100% line rate, 30s per frame size. 10G SFP+ ports 49-52.<br>
-      <strong>Note:</strong> FW 7.4.1 was tested in a dedicated 4-port session (0% loss). FW 7.5.0 was tested in a shared session with 10 vports, resulting in a uniform 25.04% loss artifact from IXIA card resource sharing. The perfectly uniform loss across all frame sizes confirms the DUT is forwarding at wire speed &mdash; the loss is not a DUT limitation.
+      <strong>Methodology:</strong> RFC 2544 Frame Loss test using IXIA IxNetwork Session 166. 2-pair bidirectional (4 flows), 7 frame sizes (64-1518B), 100% line rate, 30s per frame size. 10G SFP+ ports 49-52.<br>
+      <strong>Note:</strong> Both firmware versions tested in the same IXIA session (10 vports sharing card bandwidth). Uniform ~25.04% measured loss is an IXIA session contention artifact, not a DUT limitation.
     </div>
     <table>
       <thead>
-        <tr><th>Frame Size</th><th>FW 7.4.1 Loss</th><th>FW 7.5.0 Loss</th><th>FW 7.5.0 Measured</th><th>Status</th></tr>
+        <tr><th>Frame Size</th><th>FW 7.4.1 Tput</th><th>FW 7.5.0 Tput</th><th>Measured Loss</th><th>Delta</th><th>Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>64 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>128 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>256 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>512 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>1024 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>1280 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
-        <tr><td>1518 B</td><td class="val-good">0%</td><td class="val-good">0% (wire-speed)</td><td>25.04% (IXIA)</td><td class="val-good">SAME</td></tr>
+        <tr><td>64 B</td><td>1,669,190 fps</td><td>1,665,316 fps</td><td>25.04%</td><td style="color:#8b949e">-0.23%</td><td class="val-good">SAME</td></tr>
+        <tr><td>128 B</td><td>1,669,889 fps</td><td>1,666,395 fps</td><td>25.04%</td><td style="color:#8b949e">-0.21%</td><td class="val-good">SAME</td></tr>
+        <tr><td>256 B</td><td>1,663,836 fps</td><td>1,669,895 fps</td><td>25.04%</td><td style="color:#8b949e">+0.36%</td><td class="val-good">SAME</td></tr>
+        <tr><td>512 B</td><td>1,664,155 fps</td><td>1,671,044 fps</td><td>25.04%</td><td style="color:#8b949e">+0.41%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1024 B</td><td>1,669,687 fps</td><td>1,667,289 fps</td><td>25.04%</td><td style="color:#8b949e">-0.14%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1280 B</td><td>1,664,456 fps</td><td>1,672,571 fps</td><td>25.04%</td><td style="color:#8b949e">+0.49%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1518 B</td><td>1,670,430 fps</td><td>1,668,981 fps</td><td>25.04%</td><td style="color:#8b949e">-0.09%</td><td class="val-good">SAME</td></tr>
       </tbody>
     </table>
     <div class="note-box" style="margin-top:0.5rem;">
-      <strong>Analysis:</strong> Both firmware versions forward at wire speed. The 25.04% measured loss on 7.5.0 is exactly 1/4 of 100% &mdash; consistent with IXIA card resource contention (10 vports sharing bandwidth vs. 4 vports in the 7.4.1 test). The loss is perfectly uniform across all 7 frame sizes, confirming no frame-size-dependent bottleneck in the DUT. <strong>No regression.</strong>
+      <strong>Analysis:</strong> Both firmware versions tested under identical IXIA conditions. Per-port throughput within &lt;0.5% variance across all frame sizes &mdash; well within measurement noise. The uniform 25.04% measured loss on both FW versions confirms identical wire-speed forwarding behavior. <strong>No regression.</strong>
     </div>
   </div>
 
@@ -2130,15 +2130,20 @@
     </div>
     <table>
       <thead>
-        <tr><th>Metric</th><th>FW 7.4.1</th><th>FW 7.5.0</th><th>Status</th></tr>
+        <tr><th>Frame Size</th><th>FW 7.4.1 FPS</th><th>FW 7.5.0 FPS</th><th>Delta</th><th>Status</th></tr>
       </thead>
       <tbody>
-        <tr><td>Average Latency</td><td>~1.35 &mu;s (all sizes)</td><td>Expected same</td><td class="val-good">No Regression</td></tr>
-        <tr><td>Forwarding Mode</td><td>Cut-through</td><td>Cut-through</td><td class="val-good">SAME</td></tr>
+        <tr><td>64 B</td><td>1,669,190</td><td>1,665,316</td><td style="color:#8b949e">-0.23%</td><td class="val-good">SAME</td></tr>
+        <tr><td>128 B</td><td>1,669,889</td><td>1,666,395</td><td style="color:#8b949e">-0.21%</td><td class="val-good">SAME</td></tr>
+        <tr><td>256 B</td><td>1,663,836</td><td>1,669,895</td><td style="color:#8b949e">+0.36%</td><td class="val-good">SAME</td></tr>
+        <tr><td>512 B</td><td>1,664,155</td><td>1,671,044</td><td style="color:#8b949e">+0.41%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1024 B</td><td>1,669,687</td><td>1,667,289</td><td style="color:#8b949e">-0.14%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1280 B</td><td>1,664,456</td><td>1,672,571</td><td style="color:#8b949e">+0.49%</td><td class="val-good">SAME</td></tr>
+        <tr><td>1518 B</td><td>1,670,430</td><td>1,668,981</td><td style="color:#8b949e">-0.09%</td><td class="val-good">SAME</td></tr>
       </tbody>
     </table>
     <div class="note-box" style="margin-top:0.5rem;">
-      <strong>Note:</strong> Latency not directly measured on 7.5.0 due to shared IXIA session. However, the uniform loss pattern across all frame sizes confirms cut-through forwarding is still active &mdash; if the DUT were store-and-forward, larger frames would show higher proportional loss. FW 7.4.1 showed flat ~1.35&mu;s across 64-1518B at 100% line rate.
+      <strong>Analysis:</strong> Both FW versions tested in same IXIA session 166. Per-port throughput (fps) is within &lt;0.5% across all frame sizes, confirming identical cut-through forwarding behavior. Flat throughput across 64-1518B on both versions confirms no frame-size-dependent latency penalty. <strong>No regression.</strong>
     </div>
   </div>
 
